@@ -2,7 +2,7 @@
 add_action( 'after_setup_theme', 'project_express_setup' );
 function project_express_setup()
 {
-    load_theme_textdomain( 'project_express', get_template_directory() . '/languages' );
+    load_theme_textdomain( 'project-express', get_template_directory() . '/languages' );
     add_theme_support( 'automatic-feed-links' );
     add_theme_support( 'post-thumbnails' );
     global $content_width;
@@ -27,6 +27,20 @@ function project_express_load_scripts()
     wp_enqueue_style( 'style-stylesheet', get_template_directory_uri().'/css/style.css', array(), '20150717' );
     //wp_enqueue_script( 'jquery' );
 }
+
+// register Product_Express_Tags widget
+include_once('widget_tags.php');
+function register_product_express_tags() {
+    register_widget( 'Product_Express_Tags' );
+}
+add_action( 'widgets_init', 'register_product_express_tags' );
+
+// register Product_Express_Writers widget
+include_once('widget_writers.php');
+function register_product_express_writers() {
+    register_widget( 'Product_Express_Writers' );
+}
+add_action( 'widgets_init', 'register_product_express_writers' );
 
 add_action( 'comment_form_before', 'project_express_enqueue_comment_reply_script' );
 function project_express_enqueue_comment_reply_script()
@@ -95,23 +109,24 @@ function project_express_print_daily_arrow($arr_date){
     $url_next = home_url().'?year='.$next_daily['year'].'&monthnum='.$next_daily['month'].'&day='.$next_daily['day'].'&is_daily=1';
     ?>
 
-    <nav class="navigation post-navigation" role="navigation">
-        <h2 class="screen-reader-text">_e('Daily Navigation', 'daily-archive')</h2>
-        <div class="nav-links">
-            <div class="nav-previous">
-                <a href="<?php echo $url_prev; ?>" rel="prev"><span class="meta-nav" aria-hidden="true"><?php _e('Previous day', 'daily-archive'); ?></span> <span class="screen-reader-text"><?php _e('Previous day', 'daily-archive') ?>:</span> <span class="post-title"><?php echo date(get_option('date_format'), strtotime($prev_daily['year'].'/'.$prev_daily['month'].'/'.$prev_daily['day']));?></span>
-                </a>
-            </div>
-            <?php
-            if( $next_daily != date_parse(date('Y/m/d', strtotime('+1 day', strtotime(date('Y/m/d'))))) ){;
-                ?>
-                <div class="nav-next">
-                    <a href="<?php echo $url_next; ?>" rel="next"><span class="meta-nav" aria-hidden="true"><?php _e('Next day', 'daily-archive') ?></span> <span class="screen-reader-text"><?php _e('Next day', 'daily-archive') ?>:</span> <span class="post-title"><?php echo date(get_option('date_format'), strtotime($next_daily['year'].'/'.$next_daily['month'].'/'.$next_daily['day']));?></span>
-                    </a>
-                </div>
-            <?php }?>
-        </div>
-    </nav>
+    <div class="more pure-u-1" role="navigation">
+        <a href="<?php echo $url_prev; ?>" class="prev" rel="prev">
+            <i class="fa fa-chevron-left"></i>
+            <span class="date"><?php echo date(get_option('date_format'), strtotime($prev_daily['year'].'/'.$prev_daily['month'].'/'.$prev_daily['day']));?></span>
+            <span class="text"><?php _e('Previous day', 'project-express'); ?></span>
+        </a>
+        <?php
+        if( $next_daily != date_parse(date('Y/m/d', strtotime('+1 day', strtotime(date('Y/m/d'))))) ){;
+        ?>
+        <a href="<?php echo $url_next; ?>" class="next" rel="next">
+            <i class="fa fa-chevron-right"></i>
+            <span class="date"><?php echo date(get_option('date_format'), strtotime($next_daily['year'].'/'.$next_daily['month'].'/'.$next_daily['day']));?></span>
+            <span class="text"><?php _e('Next day', 'project-express') ?></span>
+        </a>
+        <?php
+        }
+        ?>
+    </div>
 <?php
 }
 
@@ -151,7 +166,7 @@ if ( ! function_exists( 'project_express_post_thumbnail' ) ) :
      * Wraps the post thumbnail in an anchor element on index views, or a div
      * element when on single views.
      *
-     * @since Twenty Fifteen 1.0
+     * @since Product Express 1.0
      */
     function project_express_post_thumbnail() {
         if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
@@ -176,3 +191,112 @@ if ( ! function_exists( 'project_express_post_thumbnail' ) ) :
         <?php endif; // End is_singular()
     }
 endif;
+
+if ( ! function_exists( 'product_express_author_bio' ) ) :
+/**
+ * Display an user info.
+ *
+ *
+ * @since Product Express 1.0
+ */
+    function product_express_author_bio($user_id){
+        $avatar = get_avatar( get_the_author_meta( 'user_email', $user_id ) );
+        ?>
+        <div class="author <?php echo get_the_author_meta( 'nickname', $user_id ); ?>">
+            <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( $user_id ) ) ); ?>">
+                <?php echo $avatar; ?>
+                <span><?php echo get_the_author_meta( 'display_name', $user_id ); ?></span>
+            </a>
+        </div>
+<?php
+    }
+
+endif;
+
+if ( ! function_exists( 'product_express_another_author_bio' ) ) :
+    /**
+     * Display an user info.
+     *
+     *
+     * @since Product Express 1.0
+     */
+    function product_express_another_author_bio($writer){
+        ?>
+        <div class="author <?php echo $writer['nickname']; ?>">
+            <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( $writer['ID'] ) ) ); ?>">
+                <?php echo $writer['user_avatar']; ?>
+                <span><?php echo $writer['display_name']; ?></span>
+            </a>
+        </div>
+        <?php
+    }
+
+endif;
+
+/**
+ * 변수의 구성요소를 리턴받는다.
+ */
+function get_printr ($var, $title = NULL, $style = NULL, $title_style = NULL) {
+
+    if( ! $style){
+        $style = "background-color:#000; color:#00ff00; padding:5px; font-size:14px; margin: 5px 0";
+    }
+
+    if( ! $title_style){
+        $title_style = "color:#fff";
+    }
+
+    $dump = '';
+    $dump .= '<div style="text-align: left;">';
+    $dump .= "<pre style='$style'>";
+    if ($title) {
+        $dump .= "<strong style='{$title_style}'>{$title} :</strong> \n";
+    }
+    if($var === null){
+        $dump .= "`null`";
+    }else if($var === true){
+        $dump .= "`(bool) true`";
+    }else if($var === false){
+        $dump .= "`(bool) false`";
+    }else{
+        $dump .= print_r($var, TRUE);
+    }
+    $dump .= '</pre>';
+    $dump .= '</div>';
+    return $dump;
+}
+
+/**
+ * 변수의 구성요소를 출력한다.
+ */
+function printr ($var, $title = NULL, $style = NULL, $title_style = NULL) {
+    $dump = get_printr($var, $title, $style, $title_style);
+    echo $dump;
+}
+
+/**
+ * 변수의 구성요소를 출력하고 멈춘다.
+ */
+function printr2 ($var, $title = NULL, $style = NULL, $title_style = NULL) {
+    printr($var, $title,  $style, $title_style);
+    exit;
+}
+
+/**
+ * printr은 임시로 쓰고 지우는 놈인데 이놈은 코드 안에 남겨 둘 생각으로 만든 놈.
+ * @param $var
+ * @param null $title
+ */
+function debug_print($var, $title = NULL)
+{
+    $style = "background-color: #ddd; color: #000; padding: 5px; font-size: 14px; margin: 5px 0";
+    $title_style = "color: darkred;";
+    printr($var, $title, $style, $title_style);
+}
+
+function get_debug_print($var, $title = NULL)
+{
+    $style = "background-color: #ddd; color: #000; padding: 5px; font-size: 14px; margin: 5px 0";
+    $title_style = "color: darkred;";
+    return get_printr($var, $title, $style, $title_style);
+}

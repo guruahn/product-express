@@ -13,7 +13,7 @@
             ?>
         </li>
         <li class="url"><a href="<?php the_field('link'); ?>" target="_blank"><?php the_field('link'); ?></a></li>
-        <li class="tag"><!--<a href="#_" target="_blank">#Photo</a> <a href="#_" target="_blank">#Network</a> <a href="#_" target="_blank">#Group</a>--><?php the_tags('#', ' #'); ?></li>
+        <li class="tag"><?php the_tags('#', ' #'); ?></li>
 
     </ul>
     <br><br>

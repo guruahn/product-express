@@ -90,6 +90,9 @@ if(empty($daily_year) || empty($daily_month) || empty($daily_day) ){
 
             <hr />
             <?php
+            else :
+                get_template_part( 'content', 'none' );
+
             endif;
             ?>
             <!-- 프로덕 소개 끝 이후 반복 -->
@@ -102,37 +105,19 @@ if(empty($daily_year) || empty($daily_month) || empty($daily_day) ){
             </div>
 
 
-            <div class="more pure-u-1">
-                <a href="#" class="prev"><i class="fa fa-chevron-left"></i> <span class="date">2015.05.09</span><span class="text">이전글</span></a>
-                <a href="#" class="next"><i class="fa fa-chevron-right"></i> <span class="date">2015.05.11</span><span class="text">다음글</span></a>
-            </div>
+            <?php
+            project_express_print_daily_arrow($arr_date);
+            ?>
 
 
         </div>
         <!-- 본문 영역 끝 -->
     </div><!--//.content-->
 
+    <?php
+    get_template_part( 'sidebar' );
+    ?>
 
-    <div class="side pure-u-1   pure-u-md-4-24 pure-u-lg-8-24" data-sticky_column>
-        <div class="Email">
-            <h4>PRODUCT EXPRESS의 글을 구독하세요!</h4>
-            <form class="pure-form email">
-                <input type="text" class="pure-input-rounded" placeholder="E-MAIL 주소를 입력해 주세요."><button type="submit" class="pure-button"><i class="fa fa-check"></i></button>
-            </form>
-        </div>
-        <ul class="author">
-            <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/profile_danb.jpg" />danb</a></li>
-            <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/profile_jerrykim.jpg" />jerrykim</a></li>
-            <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/profile_borah.jpg" />bora.h</a></li>
-        </ul>
-
-        <ul class="taglist">
-            <li><a href="#">#Photo</a></li>
-            <li><a href="#">#Photo</a></li>
-            <li><a href="#">#Photo</a></li>
-            <li><a href="#">#Photo</a></li>
-            <li><a href="#">#Photo</a></li>
-    </div><!--//.side-->
 </div>
 
 
