@@ -12,52 +12,7 @@
 
 <?php
 get_header();
-//Query setup
-$query = array(
-    'post_type'           => 'post',
-    'posts_per_page'      => 100,
-    'paged'               => 1,
-    'ignore_sticky_posts' => true,
-);
-$add = 0;$loop = true;
-$daily_year = (isset($_GET['y']) ? $_GET['y'] : '');
-$daily_month = (isset($_GET['m']) ? $_GET['m'] : '');
-$daily_day = (isset($_GET['d']) ? $_GET['d'] : '');
 
-if(empty($daily_year) || empty($daily_month) || empty($daily_day) ){
-    //날짜 세팅 안되있을 경우 (홈) 자동으로 최신 포스트의 날짜를 기준으로 한다.
-    while($loop){
-        $today = date('Y-m-d G:i:s');
-        if($add !== 0 ) $today = date('Y-m-d', strtotime($add.' day', strtotime($today)));
-        $date = $today;
-        $arr_date = date_parse($date);
-        $query['date_query'] = array(
-            array(
-                'year'  => $arr_date['year'],
-                'month' => $arr_date['month'],
-                'day'   => $arr_date['day'],
-            ),
-        );
-        $blog_posts = new WP_Query( $query );
-
-        if(!$blog_posts->have_posts()){
-            $add -= 1;
-        }else{
-            $loop = false;
-        }
-    }
-}else{
-    $arr_date = date_parse($daily_year.'-'.$daily_month.'-'.$daily_day);
-    $query['date_query'] = array(
-        array(
-            'year'  => $arr_date['year'],
-            'month' => $arr_date['month'],
-            'day'   => $arr_date['day'],
-        ),
-    );
-    $blog_posts = new WP_Query( $query );
-
-}
 
 ?>
 
