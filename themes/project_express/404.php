@@ -1,15 +1,32 @@
-<?php get_header(); ?>
-<section id="content" role="main">
-<article id="post-0" class="post not-found">
-<header class="header">
-<h1 class="entry-title"><?php _e( 'Not Found', 'project_express' ); ?></h1>
-</header>
-<section class="entry-content">
-<p><?php _e( 'Nothing found for the requested page. Try a search instead?', 'project_express' ); ?></p>
-<?php get_search_form(); ?>
-</section>
-</article>
-</section>
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+<?php
 
+get_header();
+$arr_date = date_parse(get_query_var( 'year', '' ).'-'.get_query_var( 'monthnum', '' ).'-'.get_query_var( 'day', '' ));
+
+?>
+    <div class="container pure-g" data-sticky_parent>
+        <div class="pure-u-1    pure-u-md-20-24  pure-u-lg-16-24   content pure-u-1">
+            <!-- 본문 영역 시작 -->
+            <div class="pure-g" >
+                <div class="date pure-u-1" ><?php echo project_express_archive_title(null); ?></div>
+
+                <div class="article pure-u-1 pure-u-lg-3-5 l-box" >
+
+                    <p><?php _e('There are no posts.', 'daily-archive'); ?></p>
+
+                </div>
+            </div>
+            <?php project_express_print_daily_arrow($arr_date);?>
+        </div><!-- .content -->
+
+        <?php
+        get_template_part( 'sidebar' );
+        ?>
+
+    </div>
+
+<?php
+
+get_footer();
+
+?>

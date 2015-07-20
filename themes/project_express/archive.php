@@ -1,17 +1,36 @@
 <?php get_header(); ?>
-<section id="content" role="main">
-<header class="header">
-<h1 class="entry-title"><?php 
-if ( is_day() ) { printf( __( 'Daily Archives: %s', 'project_express' ), get_the_time( get_option( 'date_format' ) ) ); }
-elseif ( is_month() ) { printf( __( 'Monthly Archives: %s', 'project_express' ), get_the_time( 'F Y' ) ); }
-elseif ( is_year() ) { printf( __( 'Yearly Archives: %s', 'project_express' ), get_the_time( 'Y' ) ); }
-else { _e( 'Archives', 'project_express' ); }
-?></h1>
-</header>
-<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-<?php get_template_part( 'entry' ); ?>
-<?php endwhile; endif; ?>
-<?php get_template_part( 'nav', 'below' ); ?>
-</section>
-<?php get_sidebar(); ?>
+<div class="container pure-g" data-sticky_parent>
+    <div class="pure-u-1    pure-u-md-20-24  pure-u-lg-16-24   content pure-u-1">
+        <!-- 본문 영역 시작 -->
+        <div class="pure-g" >
+
+
+
+            <?php
+            if ( have_posts() ) :
+                ?>
+                <div class="date pure-u-1" >
+                    <?php
+                    the_archive_title();
+                    ?>
+                </div>
+                <?php
+                while ( have_posts() ) : the_post(); ?>
+                <?php
+                    /*왼쪽 썸네일, URL등 정보*/
+                    get_template_part( 'entry', 'info' );
+                    /*평가, 코멘트 등*/
+                    get_template_part( 'entry', 'article' );
+                ?>
+                <?php
+                endwhile;
+            endif;
+            ?>
+            <?php get_template_part( 'nav', 'below' ); ?>
+        </div>
+    </div><!--//.content-->
+    <?php
+    get_template_part( 'sidebar' );
+    ?>
+</div>
 <?php get_footer(); ?>

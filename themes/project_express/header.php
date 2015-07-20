@@ -35,7 +35,7 @@
     <script src="js/vendor/html5-3.6-respond-1.4.2.min.js"></script>
     <![endif]-->
 </head>
-<body <?php body_class(); ?>>
+<body>
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

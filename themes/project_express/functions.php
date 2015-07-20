@@ -155,9 +155,9 @@ function project_express_custom_archive_page($args){
         set_query_var( 'date_query', $date_query );
         add_action('loop_end','project_express_print_daily_arrow');
         add_filter('get_the_archive_title', 'project_express_archive_title');
-        if($args->post_count == 0) add_filter('404_template','daily_404');
     }
 }
+add_action('pre_get_posts', 'project_express_custom_archive_page');
 
 if ( ! function_exists( 'project_express_post_thumbnail' ) ) :
     /**
