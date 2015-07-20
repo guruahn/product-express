@@ -1,17 +1,14 @@
 <div class="article pure-u-1 pure-u-lg-3-5 l-box" >
 
     <div class="comment">
-        소셜 그룹을 통해 돈을 예금하고, 빌리고, 빌려주는 모바일 뱅크 앱. ios 제공.<br>
-        앱에서의 그룹을 만들어 예금하거나, 지인에게 돈을 빌린다는 점이 우리나라 계문화같기도 하다.<br>
-        빌려준 사람도 3%의 이자를 받을 수 있고, 빌린 사람도 3%의 이자를 지불하면 된다고 한다. 이자율같은건 잘 몰라서, 3%이자를 받는게 높은 건지는 모르겠지만
-        친구에게 돈을 빌려줌으로서 나도 돈을 벌 수 있다는 점이 서비스의 강점인듯하다.<br>
-        <br>
-        내 친구가 얼마전 민망해하며 고백했는데, 갚아야할 학자금대출을 뒤로한채, 성형수술을 위해 제2금융권에서 대출을 받았었다 했다.<br>
-        3년째 열심히 갚고있지만 학자금은 손도 못댔다고...<br>
-        돈을 빌리는게 쉬워질수록 갚기는 더 어려워지는 것 같아 모바일로 쉽게 빌리는 것이 과연 믿을 수 있고, 좋기만 한 일인가 싶다.<br>
+        <?php the_field('review'); ?>
     </div>
-    <div class="author danb">
-        <img src="<?php echo get_template_directory_uri(); ?>/img/profile_danb.jpg" > <span><a href="#_">danb</a></span>
+    <div class="author <?php echo get_the_author(); ?>">
+        <?php
+        // Author bio.
+        get_template_part( 'author-bio' );
+        ?>
+
     </div>
 
     <div class="comment">
