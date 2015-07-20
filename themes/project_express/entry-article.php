@@ -5,7 +5,7 @@
     </div>
     <?php
     // Author bio.
-    product_express_author_bio(get_current_user_id());
+    product_express_author_bio(get_the_author_meta('ID'));
     ?>
 
     <div class="comment">

@@ -200,11 +200,18 @@ if ( ! function_exists( 'product_express_author_bio' ) ) :
  * @since Product Express 1.0
  */
     function product_express_author_bio($user_id){
-        $avatar = get_avatar( get_the_author_meta( 'user_email', $user_id ) );
+
         ?>
         <div class="author <?php echo get_the_author_meta( 'nickname', $user_id ); ?>">
             <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( $user_id ) ) ); ?>">
-                <?php echo $avatar; ?>
+                <?php
+                include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+                if ( is_plugin_active( 'metronet-profile-picture/metronet-profile-picture.php' ) ) {
+                    mt_profile_img( $user_id );
+                }else{
+                    echo get_avatar( get_the_author_meta( 'user_email', $user_id ) );
+                }
+                ?>
                 <span><?php echo get_the_author_meta( 'display_name', $user_id ); ?></span>
             </a>
         </div>
@@ -224,7 +231,14 @@ if ( ! function_exists( 'product_express_another_author_bio' ) ) :
         ?>
         <div class="author <?php echo $writer['nickname']; ?>">
             <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( $writer['ID'] ) ) ); ?>">
-                <?php echo $writer['user_avatar']; ?>
+                <?php
+                include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+                if ( is_plugin_active( 'metronet-profile-picture/metronet-profile-picture.php' ) ) {
+                    mt_profile_img( $writer['ID'] );
+                }else{
+                    echo get_avatar( get_the_author_meta( 'user_email', $writer['ID'] ) );
+                }
+                ?>
                 <span><?php echo $writer['display_name']; ?></span>
             </a>
         </div>
