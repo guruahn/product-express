@@ -1,3 +1,10 @@
+<?php
+if(is_single()) :
+    ?>
+    <div class="date pure-u-1" ><?php the_title( sprintf( '<a href="%s" rel="bookmark" target="_blank"><h3>', esc_url( get_permalink() ) ), '</h2></a>' );?></div>
+<?php
+endif;
+?>
 <div class="info pure-u-1 pure-u-lg-2-5 l-box">
     <ul>
         <li class="image">
@@ -5,9 +12,7 @@
         </li>
         <li class="title">
             <?php
-            if ( is_single() ) :
-                the_title( '<h1 class="entry-title">', '</h1>' );
-            else :
+            if ( !is_single() ) :
                 the_title( sprintf( '<a href="%s" rel="bookmark" target="_blank"><h3>', esc_url( get_permalink() ) ), '</h2></a>' );
             endif;
             ?>

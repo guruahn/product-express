@@ -172,23 +172,13 @@ if ( ! function_exists( 'project_express_post_thumbnail' ) ) :
         if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
             return;
         }
-
-        if ( is_singular() ) :
             ?>
-
-            <div class="post-thumbnail">
-                <?php the_post_thumbnail(); ?>
-            </div><!-- .post-thumbnail -->
-
-        <?php else : ?>
-
             <a href="<?php the_permalink(); ?>" target="_blank">
                 <?php
                 the_post_thumbnail( 'thumbnail', array( 'alt' => get_the_title() ) );
                 ?>
             </a>
-
-        <?php endif; // End is_singular()
+            <?
     }
 endif;
 
@@ -203,7 +193,7 @@ if ( ! function_exists( 'product_express_author_bio' ) ) :
 
         ?>
         <div class="author <?php echo get_the_author_meta( 'nickname', $user_id ); ?>">
-            <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( $user_id ) ) ); ?>">
+            <a href="<?php echo esc_url( get_author_posts_url( $user_id ) ); ?>">
                 <?php
                 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
                 if ( is_plugin_active( 'metronet-profile-picture/metronet-profile-picture.php' ) ) {
