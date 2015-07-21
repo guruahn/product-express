@@ -9,35 +9,7 @@
 
 
 <div class="popup request">
-    <form class="box pure-form pure-form-aligned">
-        <fieldset class="pure-group">
-            <div class="pure-control-group">
-                <label for="name">Username</label>
-                <input id="name" type="text" placeholder="Username">
-            </div>
-
-            <div class="pure-control-group">
-                <label for="email">Email Address</label>
-                <input id="email" type="email" placeholder="Email Address">
-            </div>
-
-
-            <div class="pure-control-group">
-                <label for="service">URL</label>
-                <input id="service" type="text" placeholder="URL">
-            </div>
-
-            <div class="pure-control-group">
-                <textarea class="pure-input-1-1"></textarea>
-            </div>
-
-
-
-        </fieldset>
-
-        <button type="submit" class="pure-button pure-button-primary submit">내용을 전송합니다.</button>
-    </form>
-    <i class="fa fa-times close"></i>
+    <?php wd_form_maker(4); ?>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
