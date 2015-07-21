@@ -25,11 +25,12 @@ class Product_Express_Tags extends WP_Widget {
      */
     public function widget( $args, $instance ) {
         echo $args['before_widget'];
-        $posttags = get_the_tags();
+        $posttags = get_tags();
         if ($posttags) {
             echo '<ul class="taglist">';
             foreach($posttags as $tag) {
-                echo  '<li><a href="#">#'.$tag->name.'</a></li>';
+                //printr($tag);
+                echo  '<li><a href="'.get_tag_link($tag->term_id).'">#'.$tag->name.'</a></li>';
             }
             echo '</ul>';
         }

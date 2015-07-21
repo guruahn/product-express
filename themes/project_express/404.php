@@ -1,6 +1,7 @@
 <?php
 
 get_header();
+printr($GLOBALS['wp_query']->request);
 $arr_date = date_parse(get_query_var( 'year', '' ).'-'.get_query_var( 'monthnum', '' ).'-'.get_query_var( 'day', '' ));
 
 ?>
@@ -12,7 +13,7 @@ $arr_date = date_parse(get_query_var( 'year', '' ).'-'.get_query_var( 'monthnum'
 
                 <div class="article pure-u-1 pure-u-lg-3-5 l-box" >
 
-                    <p><?php _e('There are no posts.', 'daily-archive'); ?></p>
+                    <p><?php _e('There are no posts.', 'project-express'); ?></p>
 
                 </div>
             </div>

@@ -8,7 +8,7 @@ function project_express_setup()
     global $content_width;
     if ( ! isset( $content_width ) ) $content_width = 640;
     register_nav_menus(
-        array( 'main-menu' => __( 'Main Menu', 'project_express' ) )
+        array( 'main-menu' => __( 'Main Menu', 'project-express' ) )
     );
 }
 
@@ -138,10 +138,7 @@ function project_express_archive_title($title=null){
 }
 
 function project_express_custom_archive_page($args){
-
-    $is_daily = false;
-    if(isset($_GET['is_daily']) && $_GET['is_daily']) $is_daily = true;
-    if(is_archive() && $is_daily){
+    if(is_archive() && is_day()){
 
         //일별로 보여주고 전날/다음날 버튼 출력
         $arr_date = date_parse(get_query_var( 'year', '' ).'-'.get_query_var( 'monthnum', '' ).'-'.get_query_var( 'day', '' ));
