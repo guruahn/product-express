@@ -13,7 +13,11 @@
             endif;
             ?>
         </li -->
-        <li class="url"><a href="<?php the_field('link'); ?>" target="_blank"><?php the_field('link'); ?></a></li>
+        <?php
+        $link = get_field('link');
+        if(get_page_by_path( '/product-view' )) $link = get_home_url()."/product-view?id=".get_the_ID();
+        ?>
+        <li class="url"><a href="<?php echo $link; ?>" target="_blank"><?php the_field('link'); ?></a></li>
         <li class="tag"><?php the_tags('#', ' #'); ?></li>
 
     </ul>
