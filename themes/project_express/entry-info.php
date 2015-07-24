@@ -24,7 +24,17 @@
     <br><br>
     <div class="shareBox">
         <!-- span>Recommend &amp; Share this review</span -->
-        <a href="#"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/badge_ios.png" style="width:100px; height:auto;"></a>
-        <a href="#"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/badge_android.png" style="width:100px; height:auto;"></a>
+        <?php
+        $andriod_link = get_field('andriod_link');
+        $ios_link = get_field('ios_link');
+        if($andriod_link){
+            echo '<a href="'.$andriod_link.'" target="_blank"><img src="'.get_template_directory_uri().'/img/badge_android.png" style="width:100px; height:auto;"></a>';
+        }
+        if($ios_link){
+            echo '<a href="'.$ios_link.'" target="_blank"><img src="'.get_template_directory_uri().'/img/badge_ios.png" style="width:100px; height:auto;"></a>';
+        }
+        ?>
+
+
     </div>
 </div><!--//.info-->
