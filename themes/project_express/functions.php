@@ -116,7 +116,7 @@ function project_express_print_daily_arrow($arr_date){
             <span class="text"><?php _e('Previous day', 'project-express'); ?></span>
         </a>
         <?php
-        if( $next_daily != date_parse(date('Y/m/d', strtotime('+1 day', strtotime(date('Y/m/d'))))) ){;
+        if( $next_daily != date_parse(date('Y/m/d', strtotime('+1 day', strtotime(date('Y/m/d'))))) ){
         ?>
         <a href="<?php echo $url_next; ?>" class="next" rel="next">
             <i class="fa fa-chevron-right"></i>

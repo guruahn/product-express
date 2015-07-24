@@ -23,7 +23,7 @@ $blog_posts = new WP_Query( $query );
 ?>
 
 
-    <div class="container pure-g" data-sticky_parent>
+    <div class="container" data-sticky_parent>
         <style>
             body { overflow: hidden; position: relative;}
             header { display: none; }
@@ -42,10 +42,14 @@ $blog_posts = new WP_Query( $query );
             while ( $blog_posts->have_posts() ) : $blog_posts->the_post();
                 $link = get_field('link');
             ?>
-                <div id="fixed-header">header</div>
-            <div id="view" style=""><iframe  src="<?php echo $link;?>" frameborder="0"></iframe></div>
+                <div id="fixed-header">
+                    <h2>Product Express</h2>
+                    <div class="fb-like" data-href="<?php echo get_permalink();?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                    <p>좋아요 <span class="fb-comments-count" data-href="<?php echo get_permalink();?>"></span>명</p>
+                </div>
+                <div id="view" style=""><iframe  src="<?php echo $link;?>" frameborder="0"></iframe></div>
 
-        <?php
+            <?php
             endwhile;
         else :
             get_template_part( 'content', 'none' );
