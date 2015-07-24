@@ -1,13 +1,24 @@
 
- $(".fb-comments").attr("data-width", $(".fb-comments").parent().width());
+
+
+
+$(window).ready(function(){
+
+    $("body").addClass("move");
+
+});
+
+
+
+ $(".fb-like").attr("data-width", $(".fb-like").parent().width());
         $(window).on('resize', function () {
             resizeiframe();
         });
 
     function resizeiframe() {
-        var width2 = $(".fb-comments").parent().width();
+        var width2 = $(".fb-like").parent().width();
 
-        $('.fb-comments iframe').css("width", width2);
+        $('.fb-like iframe').css("width", width2);
     }
 
 

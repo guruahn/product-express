@@ -1,5 +1,5 @@
 
-<div class="side pure-u-1   pure-u-md-4-24 pure-u-lg-8-24" data-sticky_column>
+<div class="side pure-u-1   pure-u-md-10-24 pure-u-lg-8-24" data-sticky_column>
     <div class="Email">
         <h4>PRODUCT EXPRESS의 글을 구독하세요!</h4>
         <form class="pure-form email">
