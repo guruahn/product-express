@@ -5,9 +5,6 @@ a {
   text-decoration: none;
   color: black;
 }
-a:hover {
-  background: #eee;
-}
 .gothic {
   font-family: "Yoon Gothic", "Apple Gothic Neo", 'gulim', 'sans-serif';
 }
@@ -22,7 +19,7 @@ a:hover {
 header {
   background: black;
   text-align: center;
-  padding: 30px 0 20px 0;
+  padding: 50px 0 40px 0;
   background: url(../img/bg.png) no-repeat;
   background-size: cover;
 }
@@ -40,21 +37,26 @@ header h1 a {
   overflow: hidden;
   display: block;
   margin: 0 auto;
-  transform: scale(0.8, 0.8);
+  transform: translate(0px, 100px) scale(0.8, 0.8);
+  opacity: 0;
+  transition: all 0.7s 0s cubic-bezier(0.44, 1.49, 0.58, 0.99);
 }
 header p.desc {
   color: white;
   font-size: 0.7em;
   font-family: "Yoon Gothic", "Apple Gothic Neo", 'gulim', 'sans-serif';
   padding-top: 10px;
-  transform: translate(0, 0px);
+  transform: translate(0px, 100px);
+  opacity: 0;
 }
 header .request {
-  padding-top: 55px;
+  padding-top: 35px;
 }
 header .request a {
+  transform: translate(0px, 0px);
   width: 100px;
   padding-left: 20px;
+  opacity: 0;
   line-height: 40px;
   height: 40px;
   background: white;
@@ -71,21 +73,58 @@ header .request a i {
   line-height: 40px;
 }
 header .request p {
+  transform: translate(0px, 0px);
   font-size: 0.7em;
   font-family: "Yoon Gothic", "Apple Gothic Neo", 'gulim', 'sans-serif';
   padding-top: 10px;
+  opacity: 0;
   color: white;
+}
+.move header h1 a {
+  transform: translate(0px, 0px) scale(0.8, 0.8);
+  opacity: 1;
+  transition: all 1s 0.2s cubic-bezier(0.44, 1.49, 0.58, 0.99);
+}
+.move header p.desc {
+  transform: translate(0px, 0px);
+  opacity: 1;
+  transition: all 1s 0.1s cubic-bezier(0.44, 1.49, 0.58, 0.99);
+}
+.move header .request a {
+  transform: translate(0px, 0px);
+  opacity: 1;
+  transition: all 1s 0.9s cubic-bezier(0.44, 1.49, 0.58, 0.99);
+}
+.move header .request p {
+  transform: translate(0px, 0px);
+  opacity: 1;
+  transition: all 1s 0.9s cubic-bezier(0.44, 1.49, 0.58, 0.99);
 }
 .container {
   min-height: 900px;
 }
-.date {
+.productTitle {
   font-family: 'Rajdhani', sans-serif !important;
   font-size: 3.5em;
   font-weight: 700;
   line-height: 150px;
   box-sizing: border-box;
   padding-left: 6%;
+  border-top: 1px solid #ccc;
+  margin-top: 30px;
+}
+.productTitle:first-child {
+  border: none;
+  margin-top: 0;
+}
+.date {
+  font-family: 'Rajdhani', sans-serif !important;
+  font-size: 3.5em;
+  line-height: 90px;
+  box-sizing: border-box;
+}
+.content a:hover {
+  background: #eee;
 }
 .content .info {
   padding-left: 6%;
@@ -100,6 +139,8 @@ header .request p {
 }
 .content .info ul li.image img {
   width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
 }
 .content .info ul li.title {
   font-size: 1.5em;
@@ -132,7 +173,6 @@ header .request p {
 }
 .content .article .author {
   padding: 14px 0 20px 0;
-  border-bottom: 1px solid #ddd;
   margin-bottom: 30px;
 }
 .content .article .author:last-child {
@@ -203,6 +243,7 @@ header .request p {
   float: left;
   margin-left: 6%;
   display: block;
+  padding: 14px;
 }
 .content .more .prev i {
   float: left;
@@ -214,6 +255,7 @@ header .request p {
   float: right;
   display: block;
   margin-right: 6%;
+  padding: 14px;
 }
 .content .more .next i {
   float: right;
@@ -223,12 +265,21 @@ header .request p {
   font-size: 0.9em;
   color: #777;
 }
+@media screen and (max-width: 64em) {
+  .article {
+    padding-left: 6%;
+  }
+  .l-box {
+    padding-right: 6%;
+  }
+}
 .side {
   padding-left: 2em;
   background: #ededed;
   padding-right: 30px;
   margin-right: -30px;
   padding-top: 50px;
+  overflow-y: hidden;
 }
 .side h4 {
   font-size: 0.7em;
@@ -238,6 +289,10 @@ header .request p {
 }
 .side ul li {
   list-style: none;
+}
+.side .Email h4 {
+  font-weight: bold;
+  padding-bottom: 10px;
 }
 .side .pure-form .pure-input-rounded {
   border-radius: 10px 0 0 10px ;
@@ -290,11 +345,25 @@ header .request p {
   margin-top: 20px;
   padding-top: 30px;
 }
+.side .taglist li {
+  float: left;
+  display: inline-block;
+}
 .side .taglist a {
   font-size: 0.8em;
   line-height: 30px;
   display: inline-block;
   padding-right: 10px;
+  color: #666;
+}
+.side .taglist a:hover {
+  color: #000;
+  background: #fff;
+}
+@media screen and (max-width: 800px) {
+  .side .pure-form .pure-input-rounded {
+    width: 200px;
+  }
 }
 .popup {
   background: rgba(0, 0, 0, 0.8);
@@ -307,7 +376,7 @@ header .request p {
   opacity: 0;
   z-index: -100;
 }
-.popup form.box {
+.popup form {
   background: white;
   width: 600px;
   top: 100px;
@@ -321,7 +390,7 @@ header .request p {
   transition: all 0.2s cubic-bezier(0.44, 1.49, 0.58, 0.99);
   transform: translate(0, 50px);
 }
-.popup form.box .submit {
+.popup form .submit {
   display: block;
   width: 100%;
   margin: -40px;
@@ -353,6 +422,9 @@ header .request p {
   transform: translate(0, 0px);
   transition: all 0.5s 0.2s;
   opacity: 1;
+}
+.popup #4pages {
+  display: none;
 }
 footer {
   background: #333;
