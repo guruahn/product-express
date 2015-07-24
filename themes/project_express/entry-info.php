@@ -23,7 +23,6 @@
     </ul>
     <br><br>
     <div class="shareBox">
-        <!-- span>Recommend &amp; Share this review</span -->
         <?php
         $andriod_link = get_field('andriod_link');
         $ios_link = get_field('ios_link');

@@ -9,6 +9,9 @@
 
 
 <div class="popup request">
+
+<i class="fa fa-times close">
+</i>
     <?php wd_form_maker(4); ?>
 </div>
 

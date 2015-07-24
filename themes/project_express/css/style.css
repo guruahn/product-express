@@ -111,7 +111,7 @@ header .request p {
   box-sizing: border-box;
   padding-left: 6%;
   border-top: 1px solid #ccc;
-  margin-top: 30px;
+  margin-top: 0px;
 }
 .productTitle:first-child {
   border: none;
@@ -119,12 +119,22 @@ header .request p {
 }
 .date {
   font-family: 'Rajdhani', sans-serif !important;
-  font-size: 3.5em;
-  line-height: 90px;
+  font-weight: 300;
+  font-size: 2.5em;
+  padding-top: 30px;
+  color: #333;
   box-sizing: border-box;
+  text-align: center;
+}
+.date .desc {
+  font-family: sans-serif !important;
+  font-weight: bold;
+  font-size: 0.3em;
+  display: block;
+  padding-bottom: 30px;
 }
 .content a:hover {
-  background: #eee;
+  color: #df3557 !important;
 }
 .content .info {
   padding-left: 6%;
@@ -158,7 +168,7 @@ header .request p {
   padding-bottom: 15px;
 }
 .content .info ul li.tag a {
-  font-size: 0.9em;
+  font-size: 0.8em;
   padding-right: 15px;
 }
 .content .info ul li.tag a:last-child {
@@ -226,6 +236,24 @@ header .request p {
   opacity: 0.8;
   padding: 8px 0 0 0;
   margin: 0 0 0 6%;
+}
+.content .userComment {
+  background: white;
+  padding: 10px 0 ;
+  border-top: 1px solid #eee;
+  font-size: 0.9em;
+  min-height: 40px;
+  font-weight: bold;
+}
+.content .userComment a.no {
+  float: right;
+  margin-top: -45px;
+  line-height: 30px;
+}
+.content .userComment a.no i {
+  font-size: 1.7em;
+  line-height: 30px;
+  opacity: 0.5;
 }
 .content .more {
   overflow: auto;
@@ -361,6 +389,9 @@ header .request p {
   background: #fff;
 }
 @media screen and (max-width: 800px) {
+  header {
+    padding: 150px 0 140px 0;
+  }
   .side .pure-form .pure-input-rounded {
     width: 200px;
   }
@@ -423,8 +454,12 @@ header .request p {
   transition: all 0.5s 0.2s;
   opacity: 1;
 }
-.popup #4pages {
-  display: none;
+.popup .wdform-label {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+.popup .wdform-element-section {
+  width: 400px !important;
 }
 footer {
   background: #333;

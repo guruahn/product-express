@@ -53,14 +53,15 @@ if(empty($daily_year) || empty($daily_month) || empty($daily_day) ){
 
 
 <div class="container pure-g" data-sticky_parent>
-    <div class="pure-u-1    pure-u-md-20-24  pure-u-lg-16-24   content pure-u-1">
+    <div class="pure-u-1    pure-u-md-14-24  pure-u-lg-16-24   content pure-u-1">
 
         <!-- 본문 영역 시작 -->
         <div class="pure-g" >
 
             <?php if ( $blog_posts->have_posts() ) : ?>
             <!-- 날짜 표기 -->
-            <div class="date pure-u-1" ><?php echo date(get_option('date_format'), strtotime($arr_date['year'].'-'.$arr_date['month'].'-'.$arr_date['day']));?></div>
+            <div class="date pure-u-1" ><?php echo date(get_option('date_format'), strtotime($arr_date['year'].'-'.$arr_date['month'].'-'.$arr_date['day']));?>
+                    <span class="desc">6건의 서비스, 10건의 평가.</span></div>
 
             <?php
             // Start the loop.

@@ -13,6 +13,7 @@
                     <?php
                     the_archive_title();
                     ?>
+                    <span class="desc">6건의 서비스, 10건의 평가.</span>
                 </div>
                 <?php
                 while ( have_posts() ) : the_post(); ?>
