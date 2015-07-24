@@ -442,7 +442,7 @@ msgstr "<code>wp-config.php</code>파일이 없는 것 같습니다. 시작하�
 msgid "Links for %s"
 msgstr "%s를 위한 링크"
 
-#: wp-includes/wp-db.php:2990
+#: wp-includes/wp-db.php:2977
 msgid "<strong>ERROR</strong>: WordPress %1$s requires MySQL %2$s or higher"
 msgstr "<strong>에러</strong>: 워드프레스 %1$s는 MySQL %2$s 또는 그 이상을 필요로 합니다."
 
@@ -4115,33 +4115,33 @@ msgid "ERROR: This is not a valid feed template."
 msgstr "에러: 이것은 유효한 피드 템플릿이 아닙니다."
 
 #. translators: used to join items in a list with only 2 items
-#: wp-includes/formatting.php:3690
+#: wp-includes/formatting.php:3798
 msgid "%s and %s"
 msgstr "%s 그리고 %s"
 
 #. translators: used to join last two items in a list with more than 2 times
-#: wp-includes/formatting.php:3688
+#: wp-includes/formatting.php:3796
 msgid "%s, and %s"
 msgstr "%s, %s"
 
 #. translators: used to join items in a list with more than 2 items
-#: wp-includes/formatting.php:3686
+#: wp-includes/formatting.php:3794
 msgid "%s, %s"
 msgstr "%s, %s"
 
-#: wp-includes/formatting.php:3487
+#: wp-includes/formatting.php:3580
 msgid "The timezone you have entered is not valid. Please select a valid timezone."
 msgstr "입력한 시간대가 잘못된 것 같습니다. 유효한 시간대를 선택해주세요."
 
-#: wp-includes/formatting.php:3440
+#: wp-includes/formatting.php:3525
 msgid "The Site address you entered did not appear to be a valid URL. Please enter a valid URL."
 msgstr "입력하신 사이트 주소는 유효한 URL이 아닙니다. 유효한 URL을 입력하세요."
 
-#: wp-includes/formatting.php:3429
+#: wp-includes/formatting.php:3512
 msgid "The WordPress address you entered did not appear to be a valid URL. Please enter a valid URL."
 msgstr "입력하신 워드프레스 주소는 유효한 URL이 아닙니다. 유효한 URL을 입력하세요."
 
-#: wp-includes/formatting.php:3339
+#: wp-includes/formatting.php:3412
 msgid "The email address entered did not appear to be a valid email address. Please enter a valid email address."
 msgstr "입력하신 이메일은 유효한 이메일이 아닙니다. 유효한 이메일을 입력하세요."
 
@@ -4151,42 +4151,42 @@ msgstr "입력하신 이메일은 유효한 이메일이 아닙니다. 유효한
 #. translators: If your word count is based on single characters (East Asian
 #. characters), 		   enter 'characters'. Otherwise, enter 'words'. Do not
 #. translate into your own language.
-#: wp-includes/formatting.php:2667 wp-includes/script-loader.php:379
+#: wp-includes/formatting.php:2738 wp-includes/script-loader.php:379
 msgctxt "word count: words or characters?"
 msgid "words"
 msgstr "words"
 
-#: wp-includes/formatting.php:2662 wp-includes/general-template.php:2721
+#: wp-includes/formatting.php:2733 wp-includes/general-template.php:2721
 msgid "&hellip;"
 msgstr "&hellip;"
 
-#: wp-includes/formatting.php:2575
+#: wp-includes/formatting.php:2646
 msgid "%s year"
 msgid_plural "%s years"
 msgstr[0] "%s 년"
 
-#: wp-includes/formatting.php:2570
+#: wp-includes/formatting.php:2641
 msgid "%s month"
 msgid_plural "%s months"
 msgstr[0] "%s 개월"
 
-#: wp-includes/formatting.php:2565
+#: wp-includes/formatting.php:2636
 msgid "%s week"
 msgid_plural "%s weeks"
 msgstr[0] "%s 주"
 
-#: wp-includes/formatting.php:2560
+#: wp-includes/formatting.php:2631
 msgid "%s day"
 msgid_plural "%s days"
 msgstr[0] "%s 일"
 
-#: wp-includes/formatting.php:2555
+#: wp-includes/formatting.php:2626
 msgid "%s hour"
 msgid_plural "%s hours"
 msgstr[0] "%s 시간"
 
 #. translators: min=minute
-#: wp-includes/formatting.php:2550
+#: wp-includes/formatting.php:2621
 msgid "%s min"
 msgid_plural "%s mins"
 msgstr[0] "%s 분"
@@ -4240,7 +4240,7 @@ msgid "&#8221;"
 msgstr "&#8221;"
 
 #. translators: opening curly double quote
-#: wp-includes/formatting.php:62 wp-includes/formatting.php:3927
+#: wp-includes/formatting.php:62 wp-includes/formatting.php:4035
 msgctxt "opening curly double quote"
 msgid "&#8220;"
 msgstr "&#8220;"
