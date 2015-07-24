@@ -25,10 +25,10 @@
     <div class="shareBox">
         <!-- span>Recommend &amp; Share this review</span -->
         <?php
-        $andriod_link = get_field('andriod_link');
+        $android_link = get_field('android_link');
         $ios_link = get_field('ios_link');
-        if($andriod_link){
-            echo '<a href="'.$andriod_link.'" target="_blank"><img src="'.get_template_directory_uri().'/img/badge_android.png" style="width:100px; height:auto;"></a>';
+        if($android_link){
+            echo '<a href="'.$android_link.'" target="_blank"><img src="'.get_template_directory_uri().'/img/badge_android.png" style="width:100px; height:auto;"></a>';
         }
         if($ios_link){
             echo '<a href="'.$ios_link.'" target="_blank"><img src="'.get_template_directory_uri().'/img/badge_ios.png" style="width:100px; height:auto;"></a>';
