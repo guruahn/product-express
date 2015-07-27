@@ -7,13 +7,14 @@
 
 
             <?php
+            global $wp_query;
             if ( have_posts() ) :
                 ?>
                 <div class="date pure-u-1" >
                     <?php
                     the_archive_title();
                     ?>
-                    <span class="desc">6건의 서비스, 10건의 평가.</span>
+                    <span class="desc"><span class="product-count"><?php echo $wp_query->post_count; ?></span>건의 서비스, <span class="review-count"><?php echo product_express_get_review_count($wp_query->posts); ?></span>건의 평가.</span>
                 </div>
                 <?php
                 while ( have_posts() ) : the_post(); ?>

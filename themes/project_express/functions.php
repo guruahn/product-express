@@ -234,6 +234,26 @@ if ( ! function_exists( 'product_express_another_author_bio' ) ) :
 
 endif;
 
+if ( ! function_exists( 'product_express_get_review_count' ) ) :
+    /**
+     * Display an user info.
+     *
+     *
+     * @since Product Express 1.0
+     */
+    function product_express_get_review_count($posts){
+        $count = 0;
+        foreach($posts as $post){
+            $post_id = $post->ID;
+            if( get_field('review',$post_id) ) $count++;
+            if( get_field('review2',$post_id) ) $count++;
+            if( get_field('review3',$post_id) ) $count++;
+        }
+        return $count;
+    }
+
+endif;
+
 /**
  * 변수의 구성요소를 리턴받는다.
  */

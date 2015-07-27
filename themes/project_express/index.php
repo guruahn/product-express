@@ -57,11 +57,11 @@ if(empty($daily_year) || empty($daily_month) || empty($daily_day) ){
 
         <!-- 본문 영역 시작 -->
         <div class="pure-g" >
-
+            <?php //printr($blog_posts);?>
             <?php if ( $blog_posts->have_posts() ) : ?>
             <!-- 날짜 표기 -->
             <div class="date pure-u-1" ><?php echo date(get_option('date_format'), strtotime($arr_date['year'].'-'.$arr_date['month'].'-'.$arr_date['day']));?>
-                    <span class="desc">6건의 서비스, 10건의 평가.</span></div>
+                    <span class="desc"><span class="product-count"><?php echo $blog_posts->post_count; ?></span>건의 서비스, <span class="review-count"><?php echo product_express_get_review_count($blog_posts->posts); ?></span>건의 평가.</span></div>
 
             <?php
             // Start the loop.
