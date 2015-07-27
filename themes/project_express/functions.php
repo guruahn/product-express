@@ -223,7 +223,7 @@ if ( ! function_exists( 'project_express_post_thumbnail' ) ) :
             return;
         }
             ?>
-            <a href="<?php the_permalink(); ?>" target="_blank">
+            <a href="<?php echo product_express_get_frame_link(get_field('link')); ?>" target="_blank">
                 <?php
                 the_post_thumbnail( 'thumbnail', array( 'alt' => get_the_title() ) );
                 ?>
@@ -303,6 +303,20 @@ if ( ! function_exists( 'product_express_get_review_count' ) ) :
             if( get_field('review3',$post_id) ) $count++;
         }
         return $count;
+    }
+
+endif;
+
+if ( ! function_exists( 'product_express_get_frame_link' ) ) :
+    /**
+     * Display an user info.
+     *
+     *
+     * @since Product Express 1.0
+     */
+    function product_express_get_frame_link($link){
+        if(get_page_by_path( '/product-view' )) $link = get_home_url()."/product-view?id=".get_the_ID();
+        return $link;
     }
 
 endif;
