@@ -33,7 +33,7 @@
     <div class="userComment">
      
     <div class="fb-like" data-href="<?php echo get_permalink();?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-       <a href="#" class="no"><i class="fa fa-comment"></i> 10 Comments</a>
+       <a href="<?php echo get_permalink();?>" class="no"><i class="fa fa-comment"></i> <span class="fb-comments-count" data-href="<?php echo get_permalink();?>"></span> Comments</a>
     </div>
     <!-- div class="fbcomment">
         <div class="fb-comments" data-href="<?php echo get_permalink();?>" data-numposts="3" style="width:100%;" data-width="100%"></div>
