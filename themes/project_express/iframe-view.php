@@ -36,10 +36,13 @@ $blog_posts = new WP_Query( $query );
             ?>
                 <div id="fixed-header">
                     <h2>Product Express</h2>
-                    <div class="fb-like" data-href="<?php echo get_permalink();?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-                    <p class="comments"><a href="#"><i class="fa fa-comment"></i> 댓글 <span class="fb-comments-count" data-href="<?php echo get_permalink();?>"></span>개</a></p>
+
+                    <div class="comments"><a href="#"><i class="fa fa-comment"></i> 댓글 <span class="fb-comments-count" data-href="<?php echo get_permalink();?>"></span>개</a> <span class="spacer">/</span>
+
+                    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                    </div>
                 </div>
-                <div id="view" style=""><iframe  src="<?php echo $link;?>" frameborder="0"></iframe></div>
+                <div id="view" style=""><iframe  src="<?php echo $link;?>" class="iframeView" frameborder="0"></iframe></div>
 
             <?php
             endwhile;
