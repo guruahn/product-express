@@ -13,8 +13,8 @@
 <i class="fa fa-times close">
 </i>
     <?php wd_form_maker(4); ?>
-</div>
 
+</div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
