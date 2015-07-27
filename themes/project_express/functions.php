@@ -97,37 +97,90 @@ function project_express_comments_number( $count )
 }
 
 function project_express_print_daily_arrow($arr_date){
-
     if(is_object($arr_date)) {
         if( !$arr_date->is_archive ) return;
         $arr_date = date_parse($arr_date->query_vars['year'].'-'.$arr_date->query_vars['monthnum'].'-'.$arr_date->query_vars['day']);
     }
     $str_date = $arr_date['year'].'-'.$arr_date['month'].'-'.$arr_date['day'];
-    $prev_daily = date_parse(date('Y/m/d', strtotime('-1 day', strtotime($str_date))));
-    $next_daily = date_parse(date('Y/m/d', strtotime('+1 day', strtotime($str_date))));
-    $url_prev = home_url().'?year='.$prev_daily['year'].'&monthnum='.$prev_daily['month'].'&day='.$prev_daily['day'].'&is_daily=1';
-    $url_next = home_url().'?year='.$next_daily['year'].'&monthnum='.$next_daily['month'].'&day='.$next_daily['day'].'&is_daily=1';
+
+    /*preview*/
+    $args1 = array(
+        'posts_per_page'=> 1,
+        'post_type' => 'post',
+        'post_status' => 'publish',
+        'paged'=>1,
+        'date_query' => array(
+            array(
+                'column'  => 'post_date',
+                'before'     => $str_date,
+                'inclusive' => false,
+            ),
+        ),
+        'orderby' => 'date',
+        'order' => 'DESC',
+
+    );
+    wp_reset_query();
+    $query1 = new WP_Query($args1);
+
+    $prev_daily = '';
+    $url_prev = '#';
+    $title_prev = 'There are no products.';
+    if($query1->have_posts()){
+        $prev_daily = date_parse($query1->posts[0]->post_date);
+
+        $url_prev = home_url().'?year='.$prev_daily['year'].'&monthnum='.$prev_daily['month'].'&day='.$prev_daily['day'].'&is_daily=1';
+        $title_prev = date(get_option('date_format'), strtotime($prev_daily['year'].'/'.$prev_daily['month'].'/'.$prev_daily['day']));
+    }
+
+    /*next*/
+    $str_date = date_parse(date('Y/m/d', strtotime('+1 day', strtotime($str_date))));
+    $args2 = array(
+        'posts_per_page'=> 10,
+        'post_type' => 'post',
+        'post_status' => 'publish',
+        'paged'=>1,
+        'date_query' => array(
+            array(
+                'column'  => 'post_date',
+                'after'     => $str_date,
+                'inclusive' => true,
+            ),
+        ),
+        'orderby' => 'date',
+        'order' => 'ASC',
+
+    );
+    wp_reset_query();
+    $query2 = new WP_Query($args2);
+    $next_daily = '';
+    $url_next = '#';
+    $title_next = 'There are no products.';
+    if($query2->have_posts()){
+        $next_daily = date_parse($query2->posts[0]->post_date);
+        $url_next = home_url().'?year='.$next_daily['year'].'&monthnum='.$next_daily['month'].'&day='.$next_daily['day'].'&is_daily=1';
+        $title_next = date(get_option('date_format'), strtotime($next_daily['year'].'/'.$next_daily['month'].'/'.$next_daily['day']));
+    }
+
+
+
     ?>
 
     <div class="more pure-u-1" role="navigation">
         <a href="<?php echo $url_prev; ?>" class="prev" rel="prev">
             <i class="fa fa-chevron-left"></i>
-            <span class="date"><?php echo date(get_option('date_format'), strtotime($prev_daily['year'].'/'.$prev_daily['month'].'/'.$prev_daily['day']));?></span>
-            <span class="text"><?php _e('Previous day', 'project-express'); ?></span>
+            <span class="date"><?php echo $title_prev;?></span>
+            <span class="text"><?php _e('Previous', 'project-express'); ?></span>
         </a>
-        <?php
-        if( $next_daily != date_parse(date('Y/m/d', strtotime('+1 day', strtotime(date('Y/m/d'))))) ){
-        ?>
         <a href="<?php echo $url_next; ?>" class="next" rel="next">
             <i class="fa fa-chevron-right"></i>
-            <span class="date"><?php echo date(get_option('date_format'), strtotime($next_daily['year'].'/'.$next_daily['month'].'/'.$next_daily['day']));?></span>
-            <span class="text"><?php _e('Next day', 'project-express') ?></span>
+            <span class="date"><?php echo $title_next;?></span>
+            <span class="text"><?php _e('Next', 'project-express') ?></span>
         </a>
-        <?php
-        }
-        ?>
     </div>
 <?php
+
+
 }
 
 function project_express_archive_title($title=null){
