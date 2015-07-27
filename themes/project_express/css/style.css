@@ -548,14 +548,43 @@ header .request p {
 }
 footer {
   background: #333;
-  height: 150px;
+  height: 120px;
+  padding-top: 20px;
+  color: white;
+  font-size: 0.8em;
+  overflow: hidden;
+}
+footer a {
+  color: #ccc;
 }
 footer p {
   margin: 0;
   text-align: center;
+  font-size: 0.9em;
+  font-weight: normal;
+  color: #eee;
+  transform: translate(0px, 100px);
+  opacity: 1;
+  transition: all 0.7s 0s cubic-bezier(0.44, 1.49, 0.58, 0.99);
 }
 footer p:first-child {
-  padding-top: 20px;
+  padding-bottom: 5px;
+  font-weight: bold;
+  background: url("../img/userstorylab-type-c01.png") center 10px no-repeat;
+  background-size: 40px 40px;
+  padding-top: 60px;
+  color: white;
+}
+footer p:first-child a {
+  color: white;
+}
+footer .contact a {
+  padding: 0 5px ;
+}
+footer.move p {
+  transform: translate(0px, 0px);
+  opacity: 1;
+  transition: all 0.9s 0s ease;
 }
 body {
   overflow: auto;
