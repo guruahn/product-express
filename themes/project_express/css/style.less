@@ -157,6 +157,18 @@ header { background: black; text-align: center; padding:50px 0 40px 0; backgroun
 }
 
 
+
+#view {  width: 100%; height: 100%;
+	iframe {  width: 100%; height: 100vh; overflow: hidden;padding-top:60px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+}
+.iframe #fixed-header { overflow: hidden;height: 60px; padding:0; margin:0; position: fixed; top: 0; width: 100%; background-color: #555555;
+	h2 { .bg("../img/logo@2x.png", 212px, 83px); margin:0 auto; float: left;  transform: translate(-40px,-10px) scale(0.4,0.4); opacity:1;  transition:all 0.7s 0s cubic-bezier(.44,1.49,.58,.99); }
+	.fb-like { display: none;}
+	p.comments { height: 60px; line-height: 60px; float: right; padding:0 20px;   display: block; background: #1F1F1F;
+		a { color:white; opacity: 1; font-weight: bold; font-size: 0.8em;}
+	}
+}
+
 .popup { background: rgba(0,0,0,0.8); width: 100%; height: 100%; position: fixed; top:0; left:0; overflow-y: scroll; opacity: 0; z-index: -100;
 	form { background: white; width:600px; top:100px; padding:40px; margin-left:-320px; margin-bottom: 100px; left:50%; position: absolute;   overflow: hidden; box-shadow:0 0 10px rgba(0,0,0,0.5); transition:all 0.2s cubic-bezier(.44,1.49,.58,.99); transform:translate(0, 50px) ;
 		.submit { display: block; width: 100%; margin:-40px; padding:40px; margin-top:40px; box-sizing:initial; border-radius: 0;}
@@ -180,3 +192,5 @@ footer { background: #333; height: 150px;
 
 body { overflow: auto; transition:all 0 1s;}
 body.fix { overflow: hidden; transition:all 0 1s;}
+
+.fb-comments, .fb-comments iframe[style], .fb-comments span[style] { width:100% !important;}

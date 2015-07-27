@@ -10,17 +10,6 @@ $(window).ready(function(){
 
 
 
- $(".fb-like").attr("data-width", $(".fb-like").parent().width());
-        $(window).on('resize', function () {
-            resizeiframe();
-        });
-
-    function resizeiframe() {
-        var width2 = $(".fb-like").parent().width();
-
-        $('.fb-like iframe').css("width", width2);
-    }
-
 
 	$("header").addClass("fix");
 

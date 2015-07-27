@@ -23,18 +23,10 @@ $blog_posts = new WP_Query( $query );
 ?>
 
 
-    <div class="container" data-sticky_parent>
+    <div class="container iframe">
         <style>
             body { overflow: hidden; position: relative;}
             header { display: none; }
-            #view { width: 100%; height: 100%}
-            #view iframe {
-                width: 100%;
-                height: 100vh;
-                overflow: hidden;
-            }
-            #fixed-header { position: fixed; bottom: 0; height: 50px; width: 100%; background-color: #555555;}
-
         </style>
         <?php if ( $blog_posts->have_posts() ) :
             // Start the loop.
@@ -45,7 +37,7 @@ $blog_posts = new WP_Query( $query );
                 <div id="fixed-header">
                     <h2>Product Express</h2>
                     <div class="fb-like" data-href="<?php echo get_permalink();?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-                    <p>좋아요 <span class="fb-comments-count" data-href="<?php echo get_permalink();?>"></span>명</p>
+                    <p class="comments"><a href="#"><i class="fa fa-comment"></i> 댓글 <span class="fb-comments-count" data-href="<?php echo get_permalink();?>"></span>개</a></p>
                 </div>
                 <div id="view" style=""><iframe  src="<?php echo $link;?>" frameborder="0"></iframe></div>
 
