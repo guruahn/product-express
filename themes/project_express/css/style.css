@@ -37,7 +37,7 @@ header h1 a {
   overflow: hidden;
   display: block;
   margin: 0 auto;
-  transform: translate(0px, 100px) scale(0.8, 0.8);
+  transform: translate(0px, 100px);
   opacity: 0;
   transition: all 0.7s 0s cubic-bezier(0.44, 1.49, 0.58, 0.99);
 }
@@ -46,6 +46,7 @@ header p.desc {
   font-size: 0.7em;
   font-family: "Yoon Gothic", "Apple Gothic Neo", 'gulim', 'sans-serif';
   padding-top: 10px;
+  padding-bottom: 10px;
   transform: translate(0px, 100px);
   opacity: 0;
 }
@@ -81,7 +82,7 @@ header .request p {
   color: white;
 }
 .move header h1 a {
-  transform: translate(0px, 0px) scale(0.8, 0.8);
+  transform: translate(0px, 0px);
   opacity: 1;
   transition: all 1s 0.2s cubic-bezier(0.44, 1.49, 0.58, 0.99);
 }
@@ -360,7 +361,7 @@ header .request p {
   padding-right: 10px;
 }
 .side .author li a {
-  font-size: 0.8em;
+  font-size: 0.7em;
   font-weight: bold;
 }
 .side .author li a img {

@@ -2,8 +2,6 @@
     <p>(C)2015 <a href="http://userstorylab.com/">Userstory Lab</a></p>
     <p class="contact">
         <a href="mailto:biz@userstorylab.com">biz@userstorylab.com</a>
-        <a href="#">서비스 의뢰문의</a>
-        <a href="#">플랫폼 이용문의</a>
     </p>
 </footer>
 

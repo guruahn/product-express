@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <div class="container pure-g" data-sticky_parent>
-    <div class="pure-u-1    pure-u-md-14-24  pure-u-lg-16-24   content pure-u-1">
+    <div class="pure-u-1     pure-u-md-14-24  pure-u-lg-16-24   content pure-u-1">
         <!-- 본문 영역 시작 -->
         <div class="pure-g" >
 
