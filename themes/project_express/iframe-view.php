@@ -35,9 +35,9 @@ $blog_posts = new WP_Query( $query );
                 $link = get_field('link');
             ?>
                 <div id="fixed-header">
-                    <h2>Product Express</h2>
+                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><h2>Product Express</h2></a>
 
-                    <div class="comments"><a href="#"><i class="fa fa-comment"></i> 댓글 <span class="fb-comments-count" data-href="<?php echo get_permalink();?>"></span>개</a> <span class="spacer">/</span>
+                    <div class="comments"><a href="<?php echo get_permalink();?>"><i class="fa fa-comment"></i> 댓글 <span class="fb-comments-count" data-href="<?php echo get_permalink();?>"></span>개</a> <span class="spacer">/</span>
 
                     <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
                     </div>
