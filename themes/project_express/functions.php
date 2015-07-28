@@ -205,7 +205,12 @@ function project_express_custom_archive_page($args){
         set_query_var( 'date_query', $date_query );
         add_action('loop_end','project_express_print_daily_arrow');
         add_filter('get_the_archive_title', 'project_express_archive_title');
+    }else{
+        if(is_page('product-view')){
+            add_filter( 'show_admin_bar', '__return_false' );
+        }
     }
+
 }
 add_action('pre_get_posts', 'project_express_custom_archive_page');
 
