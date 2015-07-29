@@ -17,12 +17,13 @@ a { text-decoration: none; color:black}
     padding-right: 30px;
 }
 
+body { overflow-y: hidden;}
 
 header { background: black; text-align: center; padding:50px 0 40px 0; background: url(../img/bg.png) no-repeat; background-size:cover;
 	h1 { margin:0; 
-		a {.bg("../img/logo@2x.png", 212px, 83px); margin:0 auto;   transform: translate(0px,100px); opacity: 0;  transition:all 0.7s 0s cubic-bezier(.44,1.49,.58,.99);}
+		a {.bg("../img/logo@2x.png", 212px, 83px); margin:0 auto;   transform: translate(0px,100px); opacity: 0; -webkit-transform: translate(0px,100px); opacity: 0;  transition:all 0.7s 0s cubic-bezier(.44,1.49,.58,.99);}
 	}
-	p.desc { color:white; font-size: 0.7em; .gothic; padding-top:10px; padding-bottom: 10px; transform: translate(0px,100px) ; opacity: 0;   }
+	p.desc { color:white; font-size: 0.7em; .gothic; padding-top:10px; padding-bottom: 10px; transform: translate(0px,100px) ; -webkit-transform: translate(0px,100px) ; opacity: 0;   }
 	.request { padding-top:35px; 
 		a { transform: translate(0px,0px) ;  width: 100px; padding-left: 20px; opacity: 0; line-height: 40px; height: 40px; background: white; border-radius: 100px; display: block; margin:0 auto; font-weight: bold; font-size: 0.8em; position: relative;
 			i { position: absolute; left:15px; line-height: 40px; }
@@ -34,12 +35,12 @@ header { background: black; text-align: center; padding:50px 0 40px 0; backgroun
 }
 .move header {
 	h1 { 
-		a { transform: translate(0px,0px); opacity: 1;  transition:all 1s 0.2s cubic-bezier(.44,1.49,.58,.99); }
+		a { transform: translate(0px,0px); opacity: 1; -webkit-transform: translate(0px,0px); opacity: 1;  transition:all 1s 0.2s cubic-bezier(.44,1.49,.58,.99); }
 	} 
-	p.desc {transform: translate(0px,0px) ; opacity: 1;  transition:all 1s 0.1s cubic-bezier(.44,1.49,.58,.99);}
+	p.desc {transform: translate(0px,0px) ;  -webkit-transform: translate(0px,0px); opacity: 1;  opacity: 1;  transition:all 1s 0.1s cubic-bezier(.44,1.49,.58,.99);}
 	.request {
-		a{transform: translate(0px,0px) ; opacity: 1;  transition:all 1s 0.9s cubic-bezier(.44,1.49,.58,.99);}
-		p{ transform: translate(0px,0px) ; opacity: 1;  transition:all 1s 0.9s cubic-bezier(.44,1.49,.58,.99);}
+		a{transform: translate(0px,0px) ; -webkit-transform: translate(0px,0px); opacity: 1;  opacity: 1;  transition:all 1s 0.9s cubic-bezier(.44,1.49,.58,.99);}
+		p{ transform: translate(0px,0px) ; -webkit-transform: translate(0px,0px); opacity: 1;  opacity: 1;  transition:all 1s 0.9s cubic-bezier(.44,1.49,.58,.99);}
 	}
 }
 
@@ -67,7 +68,7 @@ header { background: black; text-align: center; padding:50px 0 40px 0; backgroun
 				&.title { font-size: 1.5em; font-weight: 800; padding:20px 0 0 0; font-family: 'Montserrat', sans-serif; font-weight: 700;
 					h3 { margin:0;}
 				}
-				&.url a { font-size: 0.7em; color:#999; padding-bottom: 15px;}
+				&.url a { font-size: 0.7em; color:#999; padding-bottom: 15px;word-break:break-all;}
 				&.tag { 
 					a { font-size: 0.8em; padding-right: 15px;
 						&:last-child { padding:0;}
@@ -88,7 +89,7 @@ header { background: black; text-align: center; padding:50px 0 40px 0; backgroun
 		span { display: block; font-size: 0.7em; color:#555; padding-bottom: 5px;}
 		i { margin-right: 6px; opacity: 0.6 }
 	}
-	.userComment .fb-like { padding-bottom: 14px;}
+	.userComment .fb-like { padding-bottom: 14px; width: 300px;}
 	.fbcomment { padding-bottom: 150px;}
 
 	.dateShareBox { padding:40px 0; margin-right:-30px; padding-right:30px;  background: url(../img/bg.png) no-repeat; background-size:cover; color:white; line-height: 1; display: none;
@@ -152,8 +153,8 @@ header { background: black; text-align: center; padding:50px 0 40px 0; backgroun
 }
 
 
-@media screen and (max-width:800px) { 
-	header { padding:150px 0 140px 0;}
+@media screen and (max-width:400px) { 
+	header { padding:40px 0 0px 0;}
 	.side .pure-form .pure-input-rounded  { width: 200px; }
 }
 
@@ -175,7 +176,7 @@ header { background: black; text-align: center; padding:50px 0 40px 0; backgroun
 }
 
 .popup { background: rgba(0,0,0,0.8); width: 100%; height: 100%; position: fixed; top:0; left:0; overflow-y: scroll; opacity: 0; z-index: -100; 
-	form { background: white; width:600px; top:100px; padding:40px; margin-left:-320px; margin-bottom: 100px; border-radius: 20px; left:50%; position: absolute; padding-bottom: 60px;  overflow: hidden; box-shadow:0 0 10px rgba(0,0,0,0.5); transition:all 0.2s cubic-bezier(.44,1.49,.58,.99); transform:translate(0, 50px) ;
+	form { background: white; width:600px; top:100px; padding:40px; margin-left:-340px; margin-bottom: 100px; border-radius: 20px; left:50%; position: absolute; padding-bottom: 60px;  overflow: hidden; box-shadow:0 0 10px rgba(0,0,0,0.5); transition:all 0.2s cubic-bezier(.44,1.49,.58,.99); transform:translate(0, 50px) ;
 		.submit { display: block; width: 100%; margin:-40px; padding:40px; margin-top:40px; box-sizing:initial; border-radius: 0;}
 	}
 	.close { position: absolute; top:30px; right: 30px; font-size: 3em; color:white; transform:translate(0,-100px); transition:all 0.2s cubic-bezier(.44,1.49,.58,.99); opacity: 0; cursor: pointer}
@@ -195,9 +196,25 @@ header { background: black; text-align: center; padding:50px 0 40px 0; backgroun
 }
 
 
+@media screen and (max-width:800px) { 
+	.popup {
+		form { width:100%; top:-50px; left: 0; margin: 0; padding:10px; padding-top:100px; padding-bottom: 80px; border-radius: 0px;     -webkit-box-sizing: border-box;    -moz-box-sizing: border-box;   box-sizing: border-box;
+			.submit { display: block; width: 100%; margin:-40px; padding:40px; margin-top:40px; box-sizing:initial; border-radius: 0;}
+		}
+		.input_deactive { width: 90% !important; line-height: 30px !important; border-radius: 4px !important; } 
+		.wdform-field { width: 90% !important;}
+		.close  { color:black; z-index: 1000000000;}
+		.wdform-label { width: 100% !important; display: block;}
+	}
+
+}
+
+
+
+
 footer { background: #333; height: 120px; padding-top:20px; color:white; font-size: 0.8em; overflow: hidden;
 	a { color:#ccc; }
-	p {margin:0; text-align: center; font-size: 0.9em; font-weight: normal; color:#eee;  transform: translate(0px,100px); opacity:1;  transition:all 0.7s 0s cubic-bezier(.44,1.49,.58,.99);
+	p {margin:0; text-align: center; font-size: 0.9em; font-weight: normal; color:#eee;  transform: translate(0px,100px); -webkit-transform: translate(0px,100px); opacity:1;  transition:all 0.7s 0s cubic-bezier(.44,1.49,.58,.99);
 		&:first-child {  padding-bottom: 5px; font-weight: bold; background:url("../img/userstorylab-type-c01.png")  center 10px no-repeat; background-size: 40px 40px; padding-top:60px; color:white;
 			a { color:white;}
 		}
@@ -206,7 +223,7 @@ footer { background: #333; height: 120px; padding-top:20px; color:white; font-si
 }
 
 footer.move {
-	p {  transform: translate(0px,0px); opacity:1;  transition:all 0.9s 0s ease;
+	p {  transform: translate(0px,0px);  -webkit-transform: translate(0px,0px); opacity:1;  transition:all 0.9s 0s ease;
 
 	}
 }
@@ -215,3 +232,33 @@ body { overflow: auto; transition:all 0 1s;}
 body.fix { overflow: hidden; transition:all 0 1s;}
 
 .fb-comments, .fb-comments iframe[style], .fb-comments span[style] { width:100% !important;}
+
+
+
+
+@media screen and (max-width:480px) {
+	.pure-input-rounded,
+	.pure-form button[type=submit] { margin:0 !important;}
+	.content .more .next { float: left; margin-left: 6%;}
+	header .request  { padding:30px;}
+	.side { padding-bottom: 30px;}
+	.userComment { overflow: hidden;
+		a.no { margin: 0 !important;}
+	}
+	.fb-like { width: 300px !important ; display: inline-block; overflow:hidden;}
+
+
+		#view {  width: 100%; height: 100%; overflow: scroll;
+			.iframeView {  -webkit-overflow-scrolling: touch; }
+		}
+		.iframe #fixed-header {  position: fixed !important;
+			h2 { .bg("../img/logo@2x.png", 212px, 83px); margin:0 auto; float: left;  transform: translate(-40px,-10px) scale(0.4,0.4); -webkit-transform: translate(-40px,-10px) scale(0.3,0.3); opacity:1; margin-left: -30px; }
+			.fb-like { }
+			div.comments { padding:0 0px;  position: absolute; top:0; right:0; padding-right: 4px;
+
+			}
+			.spacer { padding:0;}
+		}
+
+
+}

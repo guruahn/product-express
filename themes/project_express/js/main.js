@@ -1,6 +1,18 @@
 
 
 
+var inview = new Waypoint.Inview({
+    element: $('.copyright')[0],
+    enter: function(direction) {
+        $( ".copyright" ).addClass( "move" );
+    },
+    exited: function(direction) {
+        $( ".copyright" ).removeClass( "move" );
+    },
+})
+
+
+
 
 $(window).ready(function(){
 
@@ -33,16 +45,4 @@ $(".popup .close").click(function() {
 });
 
 
-
-
-
-var inview = new Waypoint.Inview({
-    element: $('.copyright')[0],
-    enter: function(direction) {
-        $( ".copyright" ).addClass( "move" );
-    },
-    exited: function(direction) {
-        $( ".copyright" ).removeClass( "move" );
-    },
-})
 

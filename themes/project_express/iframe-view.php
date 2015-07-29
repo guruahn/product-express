@@ -27,6 +27,7 @@ $blog_posts = new WP_Query( $query );
         <style>
             body { overflow: hidden; position: relative;}
             header { display: none; }
+            footer {display: none !important;}
         </style>
         <?php if ( $blog_posts->have_posts() ) :
             // Start the loop.
