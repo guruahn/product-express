@@ -227,7 +227,10 @@ if ( ! function_exists( 'project_express_post_thumbnail' ) ) :
         if ( post_password_required() || is_attachment() ) {
             return;
         }
+        if(get_field('movie_link')){
+            echo product_express_get_movie_thumbnail_by_url(get_field('movie_link'), get_the_title());
 
+        }else{
         ?>
         <a href="<?php echo product_express_get_frame_link(get_field('link')); ?>" target="_blank">
             <?php
@@ -241,6 +244,7 @@ if ( ! function_exists( 'project_express_post_thumbnail' ) ) :
             ?>
         </a>
         <?
+        }
     }
 endif;
 
@@ -331,6 +335,63 @@ if ( ! function_exists( 'product_express_get_frame_link' ) ) :
     function product_express_get_frame_link($link){
         if(get_page_by_path( '/product-view' )) $link = get_home_url()."/product-view?id=".get_the_ID();
         return $link;
+    }
+
+endif;
+
+
+if ( ! function_exists( 'product_express_get_movie_thumbnail_by_url' ) ) :
+    /**
+     * Display an user info.
+     *
+     *
+     * @since Product Express 1.0
+     */
+    function product_express_get_movie_thumbnail_by_url($url, $alt='', $size="hqdefault"){
+        $image = '';
+        if(strpos($url, 'youtube') !== false) {
+            /*size option(http://stackoverflow.com/a/20542029)
+            default : Normal Quality Thumbnail (120x90 pixels)
+            hqdefault : High Quality Thumbnail (480x360 pixels)
+            mqdefault : Medium Quality Thumbnail (320x180 pixels)
+            sddefault : Standard Definition Thumbnail (640x480 pixels)
+            maxresdefault : Maximum Resolution Thumbnail (1920x1080 pixels)
+            */
+            preg_match("#([\/|\?|&]vi?[\/|=]|youtu\.be\/|embed\/)(\w+)#", $url, $matches);
+            $image = '<img width="401" height="264" src="http://img.youtube.com/vi/' . end($matches) . '/' . $size .'.jpg" class="attachment-thumbnail wp-post-image action" alt="'.$alt.'">';
+            $image .= '<div class="popup"><i class="fa fa-times close"></i><iframe class="movie-iframe" width="560" height="315" src="https://www.youtube.com/embed/'.end($matches).'" frameborder="0" allowfullscreen></iframe></div>';
+        }elseif(strpos($url, 'vimeo') !== false) {
+            $vimeo_id = product_express_get_vimeo_info_by_url($url);
+            $image = '<iframe src="https://player.vimeo.com/video/'.$vimeo_id.'" width="401" height="264" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+        }
+        return $image;
+    }
+
+endif;
+
+
+if ( ! function_exists( 'product_express_get_vimeo_info_by_url' ) ) :
+    /**
+     * Display an user info.
+     *
+     *
+     * @since Product Express 1.0
+     */
+    function product_express_get_vimeo_info_by_url($vimeo){
+
+        $url = parse_url($vimeo);
+        if($url['host'] !== 'vimeo.com' &&
+            $url['host'] !== 'www.vimeo.com')
+            return false;
+        if (preg_match('/(https?:\/\/)?(www\.)?(player\.)?vimeo\.com\/([a-z]*\/)*([0-9]{6,11})[?]?.*/', $vimeo, $match))
+        {
+            $id = $match[5];
+        }
+        else
+        {
+            $id = substr($vimeo,10,strlen($url['path']));
+        }
+        return $id;
     }
 
 endif;

@@ -19,21 +19,26 @@ $( ".pure-form.email input" ).focus(function() {
   $( ".pure-form.email").addClass("move");
 });
 
-
+/*request popup*/
 $(".request .action").click(function() {
-	$(".popup").addClass("move");
+	$(".popup.request").addClass("move");
 	$("body").addClass("fix");
 });
 
 
 
-$(".popup .close").click(function() {
+$(".close").click(function(e) {
 	$(".popup").removeClass("move");
 	$("body").removeClass("fix");
 });
 
+/*movie popup*/
+$(".image .action").click(function(e){
+    e.preventDefault();
+    $(this).parent().find('.popup').addClass("move");
+    $("body").removeClass("fix");
 
-
+});
 
 
 var inview = new Waypoint.Inview({
