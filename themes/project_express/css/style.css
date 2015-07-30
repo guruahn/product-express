@@ -613,6 +613,7 @@ footer {
   color: white;
   font-size: 0.8em;
   overflow: hidden;
+  clear: both;
 }
 footer a {
   color: #ccc;
