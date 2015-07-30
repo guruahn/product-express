@@ -234,13 +234,7 @@ if ( ! function_exists( 'project_express_post_thumbnail' ) ) :
         ?>
         <a href="<?php echo product_express_get_frame_link(get_field('link')); ?>" target="_blank">
             <?php
-            if(!has_post_thumbnail()){
-                echo '<img width="401" height="264" src="http://s.wordpress.com/mshots/v1/' . urlencode(get_field('link')) . '?w=403" class="attachment-thumbnail wp-post-image" alt="'.get_the_title().'">';
-                //echo '<img width="401" height="264" src="http://img.bitpixels.com/getthumbnail?code=88689&size=200&url=' . get_field('link') . '" class="attachment-thumbnail wp-post-image" alt="'.get_the_title().'">';
-            }else{
-                the_post_thumbnail( 'thumbnail', array( 'alt' => get_the_title() ) );
-            }
-
+            the_post_thumbnail( 'thumbnail', array( 'alt' => get_the_title() ) );
             ?>
         </a>
         <?
@@ -396,57 +390,6 @@ if ( ! function_exists( 'product_express_get_vimeo_info_by_url' ) ) :
 
 endif;
 
-
-if ( ! function_exists( 'product_express_generate_screenshot' ) ) :
-    /*
-     * generate screenshot by url
-     */
-    function product_express_generate_screenshot($post_id){
-        $width = 450;
-        $site = get_field('link', $post_id);
-
-        if(wp_is_post_revision( $post_id )) $post_id = wp_is_post_revision( $post_id );
-
-        if ($site != '' && !has_post_thumbnail( $post_id )){
-
-            $query_url = 'http://s.wordpress.com/mshots/v1/' . urlencode($site) . '?w=' . $width;
-            //printr2($query_url);
-            $image_name = sanitize_file_name(date("Ymd_Gis").'.jpg');
-
-            $ch = curl_init($query_url);
-            $fp = fopen('/wp-content/uploads/'.$image_name, 'wb');
-            curl_setopt($ch, CURLOPT_FILE, $fp);
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-            ob_start();
-            curl_exec($ch);
-            $contents=ob_get_contents();
-            ob_end_clean();
-            curl_close($ch);
-            fclose($fp);
-
-            $upload = wp_upload_bits($image_name, null, $contents);
-
-            $attachment = array(
-                'post_title' => $image_name,
-                'post_content' => '',
-                'post_type' => 'attachment',
-                'post_parent' => $post_id,
-                'post_mime_type' => 'image/jpg',
-                'guid' => $upload[ 'url' ]
-            );
-
-            if(empty($upload['error'])){
-                $attach_id = wp_insert_attachment( $attachment, $upload[ 'file' ], $post_id );
-                wp_update_attachment_metadata( $attach_id, wp_generate_attachment_metadata( $attach_id, $upload['file'] ) );
-                set_post_thumbnail( $post_id, $attach_id );
-            }
-
-        }
-    }
-    //실패율이 너무 높아서 주석처리.
-    //add_action( 'save_post', 'product_express_generate_screenshot' );
-endif;
 
 
 /**
