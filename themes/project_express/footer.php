@@ -25,6 +25,7 @@
 <script>
 $("#primary").stick_in_parent();
 </script>
+
 <?php wp_footer(); ?>
 </body>
 </html>
