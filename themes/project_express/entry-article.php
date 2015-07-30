@@ -30,6 +30,8 @@
     endif;
     ?>
 
+    <?php edit_post_link('Edit Product', '<div class="edit-link">', '</div>'); ?>
+
     <div class="userComment">
     <?php
     if(is_single()){
