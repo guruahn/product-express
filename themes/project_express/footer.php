@@ -21,6 +21,10 @@
 
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.sticky-kit.min.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/main.js"></script>
+
+<script>
+$("#primary").stick_in_parent();
+</script>
 <?php wp_footer(); ?>
 </body>
 </html>

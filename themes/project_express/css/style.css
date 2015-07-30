@@ -321,11 +321,11 @@ header .request p {
   background: #ededed;
   padding-right: 30px;
   margin-right: -30px;
-  padding-top: 50px;
   overflow-y: hidden;
 }
 .side h4 {
   font-size: 0.7em;
+  padding-top: 50px;
 }
 .side ul {
   padding: 0;
