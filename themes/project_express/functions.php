@@ -397,9 +397,9 @@ if ( ! function_exists( 'product_express_get_movie_thumbnail_by_url' ) ) :
             sddefault : Standard Definition Thumbnail (640x480 pixels)
             maxresdefault : Maximum Resolution Thumbnail (1920x1080 pixels)
             */
-            preg_match("#([\/|\?|&]vi?[\/|=]|youtu\.be\/|embed\/)(\w+)#", $url, $matches);
-            $image = '<img width="401" height="264" src="http://img.youtube.com/vi/' . end($matches) . '/' . $size .'.jpg" class="attachment-thumbnail wp-post-image action" alt="'.$alt.'">';
-            $image .= '<div class="popup"><i class="fa fa-times close"></i><div class="vimeo"><iframe class="movie-iframe" width="560" height="315" src="https://www.youtube.com/embed/'.end($matches).'" frameborder="0" allowfullscreen></iframe></div></div>';
+            $youtube_id = product_express_get_youtube_id($url);
+            $image = '<img width="401" height="264" src="http://img.youtube.com/vi/' . $youtube_id . '/' . $size .'.jpg" class="attachment-thumbnail wp-post-image action" alt="'.$alt.'">';
+            $image .= '<div class="popup"><i class="fa fa-times close"></i><div class="vimeo"><iframe class="movie-iframe" width="560" height="315" src="https://www.youtube.com/embed/'. $youtube_id .'" frameborder="0" allowfullscreen></iframe></div></div>';
         }elseif(strpos($url, 'vimeo') !== false) {
             $vimeo_id = product_express_get_vimeo_info_by_url($url);
             $image = '<iframe src="https://player.vimeo.com/video/'.$vimeo_id.'" width="401" height="264" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
