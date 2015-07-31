@@ -44,7 +44,7 @@ header { background: black; text-align: center; padding:50px 0 40px 0; backgroun
 	}
 }
 
-.container { min-height: 900px;}
+.container { min-height: 500px;}
 
 .productTitle { font-family: 'Rajdhani', sans-serif !important; font-size: 3em; font-weight: 700;  line-height: 120px; box-sizing: border-box; padding-left: 6%; border-top:1px solid #ccc; margin-top:0px;
 	&:first-child { border:none; margin-top:0;}
@@ -123,14 +123,14 @@ header { background: black; text-align: center; padding:50px 0 40px 0; backgroun
 	.l-box  { padding-right: 6%}
 
 }
+.side { padding-left:2em; background:#ededed; padding-right:30px; margin-right:-30px; overflow-y: hidden; display:block !important; padding-bottom:140px; overflow:auto
 
-.side { padding-left:2em; background:#ededed; padding-right:30px; margin-right:-30px; overflow-y: hidden;
 	h4 { font-size: 0.7em; padding-top:50px; }
 	ul { padding:0;
 		li { list-style: none;}
 	}
 	.Email { 
-		h4 { font-weight: bold; padding-bottom: 10px;}
+		h4 { font-weight: bold; padding-bottom: 10px; font-size: 0.7em; padding-top:30px; }
 	}
 	.pure-form {
 		.pure-input-rounded { border-radius: 10px 0 0 10px ; border:1px solid white ; box-shadow: none; border-right: 0; display: inline-block; font-size: 0.8em; line-height: 40px; padding:0 10px; width: 230px; }
@@ -152,6 +152,13 @@ header { background: black; text-align: center; padding:50px 0 40px 0; backgroun
 	}
 }
 
+
+.ie8 .side{ display: inline-block !important; 
+	#primary { float: left;
+
+		.pure-input-rounded { height: 42px;}
+	}
+}
 
 @media screen and (max-width:400px) { 
 	header { padding:40px 0 0px 0;}

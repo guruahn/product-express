@@ -111,7 +111,7 @@ header .request p {
   transition: all 1s 0.9s cubic-bezier(0.44, 1.49, 0.58, 0.99);
 }
 .container {
-  min-height: 900px;
+  min-height: 500px;
 }
 .productTitle {
   font-family: 'Rajdhani', sans-serif !important;
@@ -322,8 +322,10 @@ header .request p {
   padding-right: 30px;
   margin-right: -30px;
   overflow-y: hidden;
+  display: block !important;
+  padding-bottom: 140px;
 }
-.side h4 {
+.side overflow:auto h4 {
   font-size: 0.7em;
   padding-top: 50px;
 }
@@ -336,6 +338,8 @@ header .request p {
 .side .Email h4 {
   font-weight: bold;
   padding-bottom: 10px;
+  font-size: 0.7em;
+  padding-top: 30px;
 }
 .side .pure-form .pure-input-rounded {
   border-radius: 10px 0 0 10px ;
@@ -402,6 +406,15 @@ header .request p {
 .side .taglist a:hover {
   color: #000;
   background: #fff;
+}
+.ie8 .side {
+  display: inline-block !important;
+}
+.ie8 .side #primary {
+  float: left;
+}
+.ie8 .side #primary .pure-input-rounded {
+  height: 42px;
 }
 @media screen and (max-width: 400px) {
   header {
