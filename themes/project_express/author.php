@@ -10,8 +10,9 @@
                 if ( have_posts() ) :
                     ?>
                     <div class="authorTitle pure-u-1" >
-                        <?php _e( 'Author Archives', 'project_express' ); ?>: <?php the_author_link(); ?>
+                        <p class="profile"><img src="http://fimg2.pann.com/new/download.jsp?FileID=28018069" /><br><?php the_author_link(); ?></p>
                         <?php if ( '' != get_the_author_meta( 'user_description' ) ) echo apply_filters( 'archive_meta', '<span class="archive-meta"><small>' . get_the_author_meta( 'user_description' ) . '</small></span>' ); ?>
+
                     </div>
 
                     <?php rewind_posts(); ?>
