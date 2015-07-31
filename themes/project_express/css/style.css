@@ -55,36 +55,44 @@ header p.desc {
   -webkit-transform: translate(0px, 100px);
   opacity: 0;
 }
-header .request {
-  padding-top: 35px;
+.Email {
+  padding-top: 30px;
 }
-header .request a {
-  transform: translate(0px, 0px);
-  width: 100px;
-  padding-left: 20px;
-  opacity: 0;
-  line-height: 40px;
-  height: 40px;
-  background: white;
-  border-radius: 100px;
-  display: block;
-  margin: 0 auto;
+.Email h4 {
   font-weight: bold;
-  font-size: 0.8em;
-  position: relative;
-}
-header .request a i {
-  position: absolute;
-  left: 15px;
-  line-height: 40px;
-}
-header .request p {
-  transform: translate(0px, 0px);
+  padding-bottom: 0px;
   font-size: 0.7em;
-  font-family: "Yoon Gothic", "Apple Gothic Neo", 'gulim', 'sans-serif';
   padding-top: 10px;
-  opacity: 0;
   color: white;
+  opacity: 0;
+}
+.Email .pure-form {
+  opacity: 0;
+}
+.Email .pure-form .pure-input-rounded {
+  border-radius: 10px 0 0 10px ;
+  border: 1px solid white ;
+  box-shadow: none;
+  border-right: 0;
+  display: inline-block;
+  font-size: 0.8em;
+  line-height: 40px;
+  padding: 0 10px;
+  width: 230px;
+}
+.Email .pure-form .pure-button {
+  background: #4A90E2;
+  color: white;
+  border-radius: 0 10px 10px 0;
+  display: inline-block;
+  border: 1px solid #4A90E2;
+  line-height: 40px;
+  padding: 0 10px;
+}
+.Email .pure-form.move .pure-button {
+  background: #FF1477;
+  border: 1px solid #FF1477;
+  transition: all 0.9s;
 }
 .move header h1 a {
   transform: translate(0px, 0px);
@@ -98,13 +106,13 @@ header .request p {
   opacity: 1;
   transition: all 1s 0.1s cubic-bezier(0.44, 1.49, 0.58, 0.99);
 }
-.move header .request a {
+.move header .Email h4 {
   transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
   opacity: 1;
   transition: all 1s 0.9s cubic-bezier(0.44, 1.49, 0.58, 0.99);
 }
-.move header .request p {
+.move header .Email .pure-form {
   transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
   opacity: 1;
@@ -144,6 +152,15 @@ header .request p {
   font-weight: bold;
   font-size: 0.3em;
   display: block;
+  padding-bottom: 30px;
+}
+.authorTitle {
+  font-weight: 300;
+  font-size: 2.5em;
+  padding-top: 30px;
+  color: #333;
+  box-sizing: border-box;
+  text-align: center;
   padding-bottom: 30px;
 }
 .content a:hover {
@@ -335,39 +352,8 @@ header .request p {
 .side ul li {
   list-style: none;
 }
-.side .Email h4 {
-  font-weight: bold;
-  padding-bottom: 10px;
-  font-size: 0.7em;
-  padding-top: 30px;
-}
-.side .pure-form .pure-input-rounded {
-  border-radius: 10px 0 0 10px ;
-  border: 1px solid white ;
-  box-shadow: none;
-  border-right: 0;
-  display: inline-block;
-  font-size: 0.8em;
-  line-height: 40px;
-  padding: 0 10px;
-  width: 230px;
-}
-.side .pure-form .pure-button {
-  background: black;
-  color: white;
-  border-radius: 0 10px 10px 0;
-  display: inline-block;
-  border: 1px solid black;
-  line-height: 40px;
-  padding: 0 10px;
-}
-.side .pure-form.move .pure-button {
-  background: #FF1477;
-  border: 1px solid #FF1477;
-  transition: all 0.9s;
-}
 .side .author {
-  padding-top: 20px;
+  padding-top: 30px;
 }
 .side .author li {
   display: inline-block;
@@ -388,9 +374,11 @@ header .request p {
   border: 5px solid white;
 }
 .side .taglist {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #ddd;
   margin-top: 20px;
   padding-top: 30px;
+  padding-bottom: 30px;
+  overflow: auto;
 }
 .side .taglist li {
   float: left;
@@ -407,6 +395,35 @@ header .request p {
   color: #000;
   background: #fff;
 }
+.side .request {
+  padding-top: 35px;
+  clear: both;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 30px;
+}
+.side .request a {
+  width: 100px;
+  padding-left: 20px;
+  text-align: center;
+  line-height: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 100px;
+  display: block;
+  font-weight: bold;
+  font-size: 0.8em;
+  position: relative;
+}
+.side .request a i {
+  position: absolute;
+  left: 15px;
+  line-height: 40px;
+}
+.side .request p {
+  font-size: 0.7em;
+  font-family: "Yoon Gothic", "Apple Gothic Neo", 'gulim', 'sans-serif';
+  padding-top: 10px;
+}
 .ie8 .side {
   display: inline-block !important;
 }
@@ -418,7 +435,7 @@ header .request p {
 }
 @media screen and (max-width: 400px) {
   header {
-    padding: 40px 0 0px 0;
+    padding: 40px 0 20px 0;
   }
   .side .pure-form .pure-input-rounded {
     width: 200px;
@@ -531,6 +548,7 @@ header .request p {
   transition: all 0.2s cubic-bezier(0.44, 1.49, 0.58, 0.99);
   opacity: 0;
   cursor: pointer;
+  z-index: 1000000000;
 }
 .popup.move {
   opacity: 1;
@@ -578,6 +596,20 @@ header .request p {
   border-bottom: 1px solid #ccc;
   font-size: 0.9em;
   font-weight: bold;
+}
+.popup .vimeo {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 35px;
+  height: 0;
+  overflow: hidden;
+}
+.popup .vimeo iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 @media screen and (max-width: 800px) {
   .popup form {
