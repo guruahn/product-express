@@ -48,11 +48,13 @@
     <header>
         <p class="desc"><?php bloginfo( 'description' ); ?></p>
         <h1><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php esc_attr_e( get_bloginfo( 'name' ), 'project_express' ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a></h1>
-        <div class="pure-form request">
-            <a href="#" class="action">의뢰하기 <i class="fa fa-paper-plane"></i></a>
-            <p>솔직한 서비스 리뷰가 필요하신가요? 프로덕트 익스프레스에 연락해 주세요!</p>
-        </div>
+        <div class="Email">
+            <div class="pure-form email">
+                <input type="email" id="mc4wp_email" name="EMAIL" class="pure-input-rounded" placeholder="E-MAIL 주소를 입력해 주세요."><button type="submit" class="pure-button"><i class="fa fa-envelope"></i></button>
+            </div>
 
+            <h4>PRODUCT EXPRESS의 글을 구독하세요!</h4>
+        </div>
 
     </header>
 
