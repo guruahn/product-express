@@ -205,6 +205,30 @@ function project_express_custom_archive_page($args){
         set_query_var( 'date_query', $date_query );
         add_action('loop_end','project_express_print_daily_arrow');
         add_filter('get_the_archive_title', 'project_express_archive_title');
+    }elseif(is_author()){
+        $author = get_user_by( 'slug', get_query_var( 'author_name' ) );
+
+        //set_query_var( 'meta_query', $meta_query );
+        global $wpdb;
+        $postids = $wpdb->get_col($wpdb->prepare(
+            "SELECT      ID ".
+            " FROM       $wpdb->posts ".
+            "WHERE       post_author = '%s'",
+            $author->ID
+        ));
+        $postids_meta = $wpdb->get_col($wpdb->prepare(
+            "SELECT      post_id ".
+            " FROM        $wpdb->postmeta ".
+            "WHERE       meta_key = 'writer2' and meta_value = %s",
+            $author->ID
+        ));
+        $postids = array_merge($postids, $postids_meta);
+
+        set_query_var( 'post__in', $postids );
+        set_query_var( 'author_name', null);
+
+        /*global $wp_query;
+        printr($wp_query->query_vars);*/
     }else{
         if(is_page('product-view')){
             add_filter( 'show_admin_bar', '__return_false' );
