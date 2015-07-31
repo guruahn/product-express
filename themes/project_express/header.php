@@ -48,13 +48,13 @@
     <header>
         <p class="desc"><?php bloginfo( 'description' ); ?></p>
         <h1><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php esc_attr_e( get_bloginfo( 'name' ), 'project_express' ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a></h1>
-        <div class="Email">
-            <div class="pure-form email">
-                <input type="email" id="mc4wp_email" name="EMAIL" class="pure-input-rounded" placeholder="E-MAIL 주소를 입력해 주세요."><button type="submit" class="pure-button"><i class="fa fa-envelope"></i></button>
+        <?php if ( is_active_sidebar( 'header-widget-area' ) ) : ?>
+            <div id="header-widget" class="widget-area"  data-sticky_column>
+                <ul class="xoxo">
+                    <?php dynamic_sidebar( 'header-widget-area' ); ?>
+                </ul>
             </div>
-
-            <h4>PRODUCT EXPRESS의 글을 구독하세요!</h4>
-        </div>
+        <?php endif; ?>
 
     </header>
 

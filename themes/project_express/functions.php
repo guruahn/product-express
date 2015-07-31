@@ -12,11 +12,6 @@ function project_express_setup()
     );
 }
 
-function register_my_theme_styles(){
-    if ( ! is_admin() ){
-
-    }
-}
 
 add_action( 'wp_enqueue_scripts', 'project_express_load_scripts' );
 function project_express_load_scripts()
@@ -30,17 +25,21 @@ function project_express_load_scripts()
 
 // register Product_Express_Tags widget
 include_once('widget_tags.php');
-function register_product_express_tags() {
+function register_product_express_tags()
+{
     register_widget( 'Product_Express_Tags' );
 }
 add_action( 'widgets_init', 'register_product_express_tags' );
 
+
 // register Product_Express_Writers widget
 include_once('widget_writers.php');
-function register_product_express_writers() {
+function register_product_express_writers()
+{
     register_widget( 'Product_Express_Writers' );
 }
 add_action( 'widgets_init', 'register_product_express_writers' );
+
 
 add_action( 'comment_form_before', 'project_express_enqueue_comment_reply_script' );
 function project_express_enqueue_comment_reply_script()
@@ -48,8 +47,10 @@ function project_express_enqueue_comment_reply_script()
     if ( get_option( 'thread_comments' ) ) { wp_enqueue_script( 'comment-reply' ); }
 }
 
+
 add_filter( 'the_title', 'project_express_title' );
-function project_express_title( $title ) {
+function project_express_title( $title )
+{
     if ( $title == '' ) {
         return '&rarr;';
     } else {
@@ -57,11 +58,32 @@ function project_express_title( $title ) {
     }
 }
 
+
 add_filter( 'wp_title', 'project_express_filter_wp_title' );
 function project_express_filter_wp_title( $title )
 {
     return $title . esc_attr( get_bloginfo( 'name' ) );
 }
+
+
+/**
+ * Register our sidebars and widgetized areas.
+ *
+ */
+add_action( 'widgets_init', 'header_widgets_init' );
+function header_widgets_init() {
+
+    register_sidebar( array(
+        'name'          => __( 'Header Widget Area', 'project_express' ),
+        'id'            => 'header-widget-area',
+        'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+        'after_widget'  => '</li>',
+        'before_title'  => '<h3 class="widget-title">',
+        'after_title'   => '</h3>',
+    ) );
+
+}
+
 
 add_action( 'widgets_init', 'project_express_widgets_init' );
 function project_express_widgets_init()
