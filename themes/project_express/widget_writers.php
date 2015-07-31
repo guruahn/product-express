@@ -32,7 +32,7 @@ class Product_Express_Writers extends WP_Widget {
             foreach ( $blogusers as $user ) {
                 ?>
                 <li>
-                    <a href="<?php echo esc_url( get_author_posts_url( $user->ID ) ); ?>">
+                    <a href="<?php echo esc_url( get_author_posts_url( $user->ID ) ); ?>"  class="tooltip" title="<?php echo get_the_author_meta( 'user_description', $user->ID )?>">
                         <?php
                         include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
                         if ( is_plugin_active( 'metronet-profile-picture/metronet-profile-picture.php' ) ) {
