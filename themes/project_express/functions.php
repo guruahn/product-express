@@ -276,14 +276,20 @@ if ( ! function_exists( 'project_express_post_thumbnail' ) ) :
         if(get_field('movie_link')){
             echo product_express_get_movie_thumbnail_by_url(get_field('movie_link'), get_the_title());
 
-        }else{
-        ?>
-        <a href="<?php echo product_express_get_frame_link(get_field('link')); ?>" target="_blank">
-            <?php
-            the_post_thumbnail( 'thumbnail', array( 'alt' => get_the_title() ) );
+        }elseif(! has_post_thumbnail()){
             ?>
-        </a>
+            <a href="<?php echo product_express_get_frame_link(get_field('link')); ?>" target="_blank">
+                <img width="401" height="264" src="<?php echo get_template_directory_uri(); ?>/img/defaultImg.jpg" class="attachment-thumbnail wp-post-image" alt="default image">
+            </a>
         <?
+        }else{
+            ?>
+            <a href="<?php echo product_express_get_frame_link(get_field('link')); ?>" target="_blank">
+                <?php
+                the_post_thumbnail( 'thumbnail', array( 'alt' => get_the_title() ) );
+                ?>
+            </a>
+            <?
         }
     }
 endif;
