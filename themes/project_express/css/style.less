@@ -1,3 +1,5 @@
+@import "tooltipster.css";
+
 * { transition:all 0.2s;}
 .bg(@imageBg, @widthBg, @heightBg, @repeatBg: no-repeat) {
 	background-image: url(@imageBg);
@@ -39,6 +41,8 @@ header { background: black; text-align: center; padding:50px 0 40px 0; backgroun
 	}
 }
 
+	.mc4wp-alert { font-size: 0.7em; font-weight: bold; color:white; padding:0px 20px !important; height: 30px;  line-height: 30px; margin-top:30px; background: #D11263; display: inline-block; border-radius: 10px;
+	}
 .move header {
 	h1 { 
 		a { transform: translate(0px,0px); opacity: 1; -webkit-transform: translate(0px,0px); opacity: 1;  transition:all 1s 0.2s cubic-bezier(.44,1.49,.58,.99); }
@@ -95,6 +99,7 @@ header { background: black; text-align: center; padding:50px 0 40px 0; backgroun
 		}
 	}
 	.shareBox { padding-bottom: 20px;
+		a { padding-right: 8px;}
 		span { display: block; font-size: 0.7em; color:#555; padding-bottom: 5px;}
 		i { margin-right: 6px; opacity: 0.6 }
 	}
@@ -282,4 +287,25 @@ body.fix { overflow: hidden; transition:all 0 1s;}
 		}
 
 
+}
+
+
+
+/// tooltip
+
+/* This is how you would create a theme called "my-custom-theme": */
+
+.my-custom-theme {
+	border-radius: 5px; 
+	border: 0px solid #000;
+	background: #4c4c4c;
+	color: #fff;
+}
+/* Use this next selector to style things like font-size and line-height: */
+.my-custom-theme .tooltipster-content {
+	font-family: Arial, sans-serif;
+	font-size: 11.5px;
+	line-height: 16px;
+	padding: 8px 10px;
+	font-weight: normal;
 }

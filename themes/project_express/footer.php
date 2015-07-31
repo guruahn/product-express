@@ -20,10 +20,19 @@
 <script src="<?php echo get_template_directory_uri(); ?>/js/waypoints/inview.min.js"></script>
 
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.sticky-kit.min.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.tooltipster.min.js"></script>
+
+
+
 <script src="<?php echo get_template_directory_uri(); ?>/js/main.js"></script>
 
 <script>
 $("#primary").stick_in_parent();
+            $('.tooltip').tooltipster({
+
+            	theme: 'my-custom-theme',
+            	contentAsHTML: true
+            });
 </script>
 
 <?php wp_footer(); ?>

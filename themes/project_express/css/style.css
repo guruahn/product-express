@@ -1,3 +1,4 @@
+@import "tooltipster.css";
 * {
   transition: all 0.2s;
 }
@@ -93,6 +94,18 @@ header p.desc {
   background: #FF1477;
   border: 1px solid #FF1477;
   transition: all 0.9s;
+}
+.mc4wp-alert {
+  font-size: 0.7em;
+  font-weight: bold;
+  color: white;
+  padding: 0px 20px !important;
+  height: 30px;
+  line-height: 30px;
+  margin-top: 30px;
+  background: #D11263;
+  display: inline-block;
+  border-radius: 10px;
 }
 .move header h1 a {
   transform: translate(0px, 0px);
@@ -231,6 +244,9 @@ header p.desc {
 }
 .content .shareBox {
   padding-bottom: 20px;
+}
+.content .shareBox a {
+  padding-right: 8px;
 }
 .content .shareBox span {
   display: block;
@@ -771,4 +787,19 @@ body.fix {
   .iframe #fixed-header .spacer {
     padding: 0;
   }
+}
+/* This is how you would create a theme called "my-custom-theme": */
+.my-custom-theme {
+  border-radius: 5px;
+  border: 0px solid #000;
+  background: #4c4c4c;
+  color: #fff;
+}
+/* Use this next selector to style things like font-size and line-height: */
+.my-custom-theme .tooltipster-content {
+  font-family: Arial, sans-serif;
+  font-size: 11.5px;
+  line-height: 16px;
+  padding: 8px 10px;
+  font-weight: normal;
 }
