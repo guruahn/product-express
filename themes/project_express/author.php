@@ -9,7 +9,7 @@
                 <?php
                 if ( have_posts() ) :
                     ?>
-                    <div class="date pure-u-1" >
+                    <div class="authorTitle pure-u-1" >
                         <?php _e( 'Author Archives', 'project_express' ); ?>: <?php the_author_link(); ?>
                         <?php if ( '' != get_the_author_meta( 'user_description' ) ) echo apply_filters( 'archive_meta', '<span class="archive-meta"><small>' . get_the_author_meta( 'user_description' ) . '</small></span>' ); ?>
                     </div>
