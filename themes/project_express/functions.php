@@ -12,6 +12,9 @@ function project_express_setup()
     );
 }
 
+/*modify allow html in profile description*/
+remove_filter('pre_user_description', 'wp_filter_kses');
+
 
 add_action( 'wp_enqueue_scripts', 'project_express_load_scripts' );
 function project_express_load_scripts()

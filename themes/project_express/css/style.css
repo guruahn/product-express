@@ -197,6 +197,7 @@ header p.desc {
     color: #666;
     padding: 0 20px;
     display: block;
+    line-height: 1.8;
 }
 .content a:hover {
     color: #df3557 !important;

@@ -23,7 +23,11 @@
                             ?>
                             <br>
                             <?php the_author_link(); ?></p>
-                        <?php if ( '' != get_the_author_meta( 'user_description' ) ) echo apply_filters( 'archive_meta', '<span class="archive-meta"><small>' . get_the_author_meta( 'user_description' ) . '</small></span>' ); ?>
+                        <?php
+                        if ( '' != get_the_author_meta( 'user_description' ) ) {
+                            $user_description = get_the_author_meta( 'user_description' );
+                            echo apply_filters( 'archive_meta', '<span class="archive-meta"><small>' . $user_description . '</small></span>' );
+                        } ?>
 
                     </div>
 
