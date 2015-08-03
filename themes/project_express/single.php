@@ -4,6 +4,7 @@
         <!-- 본문 영역 시작 -->
         <div class="pure-g" >
             <?php
+            //echo phpinfo();
             if ( have_posts() ) :
                 while ( have_posts() ) : the_post();
                     /*

@@ -553,3 +553,16 @@ function get_debug_print($var, $title = NULL)
     $title_style = "color: darkred;";
     return get_printr($var, $title, $style, $title_style);
 }
+
+function is_localhost(){
+    $whitelist = array(
+        '127.0.0.1',
+        '::1',
+        'localhost'
+    );
+    if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
+        return false;
+    }else{
+        return true;
+    }
+}
