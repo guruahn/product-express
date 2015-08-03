@@ -15,6 +15,28 @@
     <title><?php wp_title( ' | ', true, 'right' ); ?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--facebook meta value setting-->
+    <meta property="fb:app_id"          content="404371153094959" />
+    <meta property="og:type"            content="article" />
+    <meta property="og:url"             content="<?php echo get_the_permalink(); ?>" />
+    <meta property="og:title"           content="<?php wp_title( ' | ', true, 'right' ); ?>" />
+    <?php
+    $og_image = get_template_directory_uri()."/img/defaultImg.jpg";
+    global $post;
+    if(is_single() && has_post_thumbnail()){
+        $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail_size' );
+        $og_image = $thumb['0'];
+    }
+    ?>
+    <meta property="og:image"           content="<?php echo $og_image; ?>" />
+    <?php
+    $content_post = get_field('review', $post->ID);
+    $trimmed_content = wp_trim_words( $content_post, 20, ' ...Read More' );
+    ?>
+    <meta property="og:description"    content="<?php echo $trimmed_content;?>" />
+
+
     <link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon-96x96.png">
