@@ -32,7 +32,7 @@
     <meta property="og:image"           content="<?php echo $og_image; ?>" />
     <?php
     $content_post = get_field('review', $post->ID);
-    $trimmed_content = wp_trim_words( $content_post, 20, ' ...Read More' );
+    $trimmed_content = wp_trim_words( $content_post, 40, ' ...Read More' );
     ?>
     <meta property="og:description"    content="<?php echo $trimmed_content;?>" />
 
