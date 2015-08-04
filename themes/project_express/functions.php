@@ -497,15 +497,88 @@ if ( ! function_exists( 'product_express_content_of_feed' ) ) :
      * @since Product Express 1.0
      */
     function product_express_content_of_feed($content){
+
+        if(! has_post_thumbnail()){
+            $content .= '<div style="float:left;margin-top: 1em;margin-right:3%;width:40%;" medium="image"><img style="width:100%" src="'.get_template_directory_uri().'" /></div> ';
+        }else{
+            global $post;
+            $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail' );
+            $url = $thumb['0'];
+            $content .= '<div style="float:left;margin-top: 1em;margin-right:3%;width:40%;" medium="image"><img style="width:100%" src="'.$url.'" /></div> ';
+        }
+        $content .= '<div style="float: left; width: 55%;font-size:0.9em;">';
         $content .= get_field('review');
-        $count_review = 0;
-        if(get_field('writer2')) $count_review++;
-        if(get_field('writer3')) $count_review++;
-        if($count_review > 0) $content .= ' ...'.$count_review.'개의 리뷰 <a href="'.get_permalink().'">더 보기</a>';
+        $content .= product_express_get_profile_img_for_feed( get_the_author_meta('ID') );
+        $writer2= get_field('writer2');
+        if($writer2) :
+            $content .= get_field('review2');
+            $content .= product_express_get_profile_img_for_feed($writer2);
+        endif;
+
+        $writer3= get_field('writer3');
+        if($writer3) :
+            $content .= get_field('review3');
+            $content .= product_express_get_profile_img_for_feed($writer3);
+        endif;
+
+        /*link*/
+        $content .= '<hr style="height:1px; overflow:hidden; border:none; background:#eee; margin:0 0 20px 0">';
+        $content .= '<a href="'.product_express_get_frame_link(get_field('link')).'" style="font-size:0.7em; color:#999;">'.get_field('link').'</a>';
+        /*tags*/
+        $content .= '<br />';
+        $tags = get_tags();
+        $tag_html = '';
+        foreach ( $tags as $tag ) {
+            $tag_link = get_tag_link( $tag->term_id );
+
+            $tag_html .= "<a href='{$tag_link}' title='{$tag->name} Tag' class='{$tag->slug}'>";
+            $tag_html .= "#{$tag->name}</a>";
+        }
+        $content .= $tag_html;
+        /*store*/
+        $android_link = get_field('android_link');
+        $ios_link = get_field('ios_link');
+        $content .= '<div style="padding-top:15px;">';
+        if($android_link) $content .= '<a href="'.$android_link.'"><img src="http://pe.userstorylab.com/wp-content/themes/project_express/img/badge_android.png" style="width:100px;"> </a>';
+        if($ios_link) $content .= '<a href="'.$ios_link.'"><img src="http://pe.userstorylab.com/wp-content/themes/project_express/img/badge_ios.png" style="width:100px;"></a>';
+        $content .= '</div>';
+
+        $content .= '</div>';
         return $content;
     }
 
     add_filter( "the_content", "product_express_content_of_feed" );
+endif;
+
+
+if ( ! function_exists( 'product_express_get_profile_img_for_feed' ) ) :
+    /**
+     * content of feed
+     *
+     *
+     * @since Product Express 1.0
+     */
+    function product_express_get_profile_img_for_feed($user){
+        $profile_html = '';
+        if(is_array($user)){
+            $user_id = $user['ID'];
+            $display_name = $user['display_name'];
+        }else{
+            $user_id = $user;
+            $display_name = get_the_author_meta( 'display_name', $user_id );
+        }
+        $profile_post_id = absint( get_user_option( 'metronet_post_id', $user_id ) );
+        $post_thumbnail_id = get_post_thumbnail_id( $profile_post_id );
+        if( !$post_thumbnail_id ) return $profile_html;
+        $profile_thumbnail_src = wp_get_attachment_image_src( $post_thumbnail_id, 'thumbnail' );
+        $profile_thumbnail_src = $profile_thumbnail_src[0];
+
+        $profile_html = '<div style="height:30px; line-height:30px; padding-bottom:30px;">';
+        $profile_html .= '<img src="'.$profile_thumbnail_src.'" style="width:20px; margin-right:10px;" />';
+        $profile_html .=  '<span style="font-size:0.9em; line-height:30px; vertical-align:middle">'.$display_name.'</span></div>';
+        return $profile_html;
+    }
+
 endif;
 
 
