@@ -489,6 +489,26 @@ if ( ! function_exists( 'product_express_get_youtube_id' ) ) :
 endif;
 
 
+if ( ! function_exists( 'product_express_content_of_feed' ) ) :
+    /**
+     * content of feed
+     *
+     *
+     * @since Product Express 1.0
+     */
+    function product_express_content_of_feed($content){
+        $content .= get_field('review');
+        $count_review = 0;
+        if(get_field('writer2')) $count_review++;
+        if(get_field('writer3')) $count_review++;
+        if($count_review > 0) $content .= ' ...'.$count_review.'개의 리뷰 <a href="'.get_permalink().'">더 보기</a>';
+        return $content;
+    }
+
+    add_filter( "the_content", "product_express_content_of_feed" );
+endif;
+
+
 /**
  * 변수의 구성요소를 리턴받는다.
  */
