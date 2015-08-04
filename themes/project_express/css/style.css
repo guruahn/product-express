@@ -248,6 +248,10 @@ header p.desc {
 .content .article .comment {
     color: #555;
 }
+.content .article .comment p,
+.content .article .comment div {
+    margin-bottom: 1em;
+}
 .content .article .author {
     padding: 14px 0 20px 0;
     margin-bottom: 30px;
