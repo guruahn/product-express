@@ -68,6 +68,22 @@ function project_express_filter_wp_title( $title )
     return $title . esc_attr( get_bloginfo( 'name' ) );
 }
 
+add_filter('next_posts_link_attributes', 'project_express_filter_nav_next_attr_for_author');
+function project_express_filter_nav_next_attr_for_author($attr){
+    if(is_author()){
+        $attr .= 'class="next" rel="next"';
+    }
+    return $attr;
+}
+
+add_filter('previous_posts_link_attributes', 'project_express_filter_nav_prev_attr_for_author');
+function project_express_filter_nav_prev_attr_for_author($attr){
+    if(is_author()){
+        $attr .= 'class="prev" rel="prev"';
+    }
+    return $attr;
+}
+
 
 /**
  * Register our sidebars and widgetized areas.
