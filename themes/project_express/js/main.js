@@ -37,7 +37,9 @@ $(".request .action").click(function() {
 	$("body").addClass("fix");
 });
 
-
+$(".open").click(function(e) {
+    $("header").toggleClass("opened");
+});
 
 $(".close").click(function(e) {
 	$(".popup").removeClass("move");

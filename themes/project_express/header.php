@@ -81,6 +81,6 @@
                 </ul>
             </div>
         <?php endif; ?>
-
+        <span class="open"><i class="fa fa-envelope"></i> Newsletter</span>
     </header>
 
