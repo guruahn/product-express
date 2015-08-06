@@ -2,13 +2,17 @@
 # This file is distributed under the same license as the Twenty Thirteen package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2015-06-28 13:44:46+0000\n"
+"PO-Revision-Date: 2015-07-27 13:06:36+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: GlotPress/1.0-alpha-1000\n"
+"X-Generator: GlotPress/1.0-alpha-1100\n"
 "Project-Id-Version: Twenty Thirteen\n"
+
+#. Author URI of the plugin/theme
+msgid "https://wordpress.org/"
+msgstr "https://wordpress.org/"
 
 #. Author of the plugin/theme
 msgid "the WordPress team"
@@ -19,8 +23,8 @@ msgid "The 2013 theme for WordPress takes us back to the blog, featuring a full 
 msgstr "워드프레스 2013 테마는 블로그 본래의 역할에 충실하도록 했습니다. 글 형식을 전체 지원하며 각각 고유의 형태로 아름답게 연출되는 것이 특징입니다. 세부 디자인이 풍부하며, 열정적인 색상 구조로 시작해서 헤더 이미지, 아름다운 타이포그래피, 아이콘과 조합을 이룹니다. 또한 크거나 작은 어떤 기기에도 아주 훌륭하게 표현되는 유연한 레이아웃을 갖고 있습니다."
 
 #. Theme URI of the plugin/theme
-msgid "http://wordpress.org/themes/twentythirteen"
-msgstr "http://wordpress.org/themes/twentythirteen"
+msgid "https://wordpress.org/themes/twentythirteen/"
+msgstr "https://wordpress.org/themes/twentythirteen/"
 
 #. Theme Name of the plugin/theme
 msgid "Twenty Thirteen"
@@ -180,8 +184,6 @@ msgstr "Proudly powered by %s"
 msgid "Semantic Personal Publishing Platform"
 msgstr "의미있는 개인 발행 플랫폼"
 
-#. #-#-#-#-#  twentythirteen.pot (Twenty Thirteen 1.4)  #-#-#-#-#
-#. Author URI of the plugin/theme
 #: footer.php:19
 msgid "http://wordpress.org/"
 msgstr "http://wordpress.org/"

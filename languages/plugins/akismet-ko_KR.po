@@ -1,5 +1,5 @@
-# Translation of Development in Korean
-# This file is distributed under the same license as the Development package.
+# Translation of Development (trunk) in Korean
+# This file is distributed under the same license as the Development (trunk) package.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2015-07-19 02:13:04+0000\n"
@@ -7,8 +7,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: GlotPress/1.0-alpha-1000\n"
-"Project-Id-Version: Development\n"
+"X-Generator: GlotPress/1.0-alpha-1100\n"
+"Project-Id-Version: Development (trunk)\n"
 
 #: class.akismet-admin.php:531
 msgid "This comment was reported as spam."
@@ -596,7 +596,7 @@ msgstr "Akismet은 이 댓글을 자동 재시도 중에 제거했습니다."
 msgid "View comment history"
 msgstr "댓글 히스토리 보기"
 
-#. #-#-#-#-#  akismet.pot (Akismet 3.1.4a1)  #-#-#-#-#
+#. #-#-#-#-#  tmp-akismet.pot (Akismet 3.1.4a1)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: class.akismet-admin.php:76 class.akismet-admin.php:78
 #: class.akismet-admin.php:842 views/config.php:3

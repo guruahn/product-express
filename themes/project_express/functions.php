@@ -15,7 +15,7 @@ function project_express_setup()
 /*modify allow html in profile description*/
 remove_filter('pre_user_description', 'wp_filter_kses');
 
-
+// register scripts
 add_action( 'wp_enqueue_scripts', 'project_express_load_scripts' );
 function project_express_load_scripts()
 {
@@ -44,13 +44,6 @@ function register_product_express_writers()
 add_action( 'widgets_init', 'register_product_express_writers' );
 
 
-add_action( 'comment_form_before', 'project_express_enqueue_comment_reply_script' );
-function project_express_enqueue_comment_reply_script()
-{
-    if ( get_option( 'thread_comments' ) ) { wp_enqueue_script( 'comment-reply' ); }
-}
-
-
 add_filter( 'the_title', 'project_express_title' );
 function project_express_title( $title )
 {
@@ -68,6 +61,7 @@ function project_express_filter_wp_title( $title )
     return $title . esc_attr( get_bloginfo( 'name' ) );
 }
 
+//add attributes to next link on author page
 add_filter('next_posts_link_attributes', 'project_express_filter_nav_next_attr_for_author');
 function project_express_filter_nav_next_attr_for_author($attr){
     if(is_author()){
@@ -76,6 +70,7 @@ function project_express_filter_nav_next_attr_for_author($attr){
     return $attr;
 }
 
+//add attributes to prev link on author page
 add_filter('previous_posts_link_attributes', 'project_express_filter_nav_prev_attr_for_author');
 function project_express_filter_nav_prev_attr_for_author($attr){
     if(is_author()){
@@ -137,6 +132,9 @@ function project_express_comments_number( $count )
     }
 }
 
+/*
+ * print daily navigation
+ * */
 function project_express_print_daily_arrow($arr_date){
     if(is_object($arr_date)) {
         if( !$arr_date->is_archive ) return;
@@ -224,6 +222,7 @@ function project_express_print_daily_arrow($arr_date){
 
 }
 
+//custom archive title
 function project_express_archive_title($title=null){
 
     $title = date(get_option('date_format'), strtotime(get_query_var('year').'-'.get_query_var('monthnum').'-'.get_query_var('day')));
@@ -231,53 +230,66 @@ function project_express_archive_title($title=null){
     return $title;
 }
 
-function project_express_custom_archive_page($args){
-    if(is_archive() && is_day()){
+if ( ! function_exists( 'project_express_custom_archive_page' ) ) :
+    //
+    /**
+     * Collection filter/action on daily page/index.
+     *
+     * - archive page query setting.
+     * - add daily navigation action.
+     * - add archive title filter.
+     * - author page query setting.
+     *
+     * @since Product Express 1.0
+     */
+    add_action('pre_get_posts', 'project_express_custom_archive_page');
+    function project_express_custom_archive_page($args){
+        if(is_archive() && is_day()){
 
-        //일별로 보여주고 전날/다음날 버튼 출력
-        $arr_date = date_parse(get_query_var( 'year', '' ).'-'.get_query_var( 'monthnum', '' ).'-'.get_query_var( 'day', '' ));
-        $date_query = array(
-            array(
-                'year'  => $arr_date['year'],
-                'month' => $arr_date['month'],
-                'day'   => $arr_date['day'],
-            ),
-        );
-        set_query_var( 'date_query', $date_query );
-        add_action('loop_end','project_express_print_daily_arrow');
-        add_filter('get_the_archive_title', 'project_express_archive_title');
-    }elseif(is_author()){
-        $author = get_user_by( 'slug', get_query_var( 'author_name' ) );
+            //일별로 보여주고 전날/다음날 버튼 출력
+            $arr_date = date_parse(get_query_var( 'year', '' ).'-'.get_query_var( 'monthnum', '' ).'-'.get_query_var( 'day', '' ));
+            $date_query = array(
+                array(
+                    'year'  => $arr_date['year'],
+                    'month' => $arr_date['month'],
+                    'day'   => $arr_date['day'],
+                ),
+            );
+            set_query_var( 'date_query', $date_query );
+            add_action('loop_end','project_express_print_daily_arrow');
+            add_filter('get_the_archive_title', 'project_express_archive_title');
+        }elseif(is_author()){
+            $author = get_user_by( 'slug', get_query_var( 'author_name' ) );
 
-        //set_query_var( 'meta_query', $meta_query );
-        global $wpdb;
-        $postids = $wpdb->get_col($wpdb->prepare(
-            "SELECT      ID ".
-            " FROM       $wpdb->posts ".
-            "WHERE       post_author = '%s'",
-            $author->ID
-        ));
-        $postids_meta = $wpdb->get_col($wpdb->prepare(
-            "SELECT      post_id ".
-            " FROM        $wpdb->postmeta ".
-            "WHERE       meta_key = 'writer2' and meta_value = %s",
-            $author->ID
-        ));
-        $postids = array_merge($postids, $postids_meta);
+            //set_query_var( 'meta_query', $meta_query );
+            global $wpdb;
+            $postids = $wpdb->get_col($wpdb->prepare(
+                "SELECT      ID ".
+                " FROM       $wpdb->posts ".
+                "WHERE       post_author = '%s'",
+                $author->ID
+            ));
+            $postids_meta = $wpdb->get_col($wpdb->prepare(
+                "SELECT      post_id ".
+                " FROM        $wpdb->postmeta ".
+                "WHERE       meta_key = 'writer2' and meta_value = %s",
+                $author->ID
+            ));
+            $postids = array_merge($postids, $postids_meta);
 
-        set_query_var( 'post__in', $postids );
-        set_query_var( 'author_name', null);
+            set_query_var( 'post__in', $postids );
+            set_query_var( 'author_name', null);
 
-        /*global $wp_query;
-        printr($wp_query->query_vars);*/
-    }else{
-        if(is_page('product-view')){
-            add_filter( 'show_admin_bar', '__return_false' );
+            /*global $wp_query;
+            printr($wp_query->query_vars);*/
+        }else{
+            if(is_page('product-view')){
+                add_filter( 'show_admin_bar', '__return_false' );
+            }
         }
-    }
 
-}
-add_action('pre_get_posts', 'project_express_custom_archive_page');
+    }
+endif;
 
 if ( ! function_exists( 'project_express_post_thumbnail' ) ) :
     /**
@@ -507,7 +519,7 @@ endif;
 
 if ( ! function_exists( 'product_express_content_of_feed' ) ) :
     /**
-     * content of feed
+     * content custom for feed
      *
      *
      * @since Product Express 1.0
