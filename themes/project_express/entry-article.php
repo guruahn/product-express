@@ -36,6 +36,8 @@
     <?php
     if(is_single()){
     ?>
+    
+        <div class="fb-like" data-href="<?php echo get_permalink();?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
         <div class="fbcomment">
             <div class="fb-comments" data-href="<?php echo get_permalink();?>" data-numposts="3" style="width:100%;" data-width="100%"></div>
         </div>
