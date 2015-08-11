@@ -184,11 +184,11 @@ header { background: black; text-align: center; padding:50px 0 40px 0; backgroun
 @media screen and (max-width:480px) { 
 	header { padding:0; overflow: hidden; height: 60px; transition:all 0.7s 0s cubic-bezier(.44,1.49,.58,.99);
 		p.desc, h3 { display: none;}
-		h1 a {.bg("../img/logo@2x.png", 212px, 83px); margin:0 auto; float: left;  transform: translate(-40px,50px) scale(0.4,0.4); opacity:1;  transition:all 0.7s 0s cubic-bezier(.44,1.49,.58,.99);}
+		h1 a {.bg("../img/logo@2x.png", 212px, 83px); margin:0 auto; float: left;  transform: translate(-40px,50px) scale(0.4,0.4); -webkit-transform: translate(-40px,50px) scale(0.4,0.4); opacity:1;  transition:all 0.7s 0s cubic-bezier(.44,1.49,.58,.99);}
 	}
 	.move header {
 
-		h1 a {.bg("../img/logo@2x.png", 212px, 83px); margin:0 auto; float: left;  transform: translate(-40px,-10px) scale(0.4,0.4); opacity:1;  transition:all 0.7s 0s cubic-bezier(.44,1.49,.58,.99);}
+		h1 a {.bg("../img/logo@2x.png", 212px, 83px); margin:0 auto; float: left;  transform: translate(-40px,-10px) scale(0.4,0.4); -webkit-transform: translate(-40px,-10px) scale(0.4,0.4); opacity:1;  transition:all 0.7s 0s cubic-bezier(.44,1.49,.58,.99);}
 
 
 	}

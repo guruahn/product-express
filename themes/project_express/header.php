@@ -83,6 +83,6 @@
                 </ul>
             </div>
         <?php endif; ?>
-        <span class="open"><i class="fa fa-envelope"></i> Newsletter</span>
+        <span class="open"><i class="fa fa-envelope"></i> 구독하기</span>
     </header>
 
