@@ -540,7 +540,7 @@ if ( ! function_exists( 'product_express_content_of_feed' ) ) :
         $content .= '</div>';
 
         /*start .pe-rss-content*/
-        $content .= '<div class="pe-rss-content" style="float: left; width: 55%;">';
+        $content .= '<div class="pe-rss-content" style="float: left; width: 100%;">';
         $content .= get_field('review');
         $content .= product_express_get_profile_img_for_feed( get_the_author_meta('ID') );
         $writer2= get_field('writer2');
