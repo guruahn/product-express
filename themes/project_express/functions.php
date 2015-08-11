@@ -624,9 +624,83 @@ if ( ! function_exists( 'product_express_get_daily_url' ) ) :
      * @since Product Express 1.0
      */
     function product_express_get_daily_url($arr_date){
-        $daily_url = '';
+        $daily_url = home_url( '/' );
         $daily_url .= '?year='.$arr_date['year'].'&monthnum='.$arr_date['month'].'&day='.$arr_date['day'].'&is_daily=1';
         return $daily_url;
+    }
+
+endif;
+
+if ( ! function_exists( 'product_express_wp_title' ) ) :
+    /**
+     * filter wp_title
+     *
+     *
+     * @since Product Express 1.0
+     */
+    add_filter( 'wp_title', 'product_express_wp_title', 10, 2 );
+    function product_express_wp_title( $title, $sep ){
+        if(is_home()){
+            global $blog_posts;
+            if($blog_posts->post_count > 0) $title = get_the_title($blog_posts->posts[0]->ID).'외 '.$blog_posts->post_count.'건, '.get_the_date('Y년 n월 j일 '). $sep . get_bloginfo('name');
+        }
+        if(is_archive()){
+            global $wp_query;
+            if($wp_query->post_count > 0) $title = get_the_title($wp_query->posts[0]->ID).'외 '.$wp_query->post_count.'건, '.get_the_date('Y년 n월 j일 '). $sep . get_bloginfo('name');
+
+        }
+        return $title;
+    }
+
+endif;
+
+if ( ! function_exists( 'project_express_get_the_archive_permalink' ) ) :
+    /**
+     * get the archive permalink
+     *
+     *
+     * @since Product Express 1.0
+     */
+    function project_express_get_the_archive_permalink(){
+        global $arr_date;
+        if(is_archive()){
+            $arr_date = date_parse(get_query_var( 'year', '' ).'-'.get_query_var( 'monthnum', '' ).'-'.get_query_var( 'day', '' ));
+
+        }
+        return product_express_get_daily_url($arr_date);
+    }
+
+endif;
+
+if ( ! function_exists( 'project_express_get_og_image' ) ) :
+    /**
+     * get og:image meta value
+     *
+     *
+     * @since Product Express 1.0
+     */
+    function project_express_get_og_image(){
+        $og_image = get_template_directory_uri()."/img/defaultImg.jpg";
+        global $post;
+        if(is_single() && has_post_thumbnail()){
+            $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail_size' );
+            $og_image = $thumb['0'];
+        }
+        if(is_archive()){
+            global $wp_query;
+            if($wp_query->post_count > 0){
+                $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($wp_query->posts[0]->ID), 'thumbnail_size' );
+                $og_image = $thumb['0'];
+            }
+        }
+        if(is_home()){
+            global $blog_posts;
+            if($blog_posts->post_count > 0){
+                $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($blog_posts->posts[0]->ID), 'thumbnail_size' );
+                $og_image = $thumb['0'];
+            }
+        }
+        return $og_image;
     }
 
 endif;

@@ -1,5 +1,3 @@
-<?php get_header(); ?>
-
 <?php
 
 //Query setup
@@ -50,6 +48,10 @@ if(empty($daily_year) || empty($daily_month) || empty($daily_day) ){
 }
 $daily_url = product_express_get_daily_url($arr_date);
 ?>
+
+<?php get_header(); ?>
+
+
 
 
 <div class="container pure-g" data-sticky_parent>
