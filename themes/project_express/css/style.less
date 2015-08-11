@@ -66,13 +66,20 @@ header { background: black; text-align: center; padding:50px 0 40px 0; backgroun
 
 
 	.date { font-family: 'Rajdhani', sans-serif !important; font-weight: 300; font-size: 2.5em;padding-top:30px; color:#333;  box-sizing: border-box;   text-align: center;
-		.desc { font-family: sans-serif !important; font-weight: bold; font-size: 0.3em; display: block; padding-bottom: 30px; }
+		.desc { font-family: sans-serif !important; font-weight: bold; font-size: 0.3em; display: block; padding-bottom: 0px; }
 	}
 	.authorTitle { font-weight: 300; font-size: 2.5em;padding-top:30px; color:#333;  box-sizing: border-box;   text-align: center;padding-bottom: 30px;	 font-size: 1em;
 		p.profile { text-align: center; line-height: 1; font-size: 0.9em; font-weight: bold; padding-bottom: 20px;
 			img {  width: 100px; height: 100px; margin-bottom: 5px; display:block; margin:0 auto; border-radius: 40px; border:8px solid #ddd;}
 		}
 		small { color:#666; padding:0 20px; display: block; line-height: 1.8;}
+	}
+	.permalink { display: block;
+		.link { display:inline-block; font-size: 12px; font-family: tahoma; vertical-align: middle; color:#999; background:#ccc; padding:5px 10px; border-radius: 200px; color:white;}
+		i { vertical-align:middle; font-size:12px;}
+		&:hover { 
+			.link { background:#333;}
+		}
 	}
 
 

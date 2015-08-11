@@ -11,10 +11,20 @@
             if ( have_posts() ) :
                 ?>
                 <div class="date pure-u-1" >
-                    <?php
-                    the_archive_title();
-                    ?>
+
+                    <a href="#">
+                        <?php
+                        the_archive_title();
+                        ?> 
+                    </a>
+
                     <span class="desc"><span class="product-count"><?php echo $wp_query->post_count; ?></span>건의 서비스, <span class="review-count"><?php echo product_express_get_review_count($wp_query->posts); ?></span>건의 평가.</span>
+              
+                    <div class="permalink">
+                        <a href="#">
+                            <div class="link"><i class="fa fa-link"></i> URL</div>
+                        </a>
+                    </div>
                 </div>
                 <?php
                 while ( have_posts() ) : the_post(); ?>
