@@ -35,7 +35,8 @@
     $trimmed_content = wp_trim_words( $content_post, 40, ' ...Read More' );
     ?>
     <meta property="og:description"    content="<?php echo $trimmed_content;?>" />
-
+    <meta name="naver-site-verification" content="2d34c81d92034cfec1b0229b8d2e613ffa43244c"/>
+    <meta name="google-site-verification" content="3B-23CzPIx9eKPXOx28ha5Tuvfat6NGlP42TttDLS1U" />
 
     <link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon-32x32.png">
@@ -60,6 +61,7 @@
     <!--[if lt IE 9]>
     <script src="js/vendor/html5-3.6-respond-1.4.2.min.js"></script>
     <![endif]-->
+
 </head>
 <body>
     <div id="fb-root"></div>
