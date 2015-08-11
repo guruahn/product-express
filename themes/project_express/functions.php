@@ -616,6 +616,21 @@ if ( ! function_exists( 'product_express_get_profile_img_for_feed' ) ) :
 
 endif;
 
+if ( ! function_exists( 'product_express_get_daily_url' ) ) :
+    /**
+     * return daily url
+     *
+     *
+     * @since Product Express 1.0
+     */
+    function product_express_get_daily_url($arr_date){
+        $daily_url = '';
+        $daily_url .= '?year='.$arr_date['year'].'&monthnum='.$arr_date['month'].'&day='.$arr_date['day'].'&is_daily=1';
+        return $daily_url;
+    }
+
+endif;
+
 
 /**
  * 변수의 구성요소를 리턴받는다.
