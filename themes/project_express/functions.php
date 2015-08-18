@@ -168,7 +168,7 @@ function project_express_print_daily_arrow($arr_date){
     if($query1->have_posts()){
         $prev_daily = date_parse($query1->posts[0]->post_date);
 
-        $url_prev = home_url().'?year='.$prev_daily['year'].'&monthnum='.$prev_daily['month'].'&day='.$prev_daily['day'].'&is_daily=1';
+        $url_prev = product_express_get_daily_url(date_parse($prev_daily['year'].'-'.$prev_daily['month'].'-'.$prev_daily['day']));
         $title_prev = date(get_option('date_format'), strtotime($prev_daily['year'].'/'.$prev_daily['month'].'/'.$prev_daily['day']));
     }
 
@@ -197,7 +197,7 @@ function project_express_print_daily_arrow($arr_date){
     $title_next = 'There are no products.';
     if($query2->have_posts()){
         $next_daily = date_parse($query2->posts[0]->post_date);
-        $url_next = home_url().'?year='.$next_daily['year'].'&monthnum='.$next_daily['month'].'&day='.$next_daily['day'].'&is_daily=1';
+        $url_next = product_express_get_daily_url(date_parse($next_daily['year'].'-'.$next_daily['month'].'-'.$next_daily['day']));
         $title_next = date(get_option('date_format'), strtotime($next_daily['year'].'/'.$next_daily['month'].'/'.$next_daily['day']));
     }
 
@@ -625,7 +625,7 @@ if ( ! function_exists( 'product_express_get_daily_url' ) ) :
      */
     function product_express_get_daily_url($arr_date){
         $daily_url = home_url( '/' );
-        $daily_url .= '?year='.$arr_date['year'].'&monthnum='.$arr_date['month'].'&day='.$arr_date['day'].'&is_daily=1';
+        $daily_url .= 'archives/date/'.$arr_date['year'].'/'.$arr_date['month'].'/'.$arr_date['day'];
         return $daily_url;
     }
 
@@ -663,6 +663,9 @@ if ( ! function_exists( 'project_express_get_the_archive_permalink' ) ) :
      */
     function project_express_get_the_archive_permalink(){
         global $arr_date;
+        if(is_single()){
+            return get_the_permalink();
+        }
         if(is_archive()){
             $arr_date = date_parse(get_query_var( 'year', '' ).'-'.get_query_var( 'monthnum', '' ).'-'.get_query_var( 'day', '' ));
 
@@ -671,6 +674,22 @@ if ( ! function_exists( 'project_express_get_the_archive_permalink' ) ) :
     }
 
 endif;
+
+if ( ! function_exists( 'wpseo_canonical_home_url_fix' ) ) :
+    /**
+     * Simply add a trailing slash if it hasn't one
+     *
+     *
+     * @since Product Express 1.0
+     */
+    function wpseo_canonical_home_url_fix( $canonical_url ) {
+
+        return trailingslashit( $canonical_url );
+    }
+    add_filter( 'wpseo_canonical', 'wpseo_canonical_home_url_fix' );
+
+endif;
+
 
 if ( ! function_exists( 'project_express_get_og_image' ) ) :
     /**

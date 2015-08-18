@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--facebook meta value setting-->
+    <link rel="canonical" href="<?php echo project_express_get_the_archive_permalink(); ?>" />
     <meta property="fb:app_id"          content="404371153094959" />
     <meta property="og:type"            content="article" />
     <meta property="og:url"             content="<?php echo project_express_get_the_archive_permalink(); ?>" />
