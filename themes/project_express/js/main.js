@@ -47,7 +47,7 @@ $(".close").click(function(e) {
 });
 
 /*movie popup*/
-$(".image .action").click(function(e){
+$(".image div.video").click(function(e){
     e.preventDefault();
     $(this).parent().find('.popup').addClass("move");
     $("body").removeClass("fix");
