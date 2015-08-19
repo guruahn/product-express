@@ -304,6 +304,7 @@ if ( ! function_exists( 'project_express_post_thumbnail' ) ) :
         if ( post_password_required() || is_attachment() ) {
             return;
         }
+
         if(get_field('movie_link')){
             echo product_express_get_movie_thumbnail_by_url(get_field('movie_link'), get_the_title());
 
@@ -426,7 +427,8 @@ if ( ! function_exists( 'product_express_get_movie_thumbnail_by_url' ) ) :
      */
     function product_express_get_movie_thumbnail_by_url($url, $alt='', $size="hqdefault"){
         $image = '';
-        if(strpos($url, 'youtube') !== false) {
+
+        if(strpos($url, 'youtu') !== false) {
             /*size option(http://stackoverflow.com/a/20542029)
             default : Normal Quality Thumbnail (120x90 pixels)
             hqdefault : High Quality Thumbnail (480x360 pixels)
@@ -435,7 +437,7 @@ if ( ! function_exists( 'product_express_get_movie_thumbnail_by_url' ) ) :
             maxresdefault : Maximum Resolution Thumbnail (1920x1080 pixels)
             */
             $youtube_id = product_express_get_youtube_id($url);
-            $image = '<img width="401" height="264" src="http://img.youtube.com/vi/' . $youtube_id . '/' . $size .'.jpg" class="attachment-thumbnail wp-post-image action" alt="'.$alt.'">';
+            $image = '<img class="video" width="401" height="264" src="http://img.youtube.com/vi/' . $youtube_id . '/' . $size .'.jpg" class="attachment-thumbnail wp-post-image action" alt="'.$alt.'">';
             $image .= '<div class="popup"><i class="fa fa-times close"></i><div class="vimeo"><iframe class="movie-iframe" width="560" height="315" src="https://www.youtube.com/embed/'. $youtube_id .'" frameborder="0" allowfullscreen></iframe></div></div>';
         }elseif(strpos($url, 'vimeo') !== false) {
             $vimeo_id = product_express_get_vimeo_info_by_url($url);
@@ -642,11 +644,20 @@ if ( ! function_exists( 'product_express_wp_title' ) ) :
     function product_express_wp_title( $title, $sep ){
         if(is_home()){
             global $blog_posts;
-            if($blog_posts->post_count > 0) $title = get_the_title($blog_posts->posts[0]->ID).'외 '.$blog_posts->post_count.'건, '.get_the_date('Y년 n월 j일 '). $sep . get_bloginfo('name');
+            if($blog_posts->post_count > 0){
+                $title = get_the_title($blog_posts->posts[0]->ID);
+                if($blog_posts->post_count > 1) $title .= ' 외 '.($blog_posts->post_count -1).'건';
+                $title .= ', '.get_the_date('Y년 n월 j일 '). $sep . get_bloginfo('name');
+            }
         }
         if(is_archive()){
             global $wp_query;
-            if($wp_query->post_count > 0) $title = get_the_title($wp_query->posts[0]->ID).'외 '.$wp_query->post_count.'건, '.get_the_date('Y년 n월 j일 '). $sep . get_bloginfo('name');
+            if($wp_query->post_count > 0) {
+                $title = get_the_title($wp_query->posts[0]->ID);
+                if($wp_query->post_count > 1) $title .= ' 외 '.($wp_query->post_count -1).'건';
+                $title .= ', '.get_the_date('Y년 n월 j일 '). $sep . get_bloginfo('name');
+            }
+
 
         }
         return $title;

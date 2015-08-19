@@ -3,7 +3,7 @@
 
 <div class="info pure-u-1 pure-u-lg-2-5 l-box">
     <ul>
-        <li class="image">
+        <li class="image <?php if(get_field('movie_link')) echo ''; ?>">
             <?php project_express_post_thumbnail(); ?>
         </li>
         <!-- li class="title">
