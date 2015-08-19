@@ -317,10 +317,15 @@ body.fix { overflow: hidden; transition:all 0 1s;}
 			.spacer { padding:0;}
 		}
 
+		.ie9 {
+		  .container.pure-g { display: inline-block;}
+
+		}
 		@-moz-document url-prefix() { 
 		  .container.pure-g { display: inline-block;}
 		}
 
+		html>body   .container.pure-g .side {  float: none !important; }
 }
 
 
@@ -348,3 +353,7 @@ body.fix { overflow: hidden; transition:all 0 1s;}
 @-moz-document url-prefix() { 
   .container.pure-g { display: flex}
 }
+
+html>body { overflow-x: hidden;}
+		html>body   .container.pure-g .side { float: right; }
+
