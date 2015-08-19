@@ -437,7 +437,7 @@ if ( ! function_exists( 'product_express_get_movie_thumbnail_by_url' ) ) :
             maxresdefault : Maximum Resolution Thumbnail (1920x1080 pixels)
             */
             $youtube_id = product_express_get_youtube_id($url);
-            $image = '<img class="attachment-thumbnail wp-post-image action video" width="401" height="264" src="http://img.youtube.com/vi/' . $youtube_id . '/' . $size .'.jpg" alt="'.$alt.'">';
+            $image = '<div class="video"><img class="attachment-thumbnail wp-post-image action" width="401" height="264" src="http://img.youtube.com/vi/' . $youtube_id . '/' . $size .'.jpg" alt="'.$alt.'"></div>';
             $image .= '<div class="popup"><i class="fa fa-times close"></i><div class="vimeo"><iframe class="movie-iframe" width="560" height="315" src="https://www.youtube.com/embed/'. $youtube_id .'?wmode=transparent" frameborder="0" allowfullscreen></iframe></div></div>';
         }elseif(strpos($url, 'vimeo') !== false) {
             $vimeo_id = product_express_get_vimeo_info_by_url($url);
