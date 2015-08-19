@@ -242,7 +242,7 @@ if ( ! function_exists( 'project_express_custom_archive_page' ) ) :
      *
      * @since Product Express 1.0
      */
-    add_action('pre_get_posts', 'project_express_custom_archive_page');
+    add_action('pre_get_posts', 'project_express_custom_archive_page', 1);
     function project_express_custom_archive_page($args){
         if(is_archive() && is_day()){
 
@@ -625,9 +625,9 @@ if ( ! function_exists( 'product_express_get_daily_url' ) ) :
      *
      * @since Product Express 1.0
      */
-    function product_express_get_daily_url($arr_date){
+    function product_express_get_daily_url($arr_date_vars){
         $daily_url = home_url( '/' );
-        $daily_url .= 'archives/date/'.$arr_date['year'].'/'.$arr_date['month'].'/'.$arr_date['day'];
+        $daily_url .= 'archives/date/'.$arr_date_vars['year'].'/'.$arr_date_vars['month'].'/'.$arr_date_vars['day'];
         return $daily_url;
     }
 
@@ -674,14 +674,15 @@ if ( ! function_exists( 'project_express_get_the_archive_permalink' ) ) :
      */
     function project_express_get_the_archive_permalink(){
         global $arr_date;
+        $arr_date_var = $arr_date;
         if(is_single()){
             return get_the_permalink();
         }
         if(is_archive()){
-            $arr_date = date_parse(get_query_var( 'year', '' ).'-'.get_query_var( 'monthnum', '' ).'-'.get_query_var( 'day', '' ));
+            $arr_date_var = date_parse(get_query_var( 'year', '' ).'-'.get_query_var( 'monthnum', '' ).'-'.get_query_var( 'day', '' ));
 
         }
-        return product_express_get_daily_url($arr_date);
+        return product_express_get_daily_url($arr_date_var);
     }
 
 endif;
