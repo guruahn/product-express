@@ -63,15 +63,21 @@ $daily_url = product_express_get_daily_url($arr_date);
             <?php if ( $blog_posts->have_posts() ) : ?>
             <!-- 날짜 표기 -->
             <div class="date pure-u-1" >
-                    <a href="<?php echo $daily_url;?>">
-                        <?php echo date(get_option('date_format'), strtotime($arr_date['year'].'-'.$arr_date['month'].'-'.$arr_date['day']));?>
-                    </a>
-                    <span class="desc"><span class="product-count"><?php echo $blog_posts->post_count; ?></span>건의 서비스, <span class="review-count"><?php echo product_express_get_review_count($blog_posts->posts); ?></span>건의 평가.</span>
-                    <div class="permalink">
-                        <a href="<?php echo $daily_url; ?>">
-                            <div class="link"><i class="fa fa-link"></i> URL</div>
-                        </a>
-                    </div>
+                <a href="<?php echo $daily_url;?>">
+                    <?php echo date(get_option('date_format'), strtotime($arr_date['year'].'-'.$arr_date['month'].'-'.$arr_date['day']));?>
+                </a>
+                <span class="desc">
+                    <span class="product-count">
+                        <?php echo $blog_posts->post_count; ?>
+                    </span>건의 서비스,
+                    <span class="review-count">
+                        <?php echo product_express_get_review_count($blog_posts->posts); ?>
+                    </span>건의 평가.
+                </span>
+                <div class="permalink">
+                    <div class="link"><i class="fa fa-link"></i> URL</div>
+                    <input  type="hidden"  id="toClipboard" value="<?php echo project_express_get_the_archive_permalink(); ?>"/>
+                </div>
             </div>
             <?php
             // Start the loop.

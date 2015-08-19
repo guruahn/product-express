@@ -12,7 +12,7 @@
                 ?>
                 <div class="date pure-u-1" >
 
-                    <a href="<?php get_the_permalink(); ?>">
+                    <a href="<?php echo project_express_get_the_archive_permalink(); ?>">
                         <?php
                         the_archive_title();
                         ?> 
@@ -21,9 +21,8 @@
                     <span class="desc"><span class="product-count"><?php echo $wp_query->post_count; ?></span>건의 서비스, <span class="review-count"><?php echo product_express_get_review_count($wp_query->posts); ?></span>건의 평가.</span>
               
                     <div class="permalink">
-                        <a href="<?php get_the_permalink(); ?>">
-                            <div class="link"><i class="fa fa-link"></i> URL</div>
-                        </a>
+                        <div class="link"><i class="fa fa-link"></i> URL</div>
+                        <input  type="hidden"  id="toClipboard" value="<?php echo project_express_get_the_archive_permalink(); ?>"/>
                     </div>
                 </div>
                 <?php
