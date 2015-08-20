@@ -6,6 +6,17 @@
 </footer>
 
 
+<!--email subscription modal-->
+<div class="modal-email-subscripton" style="display: none;">
+
+    <?php if ( is_active_sidebar( 'footer-widget-area' ) ) : ?>
+        <div id="footer-widget" class="widget-area">
+            <?php dynamic_sidebar( 'footer-widget-area' ); ?>
+        </div>
+    <?php endif; ?>
+</div><!--//.side-->
+
+
 <div class="popup request">
 
 <i class="fa fa-times close">

@@ -112,6 +112,21 @@ function project_express_widgets_init()
     ) );
 }
 
+
+add_action( 'widgets_init', 'project_express_footer_widgets_init' );
+function project_express_footer_widgets_init()
+{
+    register_sidebar( array (
+        'name' => __( 'Footer Widget Area', 'project_express' ),
+        'id' => 'footer-widget-area',
+        'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+        'after_widget' => "</li>",
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ) );
+}
+
+
 function project_express_custom_pings( $comment )
 {
     $GLOBALS['comment'] = $comment;
