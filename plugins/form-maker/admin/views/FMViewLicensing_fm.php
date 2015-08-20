@@ -1,0 +1,54 @@
+<?php
+
+class FMViewLicensing_fm {
+  ////////////////////////////////////////////////////////////////////////////////////////
+  // Events                                                                             //
+  ////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////
+  // Constants                                                                          //
+  ////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////
+  // Variables                                                                          //
+  ////////////////////////////////////////////////////////////////////////////////////////
+  private $model;
+
+
+  ////////////////////////////////////////////////////////////////////////////////////////
+  // Constructor & Destructor                                                           //
+  ////////////////////////////////////////////////////////////////////////////////////////
+  public function __construct($model) {
+    $this->model = $model;
+  }
+  ////////////////////////////////////////////////////////////////////////////////////////
+  // Public Methods                                                                     //
+  ////////////////////////////////////////////////////////////////////////////////////////
+  public function display() {
+    ?>
+    <div style="width:99%">
+      <p>This is the non-commercial version of the Form Maker. If you want to expand the functionality of the plugin you are required to purchase a license. The commercial version will allow to add unlimited amount of fields (currently limited to 7), as well as use File Upload field, Google Map and PayPal integration and Front-End Submissions.</p>
+      <br/>
+      <a href="https://web-dorado.com/files/fromFormMaker.php" class="button-primary" target="_blank">Purchase a License</a>
+      <br/><br/>
+      <p>After purchasing the commercial version follow these steps:</p>
+      <ol>
+        <li>Deactivate Form Maker Plugin.</li>
+        <li>Delete Form Maker Plugin.</li>
+        <li>Install the downloaded commercial version of the plugin.</li>
+      </ol>
+      <br/>
+      <p>If you enjoy using Form Maker and find it useful, please consider making a donation. Your donation will help encourage and support the plugin's continued development and better user support.</p>
+      <br/>
+      <a href="https://web-dorado.com/files/donate_redirect.php" target="_blank"><img src="<?php echo WD_FM_URL . '/images/btn_donateCC_LG.gif'; ?>" /></a>
+    </div>
+    <?php
+  }
+  ////////////////////////////////////////////////////////////////////////////////////////
+  // Getters & Setters                                                                  //
+  ////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////
+  // Private Methods                                                                    //
+  ////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////
+  // Listeners                                                                          //
+  ////////////////////////////////////////////////////////////////////////////////////////
+}

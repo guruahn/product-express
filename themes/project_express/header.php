@@ -55,7 +55,9 @@
     <script src="js/vendor/html5-3.6-respond-1.4.2.min.js"></script>
     <![endif]-->
 
-
+    <?php
+    if(get_post_type() != 'wysijap') :
+    ?>
     <!--START MAILPoet Scripts : this is the script part you can add to the header of your theme-->
     <script type="text/javascript" src="http://localhost:8887/wordpress/wp-includes/js/jquery/jquery.js?ver=2.6.16"></script>
     <script type="text/javascript" src="http://localhost:8887/wordpress/wp-content/plugins/wysija-newsletters/js/validate/languages/jquery.validationEngine-en.js?ver=2.6.16"></script>
@@ -67,7 +69,7 @@
         /* ]]> */
     </script><script type="text/javascript" src="http://localhost:8887/wordpress/wp-content/plugins/wysija-newsletters/js/front-subscribers.js?ver=2.6.16"></script>
     <!--END MAILPoet Scripts-->
-
+    <?php endif;?>
 
 </head>
 <body>
