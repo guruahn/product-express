@@ -5,6 +5,7 @@
         <div class="pure-g" >
             <?php
             //echo phpinfo();
+
             if ( have_posts() ) :
                 while ( have_posts() ) : the_post();
                     /*
