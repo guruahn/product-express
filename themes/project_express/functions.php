@@ -65,7 +65,7 @@ function project_express_filter_wp_title( $title )
 add_filter('next_posts_link_attributes', 'project_express_filter_nav_next_attr_for_author');
 function project_express_filter_nav_next_attr_for_author($attr){
     if(is_author()){
-        $attr .= 'class="next" rel="next"';
+        $attr .= 'class="prev" rel="prev"';
     }
     return $attr;
 }
@@ -74,7 +74,7 @@ function project_express_filter_nav_next_attr_for_author($attr){
 add_filter('previous_posts_link_attributes', 'project_express_filter_nav_prev_attr_for_author');
 function project_express_filter_nav_prev_attr_for_author($attr){
     if(is_author()){
-        $attr .= 'class="prev" rel="prev"';
+        $attr .= 'class="next" rel="next"';
     }
     return $attr;
 }
@@ -284,13 +284,20 @@ if ( ! function_exists( 'project_express_custom_archive_page' ) ) :
                 "WHERE       post_author = '%s'",
                 $author->ID
             ));
-            $postids_meta = $wpdb->get_col($wpdb->prepare(
+            $postids_meta2 = $wpdb->get_col($wpdb->prepare(
                 "SELECT      post_id ".
                 " FROM        $wpdb->postmeta ".
                 "WHERE       meta_key = 'writer2' and meta_value = %s",
                 $author->ID
             ));
-            $postids = array_merge($postids, $postids_meta);
+            $postids_meta3 = $wpdb->get_col($wpdb->prepare(
+                "SELECT      post_id ".
+                " FROM        $wpdb->postmeta ".
+                "WHERE       meta_key = 'writer2' and meta_value = %s",
+                $author->ID
+            ));
+            $postids = array_merge($postids, $postids_meta2);
+            $postids = array_merge($postids, $postids_meta3);
 
             set_query_var( 'post__in', $postids );
             set_query_var( 'author_name', null);
@@ -534,6 +541,66 @@ if ( ! function_exists( 'product_express_get_youtube_id' ) ) :
 endif;
 
 
+if ( ! function_exists( 'product_express_custom_excerpts' ) ) :
+    /**
+     * cutom excerpts
+     *
+     *
+     * @since Product Express 1.0
+     */
+
+    add_action( 'save_post', 'product_express_custom_excerpts', 10, 2 );
+    function product_express_custom_excerpts($post_id, $post)
+    {
+        $newpost = get_post( $post_id );
+        if ( $newpost->post_status != 'publish' ) {
+            return $post_id;
+        }
+
+        if ( !current_user_can( 'edit_post', $post_id ) )
+            return $post_id;
+
+        if ( empty( $newpost->post_excerpt ) && !empty( $newpost->post_content ) ):
+            product_express_set_post_excerpt( $newpost );
+            return $post_id;
+        endif;
+
+        product_express_set_post_excerpt( $newpost );
+
+        return $post_id;
+    }
+
+    function product_express_set_post_excerpt( $post ){
+        remove_action( 'save_post', 'product_express_custom_excerpts', 10, 2 );
+        $excerpt = get_field('review').product_express_get_profile_img_for_feed( $post->post_author, 'excerpt' );
+        wp_update_post( array('ID'=>$post->ID, 'post_excerpt'=>$excerpt) );
+        add_action( 'save_post', 'product_express_custom_excerpts', 10, 2 );
+    }
+
+    function product_express_get_post_type( $postData ) {
+
+        if ( 'revision' == $postData->post_type ) {
+            $parentPostData = get_post( $postData->post_parent );
+            if ( null !== $parentPostData ) {
+                return $parentPostData->post_type;
+            } else {
+                return $postData->post_type;
+            }
+        } else {
+            return $postData->post_type;
+        }
+
+    }
+
+
+
+endif;
+
+
+
+
+
+
 if ( ! function_exists( 'product_express_content_of_feed' ) ) :
     /**
      * content custom for feed
@@ -610,7 +677,7 @@ if ( ! function_exists( 'product_express_get_profile_img_for_feed' ) ) :
      *
      * @since Product Express 1.0
      */
-    function product_express_get_profile_img_for_feed($user){
+    function product_express_get_profile_img_for_feed($user, $is_excerpt = ''){
         $profile_html = '';
         if(is_array($user)){
             $user_id = $user['ID'];
@@ -626,7 +693,12 @@ if ( ! function_exists( 'product_express_get_profile_img_for_feed' ) ) :
         $profile_thumbnail_src = $profile_thumbnail_src[0];
 
         $profile_html = '<div class="pe-rss-profile" style="height:20px; line-height:30px; padding-bottom:30px;">';
-        $profile_html .= '<img src="'.$profile_thumbnail_src.'" style="margin-right:10px;" />';
+        if($is_excerpt = 'excerpt'){
+            $profile_html .= '<img src="'.$profile_thumbnail_src.'" style="margin-right:10px;border:0;outline:none;text-decoration:none;width:40px;min-height:auto!important;border-radius:100px" border="0" class="CToWUd">';
+        }else{
+            $profile_html .= '<img src="'.$profile_thumbnail_src.'" style="margin-right:10px;" />';
+        }
+
         $profile_html .=  '<span style="font-size:0.9em; line-height:34px; vertical-align:top">'.$display_name.'</span></div>';
         return $profile_html;
     }

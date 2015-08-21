@@ -6,7 +6,7 @@
         <?php the_field('review'); ?>
     </div>
     <?php
-
+    //echo get_the_excerpt();
 
     if( get_post_type() != 'wysijap' ) :
         // Author bio.
