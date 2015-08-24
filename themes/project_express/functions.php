@@ -156,7 +156,7 @@ function project_express_print_daily_arrow($arr_date){
         $arr_date = date_parse($arr_date->query_vars['year'].'-'.$arr_date->query_vars['monthnum'].'-'.$arr_date->query_vars['day']);
     }
     $str_date = $arr_date['year'].'-'.$arr_date['month'].'-'.$arr_date['day'];
-
+    $current_date = date("F j, Y, g:i a", strtotime($str_date));
     /*preview*/
     $args1 = array(
         'posts_per_page'=> 1,
@@ -166,7 +166,7 @@ function project_express_print_daily_arrow($arr_date){
         'date_query' => array(
             array(
                 'column'  => 'post_date',
-                'before'     => $str_date,
+                'before'     => $current_date,
                 'inclusive' => false,
             ),
         ),
@@ -188,7 +188,8 @@ function project_express_print_daily_arrow($arr_date){
     }
 
     /*next*/
-    $str_date = date_parse(date('Y/m/d', strtotime('+1 day', strtotime($str_date))));
+    $str_date = strtotime('+1 day', strtotime($str_date));
+    $current_date = date("F j, Y, g:i a", $str_date);
     $args2 = array(
         'posts_per_page'=> 10,
         'post_type' => 'post',
@@ -197,7 +198,7 @@ function project_express_print_daily_arrow($arr_date){
         'date_query' => array(
             array(
                 'column'  => 'post_date',
-                'after'     => $str_date,
+                'after'     => $current_date,
                 'inclusive' => true,
             ),
         ),
