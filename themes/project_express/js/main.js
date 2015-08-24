@@ -54,3 +54,11 @@ $(".image div.video").click(function(e){
 
 });
 
+/*remove iframe when movie popup close*/
+$(".image .close").click(function(e){
+    e.preventDefault();
+    $movie_iframe = $(this).parent().find('iframe')
+    $(this).parent().find('iframe').remove();
+    $(this).parent().find('.iframe_wrap').append($movie_iframe);
+});
+
