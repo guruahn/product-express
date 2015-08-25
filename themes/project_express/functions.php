@@ -583,17 +583,19 @@ if ( ! function_exists( 'product_express_custom_excerpts' ) ) :
         //구분선
         $excerpt .= '<hr style="min-height:1px;overflow:hidden;border:none;background:#eee;margin:0 0 20px 0">';
         //링크
-        if(get_field('link')) $excerpt .= '<a href="'.get_field('link').'" style="font-size:0.8em;color:#999;word-wrap:break-word;font-weight:normal;text-decoration:underline" target="_blank">'.get_field('link').'</a>';
+        if(get_field('link')) $excerpt .= '<span style="display:block; height:15px; border-top:1px solid #ddd; margin-top:15px"></span><a href="'.get_field('link').'" style="font-size:1em; color:#555; text-decoration: none; display:block; padding-bottom:10px;"  target="_blank">'.get_field('link').'</a>';
         //tags
         $excerpt .= product_express_get_tag_link();
         //app link
         $android_link = get_field('android_link');
         $ios_link = get_field('ios_link');
         if($android_link){
-            $excerpt .=  '<a href="'.$android_link.'" target="_blank" style="word-wrap:break-word;color:black!important;font-weight:normal;text-decoration:underline"><img src="'.get_template_directory_uri().'/img/badge_android.png" style="width:100px;border:0;outline:none;text-decoration:none;min-height:auto!important"></a>';
+            $excerpt .=  '<span style="display:block; height:20px;"></span><a href="'.$android_link.'" style="display:inline-block; width:120px; height:52px; margin-right:7px; padding:0; background:url('.get_template_directory_uri().'/img/badge_android.png) no-repeat; background-size:contain;">  </a>';
+
         }
         if($ios_link){
-            $excerpt .= '<a href="'.$ios_link.'" target="_blank" style="word-wrap:break-word;color:black!important;font-weight:normal;text-decoration:underline"><img src="'.get_template_directory_uri().'/img/badge_ios.png" style="width:100px;border:0;outline:none;text-decoration:none;min-height:auto!important"></a>';
+            $excerpt .= '<a href="'.$ios_link.'"  style="display:inline-block; width:120px; height:52px; margin-right:10px; padding:0; background-image:url('.get_template_directory_uri().'/img/badge_ios.png);  background-size:cover" > </a>';
+
         }
         wp_update_post( array('ID'=>$post->ID, 'post_excerpt'=>$excerpt) );
         add_action( 'save_post', 'product_express_custom_excerpts', 10, 2 );
@@ -628,7 +630,7 @@ if( ! function_exists( 'product_express_get_tag_link') ) :
         foreach ( $tags as $tag ) {
             $tag_link = get_tag_link( $tag->term_id );
 
-            $tag_html .= " <a href='{$tag_link}' title='{$tag->name} Tag' class='{$tag->slug}' style='word-wrap:break-word;color:black!important;font-weight:normal;text-decoration:underline'>";
+            $tag_html .= " <a href='{$tag_link}' title='{$tag->name} Tag' class='{$tag->slug}' style='color:black!important;font-weight:bold; font-size:16px; padding-right: 10px; '>";
             $tag_html .= "#{$tag->name}</a> ";
         }
         return $tag_html;
@@ -678,7 +680,7 @@ if ( ! function_exists( 'product_express_content_of_feed' ) ) :
 
         /*link*/
         $content .= '<hr style="height:1px; overflow:hidden; border:none; background:#eee; margin:0 0 20px 0">';
-        $content .= '<a href="'.product_express_get_frame_link(get_field('link')).'" style="font-size:0.8em; color:#999;">'.get_field('link').'</a>';
+        $content .= '<a href="'.product_express_get_frame_link(get_field('link')).'" style="font-size:0.8em; color:#999; ">'.get_field('link').'</a>';
         /*tags*/
         $content .= '<br />';
         $tags = get_the_tags();
@@ -687,15 +689,15 @@ if ( ! function_exists( 'product_express_content_of_feed' ) ) :
             $tag_link = get_tag_link( $tag->term_id );
 
             $tag_html .= " <a href='{$tag_link}' title='{$tag->name} Tag' class='{$tag->slug}'>";
-            $tag_html .= "#{$tag->name}</a> ";
+            $tag_html .= "<span style='font-weight:bold; margin-right:10px;'>#{$tag->name}</span></a> ";
         }
         $content .= $tag_html;
         /*store*/
         $android_link = get_field('android_link');
         $ios_link = get_field('ios_link');
         $content .= '<div style="padding-top:15px;">';
-        if($android_link) $content .= '<a href="'.$android_link.'"><img src="http://pe.userstorylab.com/wp-content/themes/project_express/img/badge_android.png" style="width:100px;"> </a>';
-        if($ios_link) $content .= '<a href="'.$ios_link.'"><img src="http://pe.userstorylab.com/wp-content/themes/project_express/img/badge_ios.png" style="width:100px;"></a>';
+        if($android_link) $content .= '<a href="'.$android_link.'" style="display:inline-block; width:154px; height:52px; margin-right10px; padding:0; background:url(http://pe.userstorylab.com/wp-content/themes/project_express/img/badge_android.png); background-size:100%;">  </a>';
+        if($ios_link) $content .= '<a href="'.$ios_link.'"  style="display:inline-block; width:154px; height:52px; margin-right10px; padding:0; background:url(http://pe.userstorylab.com/wp-content/themes/project_express/img/badge_ios.png); background-size:100%;" > </a>';
         $content .= '</div>';
 
         $content .= '</div>';
@@ -732,7 +734,7 @@ if ( ! function_exists( 'product_express_get_profile_img_for_feed' ) ) :
         $profile_html = '<div class="pe-rss-profile" style="height:20px; line-height:30px; padding-bottom:30px;">';
 
         if($is_excerpt = 'excerpt'){
-            $profile_html .=  '<span style="font-size:0.9em; line-height:34px; vertical-align:toppadding-left: 25px;background-image: url('.$profile_thumbnail_src.');    background-repeat: no-repeat;    background-position: 0 0; height: 20px; display: block; background-size: contain;">'.$display_name.'</span></div>';
+            $profile_html .=  '<span style="border-radius: 100px; width: 40px; height: 40px; display: inline-block; line-height: 40px; background-image: url('.$profile_thumbnail_src.'); background-size:cover; margin-right:10px;"></span><span style="font-size:0.9em; line-height:40px; vertical-align:top; font-weight:bold; color:black; display: inline-block; background-size: contain;">'.$display_name.'</span></div>';
         }else{
             $profile_html .= '<img src="'.$profile_thumbnail_src.'" style="margin-right:10px;" />';
             $profile_html .=  '<span style="font-size:0.9em; line-height:34px; vertical-align:top">'.$display_name.'</span></div>';
