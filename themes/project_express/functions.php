@@ -678,7 +678,7 @@ if ( ! function_exists( 'product_express_content_of_feed' ) ) :
 
         /*link*/
         $content .= '<hr style="height:1px; overflow:hidden; border:none; background:#eee; margin:0 0 20px 0">';
-        $content .= '<a href="'.product_express_get_frame_link(get_field('link')).'" style="font-size:0.8em; color:#999;">'.get_field('link').'</a>';
+        $content .= '<a href="'.product_express_get_frame_link(get_field('link')).'" style="font-size:1em; color:#555; text-decoration: none; display:block; ">'.get_field('link').'</a>';
         /*tags*/
         $content .= '<br />';
         $tags = get_the_tags();
@@ -687,15 +687,15 @@ if ( ! function_exists( 'product_express_content_of_feed' ) ) :
             $tag_link = get_tag_link( $tag->term_id );
 
             $tag_html .= " <a href='{$tag_link}' title='{$tag->name} Tag' class='{$tag->slug}'>";
-            $tag_html .= "#{$tag->name}</a> ";
+            $tag_html .= "<span style='font-weight:bold; margin-right:10px;'>#{$tag->name}</span></a> ";
         }
         $content .= $tag_html;
         /*store*/
         $android_link = get_field('android_link');
         $ios_link = get_field('ios_link');
         $content .= '<div style="padding-top:15px;">';
-        if($android_link) $content .= '<a href="'.$android_link.'"><img src="http://pe.userstorylab.com/wp-content/themes/project_express/img/badge_android.png" style="width:100px;"> </a>';
-        if($ios_link) $content .= '<a href="'.$ios_link.'"><img src="http://pe.userstorylab.com/wp-content/themes/project_express/img/badge_ios.png" style="width:100px;"></a>';
+        if($android_link) $content .= '<a href="'.$android_link.'" style="display:inline-block; width:154px; height:52px; margin-right10px; padding:0; background:url(http://pe.userstorylab.com/wp-content/themes/project_express/img/badge_android.png); background-size:100%;">  </a>';
+        if($ios_link) $content .= '<a href="'.$ios_link.'"  style="display:inline-block; width:154px; height:52px; margin-right10px; padding:0; background:url(http://pe.userstorylab.com/wp-content/themes/project_express/img/badge_ios.png); background-size:100%;" > </a>';
         $content .= '</div>';
 
         $content .= '</div>';
