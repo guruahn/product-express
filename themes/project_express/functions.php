@@ -732,7 +732,7 @@ if ( ! function_exists( 'product_express_get_profile_img_for_feed' ) ) :
         $profile_html = '<div class="pe-rss-profile" style="height:20px; line-height:30px; padding-bottom:30px;">';
 
         if($is_excerpt = 'excerpt'){
-            $profile_html .=  '<span style="font-size:0.9em; line-height:34px; vertical-align:toppadding-left: 25px;background-image: url('.$profile_thumbnail_src.');    background-repeat: no-repeat;    background-position: 0 0; height: 20px; display: block; background-size: contain;">'.$display_name.'</span></div>';
+            $profile_html .=  '<span style="border-radius: 100px; width: 40px; height: 40px; display: inline-block; line-height: 40px; background-image: url('.$profile_thumbnail_src.'); background-size:cover; margin-right:10px;"></span><span style="font-size:0.9em; line-height:40px; vertical-align:toppadding-left: 25px; display: inline-block; background-size: contain;">'.$display_name.'</span></div>';
         }else{
             $profile_html .= '<img src="'.$profile_thumbnail_src.'" style="margin-right:10px;" />';
             $profile_html .=  '<span style="font-size:0.9em; line-height:34px; vertical-align:top">'.$display_name.'</span></div>';
