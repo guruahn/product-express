@@ -38,7 +38,7 @@
     else:
         ?>
         <div class="comment">
-            <p><a href="/">첫 페이지로 가기</button></a>
+            <p>감사합니다. 구독이 완료되었습니다. <a href="/">첫 페이지로 가기</button></a>
         </div>
     <?php
     endif;

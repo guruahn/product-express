@@ -573,7 +573,28 @@ if ( ! function_exists( 'product_express_custom_excerpts' ) ) :
 
     function product_express_set_post_excerpt( $post ){
         remove_action( 'save_post', 'product_express_custom_excerpts', 10, 2 );
-        $excerpt = get_field('review').product_express_get_profile_img_for_feed( $post->post_author, 'excerpt' );
+        //첫 번째 글
+        $excerpt = '<p>'.wp_trim_words(wp_strip_all_tags(get_field('review')), 100, '...').'</p>'.product_express_get_profile_img_for_feed( $post->post_author, 'excerpt' );
+        //두 번째 글
+
+        if(get_field('review2')) $excerpt .= '<p>'.wp_trim_words(wp_strip_all_tags(get_field('review2')), 100, '...').'</p>'.product_express_get_profile_img_for_feed( get_field('writer2'), 'excerpt' );
+        //세 번째 글
+        if(get_field('review3')) $excerpt .= '<p>'.wp_trim_words(wp_strip_all_tags(get_field('review3')), 100, '...').'</p>'.product_express_get_profile_img_for_feed( get_field('writer3'), 'excerpt' );
+        //구분선
+        $excerpt .= '<hr style="min-height:1px;overflow:hidden;border:none;background:#eee;margin:0 0 20px 0">';
+        //링크
+        if(get_field('link')) $excerpt .= '<a href="'.get_field('link').'" style="font-size:0.8em;color:#999;word-wrap:break-word;font-weight:normal;text-decoration:underline" target="_blank">'.get_field('link').'</a>';
+        //tags
+        $excerpt .= product_express_get_tag_link();
+        //app link
+        $android_link = get_field('android_link');
+        $ios_link = get_field('ios_link');
+        if($android_link){
+            $excerpt .=  '<a href="'.$android_link.'" target="_blank" style="word-wrap:break-word;color:black!important;font-weight:normal;text-decoration:underline"><img src="'.get_template_directory_uri().'/img/badge_android.png" style="width:100px;border:0;outline:none;text-decoration:none;min-height:auto!important"></a>';
+        }
+        if($ios_link){
+            $excerpt .= '<a href="'.$ios_link.'" target="_blank" style="word-wrap:break-word;color:black!important;font-weight:normal;text-decoration:underline"><img src="'.get_template_directory_uri().'/img/badge_ios.png" style="width:100px;border:0;outline:none;text-decoration:none;min-height:auto!important"></a>';
+        }
         wp_update_post( array('ID'=>$post->ID, 'post_excerpt'=>$excerpt) );
         add_action( 'save_post', 'product_express_custom_excerpts', 10, 2 );
     }
@@ -597,7 +618,22 @@ if ( ! function_exists( 'product_express_custom_excerpts' ) ) :
 
 endif;
 
+if( ! function_exists( 'product_express_get_tag_link') ) :
+    /*
+     *
+     * */
+    function product_express_get_tag_link(){
+        $tags = get_the_tags();
+        $tag_html = '';
+        foreach ( $tags as $tag ) {
+            $tag_link = get_tag_link( $tag->term_id );
 
+            $tag_html .= " <a href='{$tag_link}' title='{$tag->name} Tag' class='{$tag->slug}' style='word-wrap:break-word;color:black!important;font-weight:normal;text-decoration:underline'>";
+            $tag_html .= "#{$tag->name}</a> ";
+        }
+        return $tag_html;
+    }
+endif;
 
 
 
@@ -694,13 +730,14 @@ if ( ! function_exists( 'product_express_get_profile_img_for_feed' ) ) :
         $profile_thumbnail_src = $profile_thumbnail_src[0];
 
         $profile_html = '<div class="pe-rss-profile" style="height:20px; line-height:30px; padding-bottom:30px;">';
+
         if($is_excerpt = 'excerpt'){
-            $profile_html .= '<img src="'.$profile_thumbnail_src.'" style="margin-right:10px;border:0;outline:none;text-decoration:none;width:40px;min-height:auto!important;border-radius:100px" border="0" class="CToWUd">';
+            $profile_html .=  '<span style="font-size:0.9em; line-height:34px; vertical-align:toppadding-left: 25px;background-image: url('.$profile_thumbnail_src.');    background-repeat: no-repeat;    background-position: 0 0; height: 20px; display: block; background-size: contain;">'.$display_name.'</span></div>';
         }else{
             $profile_html .= '<img src="'.$profile_thumbnail_src.'" style="margin-right:10px;" />';
+            $profile_html .=  '<span style="font-size:0.9em; line-height:34px; vertical-align:top">'.$display_name.'</span></div>';
         }
 
-        $profile_html .=  '<span style="font-size:0.9em; line-height:34px; vertical-align:top">'.$display_name.'</span></div>';
         return $profile_html;
     }
 
