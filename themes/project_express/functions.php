@@ -651,7 +651,7 @@ if ( ! function_exists( 'product_express_content_of_feed' ) ) :
         $content = '';
 
         /*thumbnail*/
-        $content .= '<div class="pe-rss-thumbnail" style="float:left;margin-top: 1em;margin-right:3%;width:40%;" medium="image">';
+        $content .= '<div class="pe-rss-thumbnail" style="margin-top: 1em;" medium="image">';
         if(! has_post_thumbnail()){
             $content .= '<img style="width:100%" src="'.get_template_directory_uri().'/img/defaultImg.jpg" /> ';
         }else{
@@ -689,15 +689,15 @@ if ( ! function_exists( 'product_express_content_of_feed' ) ) :
             $tag_link = get_tag_link( $tag->term_id );
 
             $tag_html .= " <a href='{$tag_link}' title='{$tag->name} Tag' class='{$tag->slug}'>";
-            $tag_html .= "<span style='font-weight:bold; margin-right:10px;'>#{$tag->name}</span></a> ";
+            $tag_html .= "#{$tag->name}</a> ";
         }
         $content .= $tag_html;
         /*store*/
         $android_link = get_field('android_link');
         $ios_link = get_field('ios_link');
         $content .= '<div style="padding-top:15px;">';
-        if($android_link) $content .= '<a href="'.$android_link.'" style="display:inline-block; width:154px; height:52px; margin-right10px; padding:0; background:url(http://pe.userstorylab.com/wp-content/themes/project_express/img/badge_android.png); background-size:100%;">  </a>';
-        if($ios_link) $content .= '<a href="'.$ios_link.'"  style="display:inline-block; width:154px; height:52px; margin-right10px; padding:0; background:url(http://pe.userstorylab.com/wp-content/themes/project_express/img/badge_ios.png); background-size:100%;" > </a>';
+        if($android_link) $content .= '<a href="'.$android_link.'"><img src="http://pe.userstorylab.com/wp-content/themes/project_express/img/badge_android.png" style="width:100px;border:0;outline:none;text-decoration:none;min-height:auto!important" border="0" class="CToWUd"></a>';
+        if($ios_link) $content .= '<a href="'.$ios_link.'"><img src="http://pe.userstorylab.com/wp-content/themes/project_express/img/badge_ios.png" style="width:100px;border:0;outline:none;text-decoration:none;min-height:auto!important" border="0" class="CToWUd"></a>';
         $content .= '</div>';
 
         $content .= '</div>';
@@ -732,13 +732,8 @@ if ( ! function_exists( 'product_express_get_profile_img_for_feed' ) ) :
         $profile_thumbnail_src = $profile_thumbnail_src[0];
 
         $profile_html = '<div class="pe-rss-profile" style="height:20px; line-height:30px; padding-bottom:30px;">';
-
-        if($is_excerpt = 'excerpt'){
-            $profile_html .=  '<span style="border-radius: 100px; width: 40px; height: 40px; display: inline-block; line-height: 40px; background-image: url('.$profile_thumbnail_src.'); background-size:cover; margin-right:10px;"></span><span style="font-size:0.9em; line-height:40px; vertical-align:top; font-weight:bold; color:black; display: inline-block; background-size: contain;">'.$display_name.'</span></div>';
-        }else{
-            $profile_html .= '<img src="'.$profile_thumbnail_src.'" style="margin-right:10px;" />';
-            $profile_html .=  '<span style="font-size:0.9em; line-height:34px; vertical-align:top">'.$display_name.'</span></div>';
-        }
+        $profile_html .= '<img src="'.$profile_thumbnail_src.'" style="margin-right:10px;border:0;outline:none;text-decoration:none;width:40px;min-height:auto!important;border-radius:100px;min-height:auto!important" />';
+        $profile_html .=  '<span style="font-size:0.9em; line-height:34px; vertical-align:top">'.$display_name.'</span></div>';
 
         return $profile_html;
     }

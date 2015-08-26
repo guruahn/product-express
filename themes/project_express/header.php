@@ -94,34 +94,5 @@
         <?php endif; ?>
         <span class="open"><i class="fa fa-envelope"></i> 구독하기</span>
 
-
-
-        <div class="widget_wysija_cont html_wysija">
-            <div id="msg-form-wysija-html55d5617b76a4c-1" class="wysija-msg ajax"></div>
-            <form id="form-wysija-html55d5617b76a4c-1" method="post" action="#wysija" class="widget_wysija html_wysija">
-                <div class="Email">
-                    <div class="pure-form email move">
-                        <input type="email" name="wysija[user][email]" class="wysija-input  pure-input-rounded" title="이메일" placeholder="이메일" value="" />
-                        <span class="abs-req">
-                            <input type="text" name="wysija[user][abs][email]" class="wysija-input validated[abs][email]" value="" />
-                        </span>
-                        <button class="wysija-submit wysija-submit-field pure-button" type="submit" >
-                            <i class="fa fa-envelope"></i>
-                        </button>
-                    </div>
-
-
-                    <h4>PRODUCT EXPRESS의 글을 구독하세요!</h4>
-                </div>
-                <input type="hidden" name="form_id" value="1" />
-                <input type="hidden" name="action" value="save" />
-                <input type="hidden" name="controller" value="subscribers" />
-                <input type="hidden" value="1" name="wysija-page" />
-
-
-                <input type="hidden" name="wysija[user_list][list_ids]" value="1" />
-
-            </form>
-        </div>
     </header>
 

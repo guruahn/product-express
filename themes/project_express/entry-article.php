@@ -6,44 +6,33 @@
         <?php the_field('review'); ?>
     </div>
     <?php
-    //echo get_the_excerpt();
 
-    if( get_post_type() != 'wysijap' ) :
-        // Author bio.
-        product_express_author_bio(get_the_author_meta('ID'));
-        ?>
 
-        <div class="comment">
-            <?php the_field('review2'); ?>
-        </div>
-        <?php
-        $writer2= get_field('writer2');
-        if($writer2) :
-            product_express_another_author_bio($writer2);
-        endif;
-        ?>
+    // Author bio.
+    product_express_author_bio(get_the_author_meta('ID'));
+    ?>
 
-        <div class="comment">
-            <?php the_field('review3'); ?>
-        </div>
-        <?php
-        $writer3= get_field('writer3');
-        if($writer3) :
-            product_express_another_author_bio($writer3);
-        endif;
-        ?>
-
+    <div class="comment">
+        <?php the_field('review2'); ?>
+    </div>
     <?php
-        edit_post_link('Edit Product', '<div class="edit-link">', '</div>');
-    else:
-        ?>
-        <div class="comment">
-            <p>감사합니다. 구독이 완료되었습니다. <a href="/">첫 페이지로 가기</button></a>
-        </div>
-    <?php
+    $writer2= get_field('writer2');
+    if($writer2) :
+        product_express_another_author_bio($writer2);
     endif;
     ?>
 
+    <div class="comment">
+        <?php the_field('review3'); ?>
+    </div>
+    <?php
+    $writer3= get_field('writer3');
+    if($writer3) :
+        product_express_another_author_bio($writer3);
+    endif;
+
+    edit_post_link('Edit Product', '<div class="edit-link">', '</div>');
+    ?>
     <div class="userComment">
     <?php
     if(is_single() && get_post_type() != 'wysijap'){
