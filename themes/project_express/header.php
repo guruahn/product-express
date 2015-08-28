@@ -37,7 +37,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon-16x16.png">
     <link href='http://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Rajdhani:300,700' rel='stylesheet' type='text/css'>
-    <script src="<?php echo get_template_directory_uri(); ?>/css/tooltipster.css"></script>
+    <link href="<?php echo get_template_directory_uri(); ?>/css/tooltipster.css"  rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_uri(); ?>" />
 
     <?php wp_head(); ?>
