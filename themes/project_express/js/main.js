@@ -17,6 +17,7 @@ var inview = new Waypoint.Inview({
 $(window).ready(function(){
 
     $("body").addClass("move");
+    $( "li.image iframe" ).wrap( "<div class='videoWrapper'></div>" );
 
 });
 
