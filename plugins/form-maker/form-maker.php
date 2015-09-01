@@ -344,8 +344,8 @@ function form_maker_manage_scripts() {
   wp_enqueue_script('jquery-ui-spinner');
 
   // wp_enqueue_script('mootools', WD_FM_URL . '/js/mootools.js', array(), '1.12');
-  wp_enqueue_script('gmap_form_api', 'https://maps.google.com/maps/api/js?sensor=false');
-  wp_enqueue_script('gmap_form', WD_FM_URL . '/js/if_gmap_back_end.js');
+  //wp_enqueue_script('gmap_form_api', 'https://maps.google.com/maps/api/js?sensor=false');
+  //wp_enqueue_script('gmap_form', WD_FM_URL . '/js/if_gmap_back_end.js');
 
   wp_enqueue_script('form_maker_admin', WD_FM_URL . '/js/form_maker_admin.js', array(), get_option("wd_form_maker_version"));
   wp_enqueue_script('form_maker_manage', WD_FM_URL . '/js/form_maker_manage.js', array(), get_option("wd_form_maker_version"));
@@ -359,8 +359,8 @@ function form_maker_manage_scripts() {
   wp_enqueue_script('form_maker_php', WD_FM_URL . '/js/layout/php.js', array(), '1.0.0');
   wp_enqueue_script('form_maker_htmlmixed', WD_FM_URL . '/js/layout/htmlmixed.js', array(), '1.0.0');
 
-  wp_enqueue_script('Calendar', WD_FM_URL . '/js/calendar/calendar.js', array(), '1.0');
-  wp_enqueue_script('calendar_function', WD_FM_URL . '/js/calendar/calendar_function.js');
+  //wp_enqueue_script('Calendar', WD_FM_URL . '/js/calendar/calendar.js', array(), '1.0');
+  //wp_enqueue_script('calendar_function', WD_FM_URL . '/js/calendar/calendar_function.js');
   // wp_enqueue_script('form_maker_calendar_setup', WD_FM_URL . '/js/calendar/calendar-setup.js');
 }
 
@@ -368,7 +368,7 @@ function form_maker_manage_scripts() {
 function form_maker_submissions_styles() {
   wp_admin_css('thickbox');
   wp_enqueue_style('form_maker_tables', WD_FM_URL . '/css/form_maker_tables.css', array(), get_option("wd_form_maker_version"));
-  wp_enqueue_style('form_maker_calendar-jos', WD_FM_URL . '/css/calendar-jos.css');
+  //wp_enqueue_style('form_maker_calendar-jos', WD_FM_URL . '/css/calendar-jos.css');
   wp_enqueue_style('jquery-ui', WD_FM_URL . '/css/jquery-ui-1.10.3.custom.css', array(), '1.10.3');
   wp_enqueue_style('jquery-ui-spinner', WD_FM_URL . '/css/jquery-ui-spinner.css', array(), '1.10.3');
   wp_enqueue_style('form_maker_style', WD_FM_URL . '/css/style.css', array(), get_option("wd_form_maker_version"));
@@ -401,8 +401,8 @@ function form_maker_submissions_scripts() {
   wp_enqueue_script('main', WD_FM_URL . '/js/main.js', array(), get_option("wd_form_maker_version"));
   wp_enqueue_script('main_div_front_end', WD_FM_URL . '/js/main_div_front_end.js', array(), get_option("wd_form_maker_version"));
 
-  wp_enqueue_script('Calendar', WD_FM_URL . '/js/calendar/calendar.js', array(), '1.0');
-  wp_enqueue_script('calendar_function', WD_FM_URL . '/js/calendar/calendar_function.js');
+  //wp_enqueue_script('Calendar', WD_FM_URL . '/js/calendar/calendar.js', array(), '1.0');
+  //wp_enqueue_script('calendar_function', WD_FM_URL . '/js/calendar/calendar_function.js');
   // wp_enqueue_script('form_maker_calendar_setup', WD_FM_URL . '/js/calendar/calendar-setup.js');
   
   wp_localize_script('main_div_front_end', 'fm_objectL10n', array(
@@ -443,16 +443,16 @@ function form_maker_front_end_scripts() {
   wp_enqueue_style('jquery-ui-spinner', WD_FM_URL . '/css/jquery-ui-spinner.css');
 
   // wp_enqueue_script('mootools', WD_FM_URL . '/js/mootools.js', array(), '1.12');
-  wp_enqueue_script('gmap_form_api', 'https://maps.google.com/maps/api/js?sensor=false');
-  wp_enqueue_script('gmap_form', WD_FM_URL . '/js/if_gmap_front_end.js');
+  //wp_enqueue_script('gmap_form_api', 'https://maps.google.com/maps/api/js?sensor=false');
+  //wp_enqueue_script('gmap_form', WD_FM_URL . '/js/if_gmap_front_end.js');
   wp_enqueue_script('jelly.min', WD_FM_URL . '/js/jelly.min.js');
   wp_enqueue_script('file-upload', WD_FM_URL . '/js/file-upload.js');
   // wp_enqueue_style('gmap_styles_', WD_FM_URL . '/css/style_for_map.css');
 
-  wp_enqueue_script('Calendar', WD_FM_URL . '/js/calendar/calendar.js');
-  wp_enqueue_script('calendar_function', WD_FM_URL . '/js/calendar/calendar_function.js');
+  //wp_enqueue_script('Calendar', WD_FM_URL . '/js/calendar/calendar.js');
+  //wp_enqueue_script('calendar_function', WD_FM_URL . '/js/calendar/calendar_function.js');
   // wp_enqueue_script('form_maker_calendar_setup', WD_FM_URL . '/js/calendar/calendar-setup.js');
-  wp_enqueue_style('form_maker_calendar-jos', WD_FM_URL . '/css/calendar-jos.css');
+  //wp_enqueue_style('form_maker_calendar-jos', WD_FM_URL . '/css/calendar-jos.css');
   wp_enqueue_style('form_maker_frontend', WD_FM_URL . '/css/form_maker_frontend.css');
 
   wp_register_script('main_div_front_end', WD_FM_URL . '/js/main_div_front_end.js', array(), get_option("wd_form_maker_version"));

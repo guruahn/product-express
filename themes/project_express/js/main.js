@@ -63,3 +63,7 @@ $(".image .close").click(function(e){
     $(this).parent().find('.iframe_wrap').append($movie_iframe);
 });
 
+/*subscribe event tracking*/
+$('#subscribe-button').on('click', function() {
+    ga('send', 'event', 'button', 'click', 'subscribe-buttons', 1);
+});
