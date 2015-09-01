@@ -56,8 +56,10 @@ $daily_url = product_express_get_daily_url($arr_date);
                     </span>건의 평가.
                 </span>
                 <div class="permalink">
-                    <div class="link"><i class="fa fa-link"></i> URL</div>
-                    <input  type="hidden"  id="toClipboard" value="<?php echo project_express_get_the_archive_permalink(); ?>"/>
+                    <div class="link"><a href="<?php echo project_express_get_the_archive_permalink(); ?>"><i class="fa fa-link"></i> URL</a></div>
+                    <?
+                    //echo '<input  type="hidden"  id="toClipboard" value="'. project_express_get_the_archive_permalink().'"/>';
+                    ?>
                 </div>
             </div>
             <?php
