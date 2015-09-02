@@ -26,6 +26,30 @@ function project_express_load_scripts()
     //wp_enqueue_script( 'jquery' );
 }
 
+/**
+ * Since the install of WP-Mail-SMTP we need to make sure the FROM is the same as the one specified in the plugin
+ * These filters will overwrite any FROM send by other plugins.
+ */
+/*add_filter('wp_mail_from','custom_wp_mail_from');
+function custom_wp_mail_from($email) {
+    return get_option('mail_from');
+}
+add_filter('wp_mail_from_name','custom_wp_mail_from_name');
+function custom_wp_mail_from_name($name) {
+    return get_option('mail_from_name');
+}*/
+
+/*add_action( 'phpmailer_init', 'my_phpmailer_init' );
+function my_phpmailer_init( PHPMailer $phpmailer ) {
+    $phpmailer->Host = 'email-smtp.us-east-1.amazonaws.com';
+    $phpmailer->Port = 465; // could be different
+    $phpmailer->Username = 'AKIAJWHL276QUTJTXZ3A'; // if required
+    $phpmailer->Password = 'AuXbYIVVB1RWM5JD/VO0ssp2iBkL3ljGKDUWl5Cb7LUz'; // if required
+    $phpmailer->SMTPAuth = true; // if required
+    $phpmailer->SMTPSecure = 'ssl'; // enable if required, 'tls' is another possible value
+    $phpmailer->IsSMTP();
+}*/
+
 // register Product_Express_Tags widget
 include_once('widget_tags.php');
 function register_product_express_tags()

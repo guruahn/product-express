@@ -12,7 +12,7 @@
 <?php get_header(); ?>
 
 <?php
-
+//echo phpinfo();
 $post_id = $_GET['id'];
 $query = array(
     'post_type'           => 'post',
