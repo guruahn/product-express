@@ -91,8 +91,10 @@ if($mail_html != ''){
     if(!$mail->send()) {
         //echo 'Message could not be sent.';
         //echo 'Mailer Error: ' . $mail->ErrorInfo;
+        wp_redirect( home_url().'#request_fail' ); exit;
     } else {
         //echo 'Message has been sent';
+        wp_redirect( home_url().'#request_ok' ); exit;
     }
 }
 
