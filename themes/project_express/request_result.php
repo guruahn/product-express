@@ -75,8 +75,8 @@ if($mail_html != ''){
 
     $mail->From = 'product@userstorylab.com';
     $mail->FromName = 'Product Express';
-    $mail->addAddress('guruahn@gmail.com', '정우 안');     // Add a recipient
-    $mail->addAddress('kihun@userstorylab.com');               // Name is optional
+    // Add a recipient
+    $mail->addAddress('product@userstorylab.com', 'Product Express');
     $mail->addReplyTo('product@userstorylab.com', 'Information');
     //$mail->addCC('cc@example.com');
     //$mail->addBCC('bcc@example.com');
@@ -100,16 +100,6 @@ if($mail_html != ''){
 
 
 ?>
-
-
-    test
-
-
-
-
-
-
-
 
 
 

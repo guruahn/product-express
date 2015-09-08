@@ -18,7 +18,7 @@ $(window).ready(function(){
 
     $("body").addClass("move");
     $( "li.image iframe" ).wrap( "<div class='videoWrapper'></div>" );
-
+    requestResultPopup();
 });
 
 
@@ -37,17 +37,6 @@ $(".request .action").click(function() {
     $(".popup.request").addClass("move");
     $("body").addClass("fix");
 });
-
-/*request popup*/
-$(".side .request p").click(function() {
-
-    $(".popup.requestResult").addClass("move");
-    $("body").addClass("fix");
-    setTimeout(function(){
-       $(".hi-icon, .popup.requestResult .msg").addClass("move");
-    }, 100);
-});
-
 
 
 
@@ -80,3 +69,46 @@ $(".image .close").click(function(e){
 $('#subscribe-button').on('click', function() {
     ga('send', 'event', 'button', 'click', 'subscribe-buttons', 1);
 });
+
+
+/*
+*
+* functions
+*
+*/
+
+function requestResultPopup(){
+    var url = window.location.href;
+    var hashes = url.split('#');
+    var is_ok = false;
+    //var is_fail = false;
+    if(hashes.length > 1) {
+        for (var i = 1; i < hashes.length; i++) {
+            if(hashes[i] == "request_ok") is_ok = true;
+            //if(hashes[i] == "requset_fail") is_fail = true;
+        }
+    }
+    if(is_ok){
+        $(".popup.requestResult").addClass("move");
+        $("body").addClass("fix");
+        setTimeout(function(){
+            $(".hi-icon, .popup.requestResult .msg").addClass("move");
+        }, 100);
+    }
+}
+
+//Get hash tags by URL
+function getHashParams() {
+
+    var hashParams = {};
+    var e,
+        a = /\+/g,  // Regex for replacing addition symbol with a space
+        r = /([^&;=]+)=?([^&;]*)/g,
+        d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+        q = window.location.hash.substring(1);
+
+    while (e = r.exec(q))
+        hashParams[d(e[1])] = d(e[2]);
+
+    return hashParams;
+}
