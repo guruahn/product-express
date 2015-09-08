@@ -359,7 +359,15 @@ html>body { overflow-x: hidden;}
 
 
 
-
+.requestResult {
+	.msg {transform:translate(0,-100px); transition:all, 0.8s; opacity: 0; overflow: hidden; text-align: center; color:white;  background: url(../img/bg3.png) center 50px white no-repeat; border-radius: 20px;  width: 300px; margin-left: -150px; left: 50%;  margin-top:-150px; top:50%;  position: absolute; padding-top:160px; 
+		span { }
+		p { font-size: 0.8em; line-height: 1.5; color:#777;}
+		.hi-icon-wrap { display: none;}
+		button { padding: 10px 30px; color:#fff; padding:30px 0; width:100%; margin-top: 30px; font-size: 0.8em; font-weight: bold; background: #FF1E4D; border:none; box-shadow: none;}
+		&.move { transform:translate(0,0); opacity: 1;}
+	}
+}
 
 .videoWrapper {
 	position: relative;

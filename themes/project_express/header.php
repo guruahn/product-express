@@ -38,6 +38,7 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Rajdhani:300,700' rel='stylesheet' type='text/css'>
     <link href="<?php echo get_template_directory_uri(); ?>/css/tooltipster.css"  rel='stylesheet' type='text/css'>
+    <link href="<?php echo get_template_directory_uri(); ?>/css/component.css"  rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_uri(); ?>" />
 
     <?php wp_head(); ?>

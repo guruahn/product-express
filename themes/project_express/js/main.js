@@ -34,15 +34,28 @@ $( ".pure-form.email input" ).focus(function() {
 
 /*request popup*/
 $(".request .action").click(function() {
-	$(".popup.request").addClass("move");
-	$("body").addClass("fix");
+    $(".popup.request").addClass("move");
+    $("body").addClass("fix");
 });
+
+/*request popup*/
+$(".side .request p").click(function() {
+
+    $(".popup.requestResult").addClass("move");
+    $("body").addClass("fix");
+    setTimeout(function(){
+       $(".hi-icon, .popup.requestResult .msg").addClass("move");
+    }, 100);
+});
+
+
+
 
 $(".open").click(function(e) {
     $("header").toggleClass("opened");
 });
 
-$(".close").click(function(e) {
+$(".close, .confirm").click(function(e) {
 	$(".popup").removeClass("move");
 	$("body").removeClass("fix");
 });

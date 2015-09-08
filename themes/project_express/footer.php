@@ -24,6 +24,19 @@
     <?php wd_form_maker(4); ?>
 
 </div>
+<div class="popup requestResult">
+
+<i class="fa fa-times close">
+</i>
+    <div class="msg">
+        <div class="hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a">
+        <a href="#" class="hi-icon done ">qwer</a>
+        </div>
+        <p>서비스 리뷰 의뢰가 등록 되었습니다.<br>감사합니다.</p>
+    
+<button type="submit" class="btn btn-default confirm">확인</button>
+    </div>
+</div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
