@@ -15,7 +15,9 @@ if(get_post_type() != 'wysijap') :
                 endif;
                 ?>
             </li -->
-            <li class="url"><a href="<?php echo product_express_edit_param(get_field('link')); ?>" target="_blank"><?php the_field('link'); ?></a></li>
+            <li class="url">
+                <a href="<?php echo product_express_edit_param(get_field('link')); ?>" target="_blank" data-postid="<?php echo get_the_ID();?>"><?php the_field('link'); ?></a>
+            </li>
             <li class="tag"><?php the_tags('#', ' #'); ?></li>
 
         </ul>

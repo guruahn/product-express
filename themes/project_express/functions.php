@@ -357,13 +357,13 @@ if ( ! function_exists( 'project_express_post_thumbnail' ) ) :
 
         }elseif(! has_post_thumbnail()){
             ?>
-            <a href="<?php echo product_express_edit_param(get_field('link')); ?>" target="_blank">
+            <a href="<?php echo product_express_edit_param(get_field('link')); ?>" target="_blank" data-postid="<?php echo get_the_ID();?>">
                 <img width="401" height="264" src="<?php echo get_template_directory_uri(); ?>/img/defaultImg.jpg" class="attachment-thumbnail wp-post-image" alt="default image">
             </a>
         <?php
         }else{
             ?>
-            <a href="<?php echo product_express_edit_param(get_field('link')); ?>" target="_blank">
+            <a href="<?php echo product_express_edit_param(get_field('link')); ?>" target="_blank" data-postid="<?php echo get_the_ID();?>">
                 <?php
                 the_post_thumbnail( 'thumbnail', array( 'alt' => get_the_title() ) );
                 ?>

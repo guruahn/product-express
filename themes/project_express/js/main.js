@@ -70,6 +70,17 @@ $('#subscribe-button').on('click', function() {
     ga('send', 'event', 'button', 'click', 'subscribe-buttons', 1);
 });
 
+/*outbount event tracking*/
+$('.info li.image a').on('click', function(){
+    var post_id = $(this).data('postid');
+    ga('send', 'event', 'link', 'outbound', 'thumbnail', post_id);
+});
+$('.info li.url a').on('click', function(){
+    var post_id = $(this).data('postid');
+    console.log(post_id);
+    ga('send', 'event', 'link', 'outbound', 'url', post_id);
+});
+
 
 /*
 *
