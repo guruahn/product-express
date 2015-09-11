@@ -357,13 +357,13 @@ if ( ! function_exists( 'project_express_post_thumbnail' ) ) :
 
         }elseif(! has_post_thumbnail()){
             ?>
-            <a href="<?php echo get_field('link'); ?>" target="_blank">
+            <a href="<?php echo product_express_edit_param(get_field('link')); ?>" target="_blank">
                 <img width="401" height="264" src="<?php echo get_template_directory_uri(); ?>/img/defaultImg.jpg" class="attachment-thumbnail wp-post-image" alt="default image">
             </a>
         <?php
         }else{
             ?>
-            <a href="<?php echo get_field('link'); ?>" target="_blank">
+            <a href="<?php echo product_express_edit_param(get_field('link')); ?>" target="_blank">
                 <?php
                 the_post_thumbnail( 'thumbnail', array( 'alt' => get_the_title() ) );
                 ?>
@@ -882,6 +882,40 @@ if ( ! function_exists( 'project_express_get_og_image' ) ) :
 
 endif;
 
+if ( ! function_exists( 'product_express_edit_param' ) ) :
+    /**
+     * Display an user info.
+     *
+     *
+     * @since Product Express 1.0
+     */
+    function product_express_edit_param($link){
+        $parsed_url = parse_url($link);
+        if(isset($parsed_url['query'])) {
+            if(!strstr($parsed_url['query'], "ref=producthunt")) {
+                $parsed_url['query'] = "ref=producthunt&".$parsed_url['query'];
+            }
+
+        }else{
+            $parsed_url['query'] = "ref=producthunt";
+        }
+        return unparse_url($parsed_url);
+    }
+
+endif;
+
+function unparse_url($parsed_url) {
+    $scheme   = isset($parsed_url['scheme']) ? $parsed_url['scheme'] . '://' : '';
+    $host     = isset($parsed_url['host']) ? $parsed_url['host'] : '';
+    $port     = isset($parsed_url['port']) ? ':' . $parsed_url['port'] : '';
+    $user     = isset($parsed_url['user']) ? $parsed_url['user'] : '';
+    $pass     = isset($parsed_url['pass']) ? ':' . $parsed_url['pass']  : '';
+    $pass     = ($user || $pass) ? "$pass@" : '';
+    $path     = isset($parsed_url['path']) ? $parsed_url['path'] : '';
+    $query    = isset($parsed_url['query']) ? '?' . $parsed_url['query'] : '';
+    $fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : '';
+    return "$scheme$user$pass$host$port$path$query$fragment";
+}
 
 /**
  * 변수의 구성요소를 리턴받는다.
