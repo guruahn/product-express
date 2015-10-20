@@ -284,6 +284,7 @@ if ( ! function_exists( 'project_express_custom_archive_page' ) ) :
      */
     add_action('pre_get_posts', 'project_express_custom_archive_page', 1);
     function project_express_custom_archive_page($args){
+
         if(is_archive() && is_day()){
 
             //일별로 보여주고 전날/다음날 버튼 출력
@@ -299,8 +300,8 @@ if ( ! function_exists( 'project_express_custom_archive_page' ) ) :
             add_action('loop_end','project_express_print_daily_arrow');
             add_filter('get_the_archive_title', 'project_express_archive_title');
         }elseif(is_author()){
-            $author = get_user_by( 'slug', get_query_var( 'author_name' ) );
 
+            $author = get_user_by( 'slug', get_query_var( 'author_name' ) );
             //set_query_var( 'meta_query', $meta_query );
             global $wpdb;
             $postids = $wpdb->get_col($wpdb->prepare(

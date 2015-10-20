@@ -16,7 +16,7 @@
                     /*왼쪽 썸네일, URL등 정보*/
                     get_template_part( 'entry', 'info' );
                     /*평가, 코멘트 등*/
-                    get_template_part( 'entry', 'article' );
+                    get_template_part( 'entry', 'product' );
 
                     // End the loop.
                 endwhile;

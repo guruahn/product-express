@@ -2,7 +2,7 @@
 
 //Query setup
 $query = array(
-    'post_type'           => 'post',
+    //'post_type'           => 'post',
     'posts_per_page'      => 100,
 );
 $add = 0;$loop = true;
@@ -64,17 +64,18 @@ $daily_url = product_express_get_daily_url($arr_date);
             </div>
             <?php
             // Start the loop.
-
+            $articles = [];
             while ( $blog_posts->have_posts() ) : $blog_posts->the_post();
-                /*
-                 * Include the Post-Format-specific template for the content.
-                 * If you want to override this in a child theme, then include a file
-                 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-                 */
-                /*왼쪽 썸네일, URL등 정보*/
-                get_template_part( 'entry', 'info' );
-                /*평가, 코멘트 등*/
-                get_template_part( 'entry', 'article' );
+                $categories = get_the_category(get_the_ID());
+                if($categories[0]->slug == "article"){
+                    $articles[] = get_post();
+                }else{
+                    /*왼쪽 썸네일, URL등 정보*/
+                    get_template_part( 'entry', 'info' );
+                    /*평가, 코멘트 등*/
+                    get_template_part( 'entry', 'product' );
+                }
+
 
                 // End the loop.
             endwhile;
@@ -89,7 +90,31 @@ $daily_url = product_express_get_daily_url($arr_date);
             ?>
             <!-- 프로덕 소개 끝 이후 반복 -->
 
+            <?php
+            if($articles) :
+            ?>
+                <!-- article section -->
+                <div class="sectionSpace"></div>
+                <div class="articleSection date pure-u-1" >
+                    <a href="#">
+                        Article
+                    </a>
+                    <span class="desc">
+                        읽어볼만한 제품 리뷰를 소개합니다.
+                    </span>
+                </div>
+                <?php
+                global $post;
+                foreach($articles as $post) :
+                    setup_postdata( $post );
+                    get_template_part( 'entry', 'article' );
 
+                endforeach;
+                ?>
+
+            <?php
+            endif;
+            ?>
             <!-- 날짜 묶음 공유 -->
             <div class="dateShareBox pure-u-1">
                 <h4>5월 10일의 리스트를 공유하세요.</h4>

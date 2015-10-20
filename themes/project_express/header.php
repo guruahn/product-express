@@ -24,8 +24,13 @@
     <meta property="og:title"           content="<?php wp_title( ' ― ', true, 'right' ); ?>" />
     <meta property="og:image"           content="<?php echo project_express_get_og_image(); ?>" />
     <?php
-    $content_post = get_field('review', $post->ID);
-    $trimmed_content = wp_trim_words( $content_post, 60, ' ...Read More' );
+    $content_post = "";
+    $trimmed_content = "";
+    if($post){
+        $content_post = get_field('review', $post->ID);
+        $trimmed_content = wp_trim_words( $content_post, 60, ' ...Read More' );
+    }
+
     ?>
     <meta property="og:description"    content="<?php echo $trimmed_content;?>" />
     <meta name="naver-site-verification" content="2d34c81d92034cfec1b0229b8d2e613ffa43244c"/>

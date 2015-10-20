@@ -1,3 +1,4 @@
+
 <?php get_header(); ?>
     <div class="container pure-g">
         <div class="pure-u-1    pure-u-md-14-24  pure-u-lg-16-24   content pure-u-1">
@@ -5,8 +6,8 @@
             <div class="pure-g" >
 
 
-
                 <?php
+
                 if ( have_posts() ) :
                     ?>
                     <div class="authorTitle pure-u-1" >
@@ -19,6 +20,7 @@
                                 $author_slug = current($paths);
                             }
                             $author = get_user_by( 'slug', $author_slug );
+
                             include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
                             if ( is_plugin_active( 'metronet-profile-picture/metronet-profile-picture.php' ) ) {
                                 mt_profile_img( $author->ID );
@@ -43,7 +45,7 @@
                         /*왼쪽 썸네일, URL등 정보*/
                         get_template_part( 'entry', 'info' );
                         /*평가, 코멘트 등*/
-                        get_template_part( 'entry', 'article' );
+                        get_template_part( 'entry', 'product' );
                         ?>
                     <?php
                     endwhile;

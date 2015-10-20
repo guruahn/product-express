@@ -1,6 +1,8 @@
 
+<div class="productTitle pure-u-1" ><?php the_title( sprintf( '<a href="%s" rel="bookmark" ><h3>', esc_url( get_permalink() ) ), '</h2></a>' );?></div>
+<div class="info"></div>
 
-<div class="article pure-u-1 pure-u-lg-3-5 l-box" >
+<div class="article pure-u-1 pure-u-lg-11-12 l-box" >
 
     <div class="comment">
         <?php the_field('review'); ?>
@@ -34,21 +36,21 @@
     edit_post_link('Edit Product', '<div class="edit-link">', '</div>');
     ?>
     <div class="userComment">
-    <?php
-    if(is_single() && get_post_type() != 'wysijap'){
-    ?>
-    
-        <div class="fb-like" data-href="<?php echo get_permalink();?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-        <div class="fbcomment">
-            <div class="fb-comments" data-href="<?php echo get_permalink();?>" data-numposts="3" style="width:100%;" data-width="100%"></div>
-        </div>
-    <?php
-    }elseif(get_post_type() != 'wysijap'){
-    ?>
-        <div class="fb-like" data-href="<?php echo get_permalink();?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-        <a href="<?php echo get_permalink();?>" class="no"><i class="fa fa-comment"></i> <span class="fb-comments-count" data-href="<?php echo get_permalink();?>"></span> Comments</a>
-    <?php
-    }
-    ?>
+        <?php
+        if(is_single() && get_post_type() != 'wysijap'){
+            ?>
+
+            <div class="fb-like" data-href="<?php echo get_permalink();?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+            <div class="fbcomment">
+                <div class="fb-comments" data-href="<?php echo get_permalink();?>" data-numposts="3" style="width:100%;" data-width="100%"></div>
+            </div>
+        <?php
+        }elseif(get_post_type() != 'wysijap'){
+            ?>
+            <div class="fb-like" data-href="<?php echo get_permalink();?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+            <a href="<?php echo get_permalink();?>" class="no"><i class="fa fa-comment"></i> <span class="fb-comments-count" data-href="<?php echo get_permalink();?>"></span> Comments</a>
+        <?php
+        }
+        ?>
     </div>
 </div><!--//.article-->
