@@ -481,6 +481,27 @@ if ( ! function_exists( 'product_express_get_movie_thumbnail_by_url' ) ) :
 
 endif;
 
+if ( ! function_exists( 'product_express_get_movie_iframe_by_url' ) ) :
+    /**
+     * Display an user info.
+     *
+     *
+     * @since Product Express 1.0
+     */
+    function product_express_get_movie_iframe_by_url($url){
+        $iframe = '';
+
+        if(strpos($url, 'youtu') !== false) {
+            $youtube_id = product_express_get_youtube_id($url);
+            $iframe .= '<div class="iframe_wrap"><iframe class="movie-iframe" width="100%" height="315px" src="https://www.youtube.com/embed/'. $youtube_id .'?wmode=transparent" frameborder="0" allowfullscreen></iframe></div>';
+        }elseif(strpos($url, 'vimeo') !== false) {
+            $vimeo_id = product_express_get_vimeo_info_by_url($url);
+            $iframe = '<iframe src="https://player.vimeo.com/video/'.$vimeo_id.'" width="100%" height="315px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+        }
+        return $iframe;
+    }
+
+endif;
 
 if ( ! function_exists( 'product_express_get_vimeo_info_by_url' ) ) :
     /**
@@ -666,7 +687,9 @@ if ( ! function_exists( 'product_express_content_of_feed' ) ) :
         $categories = get_the_category(get_the_ID());
         if($categories[0]->slug != "article"){
             $content .= '<div class="pe-rss-thumbnail" style="margin-top: 1em;" medium="image">';
-            if(! has_post_thumbnail()){
+            if(get_field('movie_link')){
+                $content .= product_express_get_movie_iframe_by_url(get_field('movie_link'));
+            }elseif(! has_post_thumbnail()){
                 $content .= '<img style="width:100%" src="'.get_template_directory_uri().'/img/defaultImg.jpg" /> ';
             }else{
                 global $post;
