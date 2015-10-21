@@ -284,22 +284,7 @@ if ( ! function_exists( 'project_express_custom_archive_page' ) ) :
      */
     add_action('pre_get_posts', 'project_express_custom_archive_page', 1);
     function project_express_custom_archive_page($args){
-
-        if(is_archive() && is_day()){
-
-            //일별로 보여주고 전날/다음날 버튼 출력
-            $arr_date = date_parse(get_query_var( 'year', '' ).'-'.get_query_var( 'monthnum', '' ).'-'.get_query_var( 'day', '' ));
-            $date_query = array(
-                array(
-                    'year'  => $arr_date['year'],
-                    'month' => $arr_date['month'],
-                    'day'   => $arr_date['day'],
-                ),
-            );
-            set_query_var( 'date_query', $date_query );
-            add_action('loop_end','project_express_print_daily_arrow');
-            add_filter('get_the_archive_title', 'project_express_archive_title');
-        }elseif(is_author()){
+        if(is_author()){
 
             $author = get_user_by( 'slug', get_query_var( 'author_name' ) );
             //set_query_var( 'meta_query', $meta_query );
@@ -675,38 +660,48 @@ if ( ! function_exists( 'product_express_content_of_feed' ) ) :
     function product_express_content_of_feed($content){
         $content = '';
 
-        /*thumbnail*/
-        $content .= '<div class="pe-rss-thumbnail" style="margin-top: 1em;" medium="image">';
-        if(! has_post_thumbnail()){
-            $content .= '<img style="width:100%" src="'.get_template_directory_uri().'/img/defaultImg.jpg" /> ';
-        }else{
-            global $post;
-            $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail' );
-            $url = $thumb['0'];
-            $content .= '<img style="width:100%" src="'.$url.'" /> ';
+        /**
+         * thumbnail
+         */
+        $categories = get_the_category(get_the_ID());
+        if($categories[0]->slug != "article"){
+            $content .= '<div class="pe-rss-thumbnail" style="margin-top: 1em;" medium="image">';
+            if(! has_post_thumbnail()){
+                $content .= '<img style="width:100%" src="'.get_template_directory_uri().'/img/defaultImg.jpg" /> ';
+            }else{
+                global $post;
+                $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail' );
+                $url = $thumb['0'];
+                $content .= '<img style="width:100%" src="'.$url.'" /> ';
+            }
+            $content .= '</div>';
         }
-        $content .= '</div>';
 
-        /*start .pe-rss-content*/
+        /**
+         * start .pe-rss-content
+         */
         $content .= '<div class="pe-rss-content" style="float: left; width: 100%;">';
         $content .= get_field('review');
+
+        //author
         $content .= product_express_get_profile_img_for_feed( get_the_author_meta('ID') );
+        //writer2
         $writer2= get_field('writer2');
         if($writer2) :
             $content .= get_field('review2');
             $content .= product_express_get_profile_img_for_feed($writer2);
         endif;
-
+        //writer3
         $writer3= get_field('writer3');
         if($writer3) :
             $content .= get_field('review3');
             $content .= product_express_get_profile_img_for_feed($writer3);
         endif;
 
-        /*link*/
+        //link
         $content .= '<hr style="height:1px; overflow:hidden; border:none; background:#eee; margin:0 0 20px 0">';
         $content .= '<a href="'.product_express_get_frame_link(get_field('link')).'" style="font-size:0.8em; color:#999; ">'.get_field('link').'</a>';
-        /*tags*/
+        //tags
         $content .= '<br />';
         $tags = get_the_tags();
         $tag_html = '';
@@ -717,7 +712,7 @@ if ( ! function_exists( 'product_express_content_of_feed' ) ) :
             $tag_html .= "#{$tag->name}</a> ";
         }
         $content .= $tag_html;
-        /*store*/
+        //store
         $android_link = get_field('android_link');
         $ios_link = get_field('ios_link');
         $content .= '<div style="padding-top:15px;">';
@@ -789,19 +784,21 @@ if ( ! function_exists( 'product_express_wp_title' ) ) :
      */
     add_filter( 'wp_title', 'product_express_wp_title', 10, 2 );
     function product_express_wp_title( $title, $sep ){
+        global $product_count;
+        global $product_title;
         if(is_home()){
             global $blog_posts;
             if($blog_posts->post_count > 0){
-                $title = get_the_title($blog_posts->posts[0]->ID);
-                if($blog_posts->post_count > 1) $title .= ' 외 '.($blog_posts->post_count -1).'건';
+                $title = $product_title;
+                if($product_count > 1) $title .= ' 외 '.($product_count -1).'건';
                 $title .= ', '.get_the_date('Y년 n월 j일 '). $sep . get_bloginfo('name');
             }
         }
         if(is_archive()){
             global $wp_query;
             if($wp_query->post_count > 0) {
-                $title = get_the_title($wp_query->posts[0]->ID);
-                if($wp_query->post_count > 1) $title .= ' 외 '.($wp_query->post_count -1).'건';
+                $title = $product_title;
+                if($product_count > 1) $title .= ' 외 '.($product_count-1).'건';
                 $title .= ', '.get_the_date('Y년 n월 j일 '). $sep . get_bloginfo('name');
             }
 

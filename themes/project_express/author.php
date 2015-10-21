@@ -42,10 +42,16 @@
                     <?php
                     while ( have_posts() ) : the_post(); ?>
                         <?php
-                        /*왼쪽 썸네일, URL등 정보*/
-                        get_template_part( 'entry', 'info' );
-                        /*평가, 코멘트 등*/
-                        get_template_part( 'entry', 'product' );
+                        $categories = get_the_category(get_the_ID());
+                        if($categories[0]->slug == "article"){
+                            /*평가, 코멘트 등*/
+                            get_template_part( 'entry', 'article' );
+                        }else{
+                            /*왼쪽 썸네일, URL등 정보*/
+                            get_template_part( 'entry', 'info' );
+                            /*평가, 코멘트 등*/
+                            get_template_part( 'entry', 'product' );
+                        }
                         ?>
                     <?php
                     endwhile;
