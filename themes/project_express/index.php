@@ -32,8 +32,8 @@ $daily_url = product_express_get_daily_url($arr_date);
 global $product_count;
 global $product_title;
 if ( $blog_posts->have_posts() ) :
-    $articles = [];
-    $product = [];
+    $articles = array();
+    $product = array();
     while ( $blog_posts->have_posts() ) : $blog_posts->the_post();
         $categories = get_the_category(get_the_ID());
         if($categories[0]->slug == "article"){

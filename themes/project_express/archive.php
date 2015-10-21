@@ -17,8 +17,8 @@ if(is_archive() && is_day()){
     global $product_count;
     global $product_title;
     if ( have_posts() ) :
-        $articles = [];
-        $product = [];
+        $articles = array();
+        $product = array();
         while ( have_posts() ) : the_post();
             $categories = get_the_category(get_the_ID());
             if($categories[0]->slug == "article"){
